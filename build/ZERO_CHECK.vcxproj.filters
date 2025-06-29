@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\C\GameSeries\SpaceShoot\build\CMakeFiles\17941310a4615a0ffc52c228d519cd15\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{8F453196-283F-3A6F-9598-6CD12F8E69AE}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
