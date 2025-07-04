@@ -8,18 +8,32 @@
 class Game
 {
 public:
-    Game();
+    static Game& getInstance()
+    {
+        static Game instance;
+        return instance;
+    }
     ~Game();
-    void run();
+    
     void init();
+    void run();
     void clean();
-    void changeScene(Scene* scene);
-
-    void handleEvent(SDL_Event* event);
     void update();
     void render();
-protected:
+    void changeScene(Scene* scene);
+    void handleEvent(SDL_Event* event);
+
+
+    SDL_Window* getWindow() const { return window; }
+    SDL_Renderer* getRenderer() const { return renderer; }
+    int getWindowWidth() const { return windowWidth; }
+    int getWindowHeight() const { return windowHeight; }
+
 private:
+    Game(); // 私有构造函数，禁止外部实例化
+    Game(const Game&) = delete; // 禁止拷贝构造函数
+    Game& operator=(const Game&) = delete; // 禁止拷贝赋值运算符
+    
     bool isRunning = true; // 检查游戏是否正在运行
     Scene* currentScene = nullptr; // 当前场景
     SDL_Window* window = nullptr; // 窗口
