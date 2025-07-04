@@ -17,6 +17,8 @@ public:
     void init() override;
     void clean() override;
 
+    void keyboardControl();
+
 private:
     Game& game; // 游戏对象
     Player player; // 玩家对象
