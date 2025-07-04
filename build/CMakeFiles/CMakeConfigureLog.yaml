@@ -24,7 +24,7 @@ events:
       The output was:
       0
       閫傜敤浜?.NET Framework MSBuild 鐗堟湰 17.14.10+8b8e13593
-      鐢熸垚鍚姩鏃堕棿涓?2025/6/29 14:55:55銆?
+      鐢熸垚鍚姩鏃堕棿涓?2025/6/29 17:29:01銆?
       
       鑺傜偣 1 涓婄殑椤圭洰鈥淐:\\C\\GameSeries\\SpaceShoot\\build\\CMakeFiles\\4.0.3\\CompilerIdC\\CompilerIdC.vcxproj鈥?榛樿鐩爣)銆?
       PrepareForBuild:
@@ -53,7 +53,7 @@ events:
           0 涓鍛?
           0 涓敊璇?
       
-      宸茬敤鏃堕棿 00:00:02.53
+      宸茬敤鏃堕棿 00:00:01.91
       
       
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
@@ -79,7 +79,7 @@ events:
       The output was:
       0
       閫傜敤浜?.NET Framework MSBuild 鐗堟湰 17.14.10+8b8e13593
-      鐢熸垚鍚姩鏃堕棿涓?2025/6/29 14:55:58銆?
+      鐢熸垚鍚姩鏃堕棿涓?2025/6/29 17:29:04銆?
       
       鑺傜偣 1 涓婄殑椤圭洰鈥淐:\\C\\GameSeries\\SpaceShoot\\build\\CMakeFiles\\4.0.3\\CompilerIdCXX\\CompilerIdCXX.vcxproj鈥?榛樿鐩爣)銆?
       PrepareForBuild:
@@ -108,7 +108,7 @@ events:
           0 涓鍛?
           0 涓敊璇?
       
-      宸茬敤鏃堕棿 00:00:02.64
+      宸茬敤鏃堕棿 00:00:02.00
       
       
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
@@ -127,8 +127,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/C/GameSeries/SpaceShoot/build/CMakeFiles/CMakeScratch/TryCompile-bk1yzu"
-      binary: "C:/C/GameSeries/SpaceShoot/build/CMakeFiles/CMakeScratch/TryCompile-bk1yzu"
+      source: "C:/C/GameSeries/SpaceShoot/build/CMakeFiles/CMakeScratch/TryCompile-eshowd"
+      binary: "C:/C/GameSeries/SpaceShoot/build/CMakeFiles/CMakeScratch/TryCompile-eshowd"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
       CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -137,40 +137,40 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/C/GameSeries/SpaceShoot/build/CMakeFiles/CMakeScratch/TryCompile-bk1yzu'
+        Change Dir: 'C:/C/GameSeries/SpaceShoot/build/CMakeFiles/CMakeScratch/TryCompile-eshowd'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_91326.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_32562.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         閫傜敤浜?.NET Framework MSBuild 鐗堟湰 17.14.10+8b8e13593
-        鐢熸垚鍚姩鏃堕棿涓?2025/6/29 14:56:01銆?
+        鐢熸垚鍚姩鏃堕棿涓?2025/6/29 17:29:06銆?
         
-        鑺傜偣 1 涓婄殑椤圭洰鈥淐:\\C\\GameSeries\\SpaceShoot\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bk1yzu\\cmTC_91326.vcxproj鈥?榛樿鐩爣)銆?
+        鑺傜偣 1 涓婄殑椤圭洰鈥淐:\\C\\GameSeries\\SpaceShoot\\build\\CMakeFiles\\CMakeScratch\\TryCompile-eshowd\\cmTC_32562.vcxproj鈥?榛樿鐩爣)銆?
         PrepareForBuild:
-          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_91326.dir\\Debug\\鈥濄€?
+          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_32562.dir\\Debug\\鈥濄€?
           宸插惎鐢ㄧ粨鏋勫寲杈撳嚭銆傜紪璇戝櫒璇婃柇鐨勬牸寮忚缃皢鍙嶆槧閿欒灞傛缁撴瀯銆傛湁鍏宠缁嗕俊鎭紝璇峰弬闃?https://aka.ms/cpp/structured-output銆?
-          姝ｅ湪鍒涘缓鐩綍鈥淐:\\C\\GameSeries\\SpaceShoot\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bk1yzu\\Debug\\鈥濄€?
-          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_91326.dir\\Debug\\cmTC_91326.tlog\\鈥濄€?
+          姝ｅ湪鍒涘缓鐩綍鈥淐:\\C\\GameSeries\\SpaceShoot\\build\\CMakeFiles\\CMakeScratch\\TryCompile-eshowd\\Debug\\鈥濄€?
+          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_32562.dir\\Debug\\cmTC_32562.tlog\\鈥濄€?
         InitializeBuildStatus:
-          姝ｅ湪鍒涘缓鈥渃mTC_91326.dir\\Debug\\cmTC_91326.tlog\\unsuccessfulbuild鈥濓紝鍥犱负宸叉寚瀹氣€淎lwaysCreate鈥濄€?
-          姝ｅ湪瀵光€渃mTC_91326.dir\\Debug\\cmTC_91326.tlog\\unsuccessfulbuild鈥濇墽琛?Touch 浠诲姟銆?
+          姝ｅ湪鍒涘缓鈥渃mTC_32562.dir\\Debug\\cmTC_32562.tlog\\unsuccessfulbuild鈥濓紝鍥犱负宸叉寚瀹氣€淎lwaysCreate鈥濄€?
+          姝ｅ湪瀵光€渃mTC_32562.dir\\Debug\\cmTC_32562.tlog\\unsuccessfulbuild鈥濇墽琛?Touch 浠诲姟銆?
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_91326.dir\\Debug\\\\" /Fd"cmTC_91326.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\\D\\tool\\cmake-4.0.3\\share\\cmake-4.0\\Modules\\CMakeCCompilerABI.c"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_32562.dir\\Debug\\\\" /Fd"cmTC_32562.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\\D\\tool\\cmake-4.0.3\\share\\cmake-4.0\\Modules\\CMakeCCompilerABI.c"
           鐢ㄤ簬 x64 鐨?Microsoft (R) C/C++ 浼樺寲缂栬瘧鍣?19.44.35211 鐗?
           鐗堟潈鎵€鏈?C) Microsoft Corporation銆備繚鐣欐墍鏈夋潈鍒┿€?
-          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_91326.dir\\Debug\\\\" /Fd"cmTC_91326.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\\D\\tool\\cmake-4.0.3\\share\\cmake-4.0\\Modules\\CMakeCCompilerABI.c"
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_32562.dir\\Debug\\\\" /Fd"cmTC_32562.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\\D\\tool\\cmake-4.0.3\\share\\cmake-4.0\\Modules\\CMakeCCompilerABI.c"
           CMakeCCompilerABI.c
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\C\\GameSeries\\SpaceShoot\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bk1yzu\\Debug\\cmTC_91326.exe" /INCREMENTAL /ILK:"cmTC_91326.dir\\Debug\\cmTC_91326.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/C/GameSeries/SpaceShoot/build/CMakeFiles/CMakeScratch/TryCompile-bk1yzu/Debug/cmTC_91326.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/C/GameSeries/SpaceShoot/build/CMakeFiles/CMakeScratch/TryCompile-bk1yzu/Debug/cmTC_91326.lib" /MACHINE:X64  /machine:x64 cmTC_91326.dir\\Debug\\CMakeCCompilerABI.obj
-          cmTC_91326.vcxproj -> C:\\C\\GameSeries\\SpaceShoot\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bk1yzu\\Debug\\cmTC_91326.exe
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\C\\GameSeries\\SpaceShoot\\build\\CMakeFiles\\CMakeScratch\\TryCompile-eshowd\\Debug\\cmTC_32562.exe" /INCREMENTAL /ILK:"cmTC_32562.dir\\Debug\\cmTC_32562.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/C/GameSeries/SpaceShoot/build/CMakeFiles/CMakeScratch/TryCompile-eshowd/Debug/cmTC_32562.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/C/GameSeries/SpaceShoot/build/CMakeFiles/CMakeScratch/TryCompile-eshowd/Debug/cmTC_32562.lib" /MACHINE:X64  /machine:x64 cmTC_32562.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_32562.vcxproj -> C:\\C\\GameSeries\\SpaceShoot\\build\\CMakeFiles\\CMakeScratch\\TryCompile-eshowd\\Debug\\cmTC_32562.exe
         FinalizeBuildStatus:
-          姝ｅ湪鍒犻櫎鏂囦欢鈥渃mTC_91326.dir\\Debug\\cmTC_91326.tlog\\unsuccessfulbuild鈥濄€?
-          姝ｅ湪瀵光€渃mTC_91326.dir\\Debug\\cmTC_91326.tlog\\cmTC_91326.lastbuildstate鈥濇墽琛?Touch 浠诲姟銆?
-        宸插畬鎴愮敓鎴愰」鐩€淐:\\C\\GameSeries\\SpaceShoot\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bk1yzu\\cmTC_91326.vcxproj鈥?榛樿鐩爣)鐨勬搷浣溿€?
+          姝ｅ湪鍒犻櫎鏂囦欢鈥渃mTC_32562.dir\\Debug\\cmTC_32562.tlog\\unsuccessfulbuild鈥濄€?
+          姝ｅ湪瀵光€渃mTC_32562.dir\\Debug\\cmTC_32562.tlog\\cmTC_32562.lastbuildstate鈥濇墽琛?Touch 浠诲姟銆?
+        宸插畬鎴愮敓鎴愰」鐩€淐:\\C\\GameSeries\\SpaceShoot\\build\\CMakeFiles\\CMakeScratch\\TryCompile-eshowd\\cmTC_32562.vcxproj鈥?榛樿鐩爣)鐨勬搷浣溿€?
         
         宸叉垚鍔熺敓鎴愩€?
             0 涓鍛?
             0 涓敊璇?
         
-        宸茬敤鏃堕棿 00:00:01.69
+        宸茬敤鏃堕棿 00:00:01.77
         
       exitCode: 0
   -
@@ -210,8 +210,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/C/GameSeries/SpaceShoot/build/CMakeFiles/CMakeScratch/TryCompile-q1b7l3"
-      binary: "C:/C/GameSeries/SpaceShoot/build/CMakeFiles/CMakeScratch/TryCompile-q1b7l3"
+      source: "C:/C/GameSeries/SpaceShoot/build/CMakeFiles/CMakeScratch/TryCompile-qbbciw"
+      binary: "C:/C/GameSeries/SpaceShoot/build/CMakeFiles/CMakeScratch/TryCompile-qbbciw"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -221,40 +221,40 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/C/GameSeries/SpaceShoot/build/CMakeFiles/CMakeScratch/TryCompile-q1b7l3'
+        Change Dir: 'C:/C/GameSeries/SpaceShoot/build/CMakeFiles/CMakeScratch/TryCompile-qbbciw'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_65d93.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_332af.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         閫傜敤浜?.NET Framework MSBuild 鐗堟湰 17.14.10+8b8e13593
-        鐢熸垚鍚姩鏃堕棿涓?2025/6/29 14:56:03銆?
+        鐢熸垚鍚姩鏃堕棿涓?2025/6/29 17:29:09銆?
         
-        鑺傜偣 1 涓婄殑椤圭洰鈥淐:\\C\\GameSeries\\SpaceShoot\\build\\CMakeFiles\\CMakeScratch\\TryCompile-q1b7l3\\cmTC_65d93.vcxproj鈥?榛樿鐩爣)銆?
+        鑺傜偣 1 涓婄殑椤圭洰鈥淐:\\C\\GameSeries\\SpaceShoot\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qbbciw\\cmTC_332af.vcxproj鈥?榛樿鐩爣)銆?
         PrepareForBuild:
-          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_65d93.dir\\Debug\\鈥濄€?
+          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_332af.dir\\Debug\\鈥濄€?
           宸插惎鐢ㄧ粨鏋勫寲杈撳嚭銆傜紪璇戝櫒璇婃柇鐨勬牸寮忚缃皢鍙嶆槧閿欒灞傛缁撴瀯銆傛湁鍏宠缁嗕俊鎭紝璇峰弬闃?https://aka.ms/cpp/structured-output銆?
-          姝ｅ湪鍒涘缓鐩綍鈥淐:\\C\\GameSeries\\SpaceShoot\\build\\CMakeFiles\\CMakeScratch\\TryCompile-q1b7l3\\Debug\\鈥濄€?
-          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_65d93.dir\\Debug\\cmTC_65d93.tlog\\鈥濄€?
+          姝ｅ湪鍒涘缓鐩綍鈥淐:\\C\\GameSeries\\SpaceShoot\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qbbciw\\Debug\\鈥濄€?
+          姝ｅ湪鍒涘缓鐩綍鈥渃mTC_332af.dir\\Debug\\cmTC_332af.tlog\\鈥濄€?
         InitializeBuildStatus:
-          姝ｅ湪鍒涘缓鈥渃mTC_65d93.dir\\Debug\\cmTC_65d93.tlog\\unsuccessfulbuild鈥濓紝鍥犱负宸叉寚瀹氣€淎lwaysCreate鈥濄€?
-          姝ｅ湪瀵光€渃mTC_65d93.dir\\Debug\\cmTC_65d93.tlog\\unsuccessfulbuild鈥濇墽琛?Touch 浠诲姟銆?
+          姝ｅ湪鍒涘缓鈥渃mTC_332af.dir\\Debug\\cmTC_332af.tlog\\unsuccessfulbuild鈥濓紝鍥犱负宸叉寚瀹氣€淎lwaysCreate鈥濄€?
+          姝ｅ湪瀵光€渃mTC_332af.dir\\Debug\\cmTC_332af.tlog\\unsuccessfulbuild鈥濇墽琛?Touch 浠诲姟銆?
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_65d93.dir\\Debug\\\\" /Fd"cmTC_65d93.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\D\\tool\\cmake-4.0.3\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_332af.dir\\Debug\\\\" /Fd"cmTC_332af.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\D\\tool\\cmake-4.0.3\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
           鐢ㄤ簬 x64 鐨?Microsoft (R) C/C++ 浼樺寲缂栬瘧鍣?19.44.35211 鐗?
           鐗堟潈鎵€鏈?C) Microsoft Corporation銆備繚鐣欐墍鏈夋潈鍒┿€?
-          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_65d93.dir\\Debug\\\\" /Fd"cmTC_65d93.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\D\\tool\\cmake-4.0.3\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_332af.dir\\Debug\\\\" /Fd"cmTC_332af.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\D\\tool\\cmake-4.0.3\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
           CMakeCXXCompilerABI.cpp
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\C\\GameSeries\\SpaceShoot\\build\\CMakeFiles\\CMakeScratch\\TryCompile-q1b7l3\\Debug\\cmTC_65d93.exe" /INCREMENTAL /ILK:"cmTC_65d93.dir\\Debug\\cmTC_65d93.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/C/GameSeries/SpaceShoot/build/CMakeFiles/CMakeScratch/TryCompile-q1b7l3/Debug/cmTC_65d93.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/C/GameSeries/SpaceShoot/build/CMakeFiles/CMakeScratch/TryCompile-q1b7l3/Debug/cmTC_65d93.lib" /MACHINE:X64  /machine:x64 cmTC_65d93.dir\\Debug\\CMakeCXXCompilerABI.obj
-          cmTC_65d93.vcxproj -> C:\\C\\GameSeries\\SpaceShoot\\build\\CMakeFiles\\CMakeScratch\\TryCompile-q1b7l3\\Debug\\cmTC_65d93.exe
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\C\\GameSeries\\SpaceShoot\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qbbciw\\Debug\\cmTC_332af.exe" /INCREMENTAL /ILK:"cmTC_332af.dir\\Debug\\cmTC_332af.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/C/GameSeries/SpaceShoot/build/CMakeFiles/CMakeScratch/TryCompile-qbbciw/Debug/cmTC_332af.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/C/GameSeries/SpaceShoot/build/CMakeFiles/CMakeScratch/TryCompile-qbbciw/Debug/cmTC_332af.lib" /MACHINE:X64  /machine:x64 cmTC_332af.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_332af.vcxproj -> C:\\C\\GameSeries\\SpaceShoot\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qbbciw\\Debug\\cmTC_332af.exe
         FinalizeBuildStatus:
-          姝ｅ湪鍒犻櫎鏂囦欢鈥渃mTC_65d93.dir\\Debug\\cmTC_65d93.tlog\\unsuccessfulbuild鈥濄€?
-          姝ｅ湪瀵光€渃mTC_65d93.dir\\Debug\\cmTC_65d93.tlog\\cmTC_65d93.lastbuildstate鈥濇墽琛?Touch 浠诲姟銆?
-        宸插畬鎴愮敓鎴愰」鐩€淐:\\C\\GameSeries\\SpaceShoot\\build\\CMakeFiles\\CMakeScratch\\TryCompile-q1b7l3\\cmTC_65d93.vcxproj鈥?榛樿鐩爣)鐨勬搷浣溿€?
+          姝ｅ湪鍒犻櫎鏂囦欢鈥渃mTC_332af.dir\\Debug\\cmTC_332af.tlog\\unsuccessfulbuild鈥濄€?
+          姝ｅ湪瀵光€渃mTC_332af.dir\\Debug\\cmTC_332af.tlog\\cmTC_332af.lastbuildstate鈥濇墽琛?Touch 浠诲姟銆?
+        宸插畬鎴愮敓鎴愰」鐩€淐:\\C\\GameSeries\\SpaceShoot\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qbbciw\\cmTC_332af.vcxproj鈥?榛樿鐩爣)鐨勬搷浣溿€?
         
         宸叉垚鍔熺敓鎴愩€?
             0 涓鍛?
             0 涓敊璇?
         
-        宸茬敤鏃堕棿 00:00:01.80
+        宸茬敤鏃堕棿 00:00:01.76
         
       exitCode: 0
   -
