@@ -19,10 +19,16 @@ void SceneMain::update(float deltaTime)
 {
     keyboardControl(deltaTime);
     updatePlayerProjectiles(deltaTime);
+    spawnEnemy();
+    updateEnemies(deltaTime);
 }
 
 void SceneMain::render()
 {
+
+    // 渲染敌人
+    renderEnemies();
+
     // 渲染玩家
     SDL_Rect playerRect{
         static_cast<int>(player.position.x),
@@ -34,6 +40,8 @@ void SceneMain::render()
 
     // 渲染玩家子弹
     renderPlayerProjectiles();
+
+
 }
 
 void SceneMain::handleEvent(SDL_Event *event)
@@ -42,6 +50,11 @@ void SceneMain::handleEvent(SDL_Event *event)
 
 void SceneMain::init()
 {
+    // 初始化随机数生成器
+    std::random_device rd;
+    gen = std::mt19937(rd());
+    dis = std::uniform_real_distribution<float>(0.0f, 1.0f);
+
     // 初始化玩家对象
     player.texture = IMG_LoadTexture(game.getRenderer(), "../../assets/image/SpaceShip.png");
     SDL_QueryTexture(player.texture, NULL, NULL, &player.width, &player.height);
@@ -56,15 +69,23 @@ void SceneMain::init()
     projectilePlayerTemplate.width /= 4;
     projectilePlayerTemplate.height /= 4;
 
+    // 初始化敌人对象模板
+    enemyTemplate.texture = IMG_LoadTexture(game.getRenderer(), "../../assets/image/insect-2.png");
+    SDL_QueryTexture(enemyTemplate.texture, NULL, NULL, &enemyTemplate.width, &enemyTemplate.height);
+    enemyTemplate.width /= 4;
+    enemyTemplate.height /= 4;
+
 }
 
 void SceneMain::clean()
 {
+    // 释放玩家资源
     if (player.texture != nullptr)
     {
         SDL_DestroyTexture(player.texture);
     }
 
+    // 释放子弹资源
     for (auto& projectile: projectilesPlayer) {
         if (projectile != nullptr)
         {
@@ -76,6 +97,20 @@ void SceneMain::clean()
     if (projectilePlayerTemplate.texture != nullptr)
     {
         SDL_DestroyTexture(projectilePlayerTemplate.texture);
+    }
+
+    // 释放敌人资源
+    for (auto& enemy: enemies) {
+        if (enemy != nullptr)
+        {
+            delete enemy;
+        }
+    }
+    enemies.clear();
+
+    if (enemyTemplate.texture != nullptr)
+    {
+        SDL_DestroyTexture(enemyTemplate.texture);
     }
 }
 
@@ -175,5 +210,50 @@ void SceneMain::renderPlayerProjectiles()
             projectile->height
         };
         SDL_RenderCopy(game.getRenderer(), projectile->texture, NULL, &projectileRect);
+    }
+}
+
+void SceneMain::spawnEnemy()
+{
+    if (dis(gen) > 1 / 60.0f)
+    {
+        return;
+    }
+
+    Enemy* enemy = new Enemy(enemyTemplate);
+    enemy->position.x = dis(gen) * static_cast<float>(game.getWindowWidth() - enemy->width);
+    enemy->position.y = -enemy->height;
+    enemies.push_back(enemy);
+}
+
+void SceneMain::updateEnemies(float deltaTime)
+{
+    for (auto it = enemies.begin(); it != enemies.end();)
+    {
+        auto enemy = *it;
+        enemy->position.y += deltaTime * enemy->speed;
+        if (enemy->position.y > game.getWindowHeight())
+        {
+            delete enemy;
+            it = enemies.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
+}
+
+void SceneMain::renderEnemies()
+{
+    for (auto enemy: enemies)
+    {
+        SDL_Rect enemyRect = {
+            static_cast<int>(enemy->position.x),
+            static_cast<int>(enemy->position.y),
+            enemy->width,
+            enemy->height
+        };
+        SDL_RenderCopy(game.getRenderer(), enemy->texture, NULL, &enemyRect);
     }
 }

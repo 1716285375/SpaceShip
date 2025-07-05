@@ -14,6 +14,14 @@ struct Player {
 
 };
 
+struct Enemy {
+    SDL_Texture* texture = nullptr; // 敌人的贴图
+    SDL_FPoint position{0, 0}; // 敌人的位置
+    int width = 0; // 敌人的宽度
+    int height = 0; // 敌人的高度
+    int speed = 200; // 敌人的速度
+};
+
 struct ProjectilePlayer {
     SDL_Texture* texture = nullptr; // 玩家的子弹贴图
     SDL_FPoint position{0, 0}; // 玩家的子弹位置
