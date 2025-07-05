@@ -21,13 +21,29 @@ void SceneMain::update(float deltaTime)
     updatePlayerProjectiles(deltaTime);
     spawnEnemy();
     updateEnemies(deltaTime);
+    updateEnemyProjectiles(deltaTime);
 }
 
 void SceneMain::render()
 {
-
     // 渲染敌人
     renderEnemies();
+
+    // 渲染玩家残影
+    int alphaStep = 255 / (player.trail.size() + 1);
+    int alpha = alphaStep;
+    for (const auto& pos : player.trail) {
+        SDL_Rect shadowRect{
+            static_cast<int>(pos.x),
+            static_cast<int>(pos.y),
+            player.width,
+            player.height
+        };
+        SDL_SetTextureAlphaMod(player.texture, alpha); // 设置透明度
+        SDL_RenderCopy(game.getRenderer(), player.texture, NULL, &shadowRect);
+        alpha += alphaStep;
+    }
+    SDL_SetTextureAlphaMod(player.texture, 255); // 恢复不透明
 
     // 渲染玩家
     SDL_Rect playerRect{
@@ -40,7 +56,8 @@ void SceneMain::render()
 
     // 渲染玩家子弹
     renderPlayerProjectiles();
-
+    // 渲染敌人子弹
+    renderEnemyProjectiles();
 
 }
 
@@ -63,29 +80,29 @@ void SceneMain::init()
     player.position.x = static_cast<float>(game.getWindowWidth()) / 2 - static_cast<float>(player.width) / 2;
     player.position.y = static_cast<float>(game.getWindowHeight()) - static_cast<float>(player.height);
 
-    // 初始化子弹模板
-    projectilePlayerTemplate.texture = IMG_LoadTexture(game.getRenderer(), "../../assets/image/Bullet.png");
+    // 初始化玩家子弹模板
+    projectilePlayerTemplate.texture = IMG_LoadTexture(game.getRenderer(), "../../assets/image/laser-3.png");
     SDL_QueryTexture(projectilePlayerTemplate.texture, NULL, NULL, &projectilePlayerTemplate.width, &projectilePlayerTemplate.height);
     projectilePlayerTemplate.width /= 4;
     projectilePlayerTemplate.height /= 4;
 
     // 初始化敌人对象模板
-    enemyTemplate.texture = IMG_LoadTexture(game.getRenderer(), "../../assets/image/insect-2.png");
+    enemyTemplate.texture = IMG_LoadTexture(game.getRenderer(), "../../assets/image/insect-1.png");
     SDL_QueryTexture(enemyTemplate.texture, NULL, NULL, &enemyTemplate.width, &enemyTemplate.height);
     enemyTemplate.width /= 4;
     enemyTemplate.height /= 4;
+
+    // 初始化敌人子弹模板
+    projectileEnemyTemplate.texture = IMG_LoadTexture(game.getRenderer(), "../../assets/image/bullet-1.png");
+    SDL_QueryTexture(projectileEnemyTemplate.texture, NULL, NULL, &projectileEnemyTemplate.width, &projectileEnemyTemplate.height);
+    projectileEnemyTemplate.width /= 4;
+    projectileEnemyTemplate.height /= 4;
 
 }
 
 void SceneMain::clean()
 {
-    // 释放玩家资源
-    if (player.texture != nullptr)
-    {
-        SDL_DestroyTexture(player.texture);
-    }
-
-    // 释放子弹资源
+    // 释放玩家子弹资源
     for (auto& projectile: projectilesPlayer) {
         if (projectile != nullptr)
         {
@@ -93,11 +110,6 @@ void SceneMain::clean()
         }
     }
     projectilesPlayer.clear();
-
-    if (projectilePlayerTemplate.texture != nullptr)
-    {
-        SDL_DestroyTexture(projectilePlayerTemplate.texture);
-    }
 
     // 释放敌人资源
     for (auto& enemy: enemies) {
@@ -112,6 +124,41 @@ void SceneMain::clean()
     {
         SDL_DestroyTexture(enemyTemplate.texture);
     }
+
+    // 释放敌人子弹资源
+    for (auto& projectile: projectilesEnemy) {
+        if (projectile != nullptr)
+        {
+            delete projectile;
+        }
+    }
+
+    // 清理模板
+    // 释放玩家资源
+    if (player.texture != nullptr)
+    {
+        SDL_DestroyTexture(player.texture);
+    }
+
+    // 释放敌人资源
+    if (enemyTemplate.texture != nullptr)
+    {
+        SDL_DestroyTexture(enemyTemplate.texture);
+    }
+
+    // 释放玩家子弹模板资源
+    if (projectilePlayerTemplate.texture != nullptr)
+    {
+        SDL_DestroyTexture(projectilePlayerTemplate.texture);
+    }
+
+    // 释放敌人子弹模板资源
+    if (projectileEnemyTemplate.texture != nullptr)
+    {
+        SDL_DestroyTexture(projectileEnemyTemplate.texture);
+    }
+
+
 }
 
 void SceneMain::keyboardControl(float deltaTime)
@@ -164,7 +211,13 @@ void SceneMain::keyboardControl(float deltaTime)
             shootPlayer();
             player.lastShootTime = currentTime;
         }
-
+    }
+    // 每帧更新时
+    player.trail.push_back(player.position);
+    // 最多保留10个历史点
+    if (player.trail.size() > 10)
+    { 
+        player.trail.pop_front();
     }
 }
 
@@ -222,12 +275,13 @@ void SceneMain::spawnEnemy()
 
     Enemy* enemy = new Enemy(enemyTemplate);
     enemy->position.x = dis(gen) * static_cast<float>(game.getWindowWidth() - enemy->width);
-    enemy->position.y = -enemy->height;
+    enemy->position.y = -static_cast<float>(enemy->height);
     enemies.push_back(enemy);
 }
 
 void SceneMain::updateEnemies(float deltaTime)
 {
+    auto currentTime = SDL_GetTicks();
     for (auto it = enemies.begin(); it != enemies.end();)
     {
         auto enemy = *it;
@@ -239,6 +293,32 @@ void SceneMain::updateEnemies(float deltaTime)
         }
         else
         {
+            int safeDistance = game.getWindowHeight() - 4 * player.height; // 敌人的安全距离(在该条件下敌机可能不会发射子弹), 距离屏幕底部4个玩家的高度
+            if (enemy->position.y < player.position.y + player.height &&
+                enemy->position.y < safeDistance)
+            {
+                // 敌人在玩家上方，发射子弹
+                if (currentTime - enemy->lastShootTime > enemy->coolDown)
+                {
+                    shootEnemy(enemy);
+                    enemy->lastShootTime = currentTime;
+                }
+            }
+            else if (enemy->position.y > safeDistance)
+            {
+                // 敌人能检测到玩家(是否x轴有重叠, 且敌机在玩家上方)，发射子弹
+                if (!(player.position.x + player.width < enemy->position.x ||
+                    enemy->position.x + enemy->width < player.position.x) &&
+                    enemy->position.y < player.position.y + player.height)
+                {
+                    if (currentTime - enemy->lastShootTime > enemy->coolDown)
+                    {
+                        shootEnemy(enemy);
+                        enemy->lastShootTime = currentTime;
+                    }
+                }
+            }
+            
             ++it;
         }
     }
@@ -256,4 +336,61 @@ void SceneMain::renderEnemies()
         };
         SDL_RenderCopy(game.getRenderer(), enemy->texture, NULL, &enemyRect);
     }
+}
+
+void SceneMain::shootEnemy(Enemy* enemy)
+{
+    auto projectile = new ProjectileEnemy(projectileEnemyTemplate);
+    projectile->position.x = enemy->position.x + enemy->width / 2 - projectile->width / 2;
+    projectile->position.y = enemy->position.y + enemy->height / 2 - projectile->height / 2;
+    projectile->direction = getDirection(enemy);
+    projectilesEnemy.push_back(projectile);
+}
+
+void SceneMain::updateEnemyProjectiles(float deltaTime)
+{
+    auto margin = 32; // 子弹与超出屏幕外边界的距离
+    for (auto it = projectilesEnemy.begin(); it != projectilesEnemy.end();)
+    {
+        auto projectile = *it;
+        projectile->position.x += projectile->speed * projectile->direction.x * deltaTime;
+        projectile->position.y += projectile->speed * projectile->direction.y * deltaTime;
+        if (projectile->position.x > game.getWindowWidth() + margin ||
+            projectile->position.x < -margin ||
+            projectile->position.y > game.getWindowHeight() + margin)
+        {
+            delete projectile;
+            it = projectilesEnemy.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
+}
+
+void SceneMain::renderEnemyProjectiles()
+{
+    for (auto projectile: projectilesEnemy)
+    {
+        SDL_Rect projectileRect = {
+            static_cast<int>(projectile->position.x),
+            static_cast<int>(projectile->position.y),
+            projectile->width,
+            projectile->height
+        };
+        // SDL_RenderCopy(game.getRenderer(), projectile->texture, NULL, &projectileRect);
+        float angle = atan2(projectile->direction.y, projectile->direction.x) * 180 / M_PI - 90;
+        SDL_RenderCopyEx(game.getRenderer(), projectile->texture, NULL, &projectileRect, angle, NULL, SDL_FLIP_NONE);
+    }
+}
+
+SDL_FPoint SceneMain::getDirection(Enemy *enemy)
+{
+    auto x = (player.position.x + player.width / 2) - (enemy->position.x - enemy->width / 2);
+    auto y = (player.position.y + player.height / 2) - (enemy->position.y + enemy->height / 2);
+    auto length = sqrt(x * x + y * y);
+    x /= length;
+    y /= length;
+    return SDL_FPoint{x, y};
 }

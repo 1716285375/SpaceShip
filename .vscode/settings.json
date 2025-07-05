@@ -52,6 +52,7 @@
         "random": "cpp",
         "algorithm": "cpp",
         "optional": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "deque": "cpp"
     }
 }
