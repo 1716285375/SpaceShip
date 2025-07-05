@@ -21,7 +21,7 @@ public:
     void clean() override;
 
     void keyboardControl(float deltaTime); // 键盘控制
-    
+
     void shootPlayer(); // 玩家射击
     void updatePlayerProjectiles(float deltaTime); // 玩家子弹更新
     void renderPlayerProjectiles(); // 玩家子弹渲染
@@ -32,6 +32,8 @@ public:
     void shootEnemy(Enemy* enemy); // 敌人射击
     void updateEnemyProjectiles(float deltaTime); // 敌人子弹更新
     void renderEnemyProjectiles(); // 敌人子弹渲染
+
+    void enemyExplode(Enemy* enemy); // 敌人爆炸效果
 
     SDL_FPoint getDirection(Enemy* enemy); // 获取敌人方向
 

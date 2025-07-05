@@ -13,7 +13,8 @@ struct Player {
     Uint32 coolDown = 300; // 玩家发射子弹的冷却时间
     Uint32 lastShootTime = 0; // 玩家上次射击的时间
 
-    int health = 100; // 玩家的生命值
+    int health = 100; // 玩家的总生命值
+    int currentHealth = 100; // 玩家当前的生命值
     int score = 0; // 玩家的得分
 
     std::deque<SDL_FPoint> trail; // 残影轨迹
@@ -30,7 +31,8 @@ struct Enemy {
     Uint32 lastShootTime = 0; // 敌人上次射击的时间
 
     int damage = 10; // 敌人的伤害值
-    int health = 100; // 敌人的生命值
+    int health = 100; // 敌人的总生命值
+    int currentHealth = 100; // 敌人当前的生命值
 };
 
 struct ProjectileEnemy {
@@ -48,6 +50,8 @@ struct ProjectilePlayer {
     int width = 0; // 玩家的子弹宽度
     int height = 0; // 玩家的子弹高度
     int speed = 500; // 玩家的子弹速度
+    
+    int damage = 40; // 玩家的子弹伤害值
 };
 
 #endif // OBJECT_H

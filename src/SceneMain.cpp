@@ -238,7 +238,7 @@ void SceneMain::updatePlayerProjectiles(float deltaTime)
     {
         auto projectile = *it;
         projectile->position.y -= deltaTime * projectile->speed;
-        // TODO: 检查子弹是否超出屏幕
+        // 检查子弹是否超出屏幕
         if (projectile->position.y + margin < 0)
         {
             delete projectile;
@@ -247,7 +247,37 @@ void SceneMain::updatePlayerProjectiles(float deltaTime)
         }
         else
         {
-            ++it;
+            bool hit = false;
+            for (auto enemy: enemies)
+            {
+                SDL_Rect enemyRect = {
+                    static_cast<int>(enemy->position.x),
+                    static_cast<int>(enemy->position.y),
+                    enemy->width,
+                    enemy->height
+                };
+
+                SDL_Rect projectileRect = {
+                    static_cast<int>(projectile->position.x),
+                    static_cast<int>(projectile->position.y),
+                    projectile->width,
+                    projectile->height
+                };
+                if (SDL_HasIntersection(&enemyRect, &projectileRect))
+                {
+                    // 子弹击中敌人
+                    enemy->currentHealth -= projectile->damage; // 扣除敌人的生命值
+                    delete projectile;
+                    it = projectilesPlayer.erase(it);
+                    hit = true;
+                    break;
+                }
+            }
+            if (!hit)
+            {
+                ++it;
+            }
+
         }
     }
 }
@@ -318,8 +348,17 @@ void SceneMain::updateEnemies(float deltaTime)
                     }
                 }
             }
-            
-            ++it;
+
+            if (enemy->currentHealth <= 0)
+            {
+                enemyExplode(enemy);
+                it = enemies.erase(it);
+            }
+            else
+            {
+                ++it;
+            }
+
         }
     }
 }
@@ -383,6 +422,11 @@ void SceneMain::renderEnemyProjectiles()
         float angle = atan2(projectile->direction.y, projectile->direction.x) * 180 / M_PI - 90;
         SDL_RenderCopyEx(game.getRenderer(), projectile->texture, NULL, &projectileRect, angle, NULL, SDL_FLIP_NONE);
     }
+}
+
+void SceneMain::enemyExplode(Enemy *enemy)
+{
+    delete enemy;
 }
 
 SDL_FPoint SceneMain::getDirection(Enemy *enemy)
