@@ -10,7 +10,7 @@ struct Player {
     int width = 0; // 玩家的宽度
     int height = 0; // 玩家的高度
     int speed = 300; // 玩家的速度
-    Uint32 coolDown = 300; // 玩家发射子弹的冷却时间
+    Uint32 coolDown = 200; // 玩家发射子弹的冷却时间
     Uint32 lastShootTime = 0; // 玩家上次射击的时间
 
     int health = 100; // 玩家的总生命值
@@ -27,12 +27,12 @@ struct Enemy {
     int width = 0; // 敌人的宽度
     int height = 0; // 敌人的高度
     int speed = 200; // 敌人的速度
-    Uint32 coolDown = 1000; // 敌人发射子弹的冷却时间
+    Uint32 coolDown = 2000; // 敌人发射子弹的冷却时间
     Uint32 lastShootTime = 0; // 敌人上次射击的时间
 
-    int damage = 10; // 敌人的伤害值
     int health = 100; // 敌人的总生命值
     int currentHealth = 100; // 敌人当前的生命值
+    int damage = 50; // 敌人的伤害值
 };
 
 struct ProjectileEnemy {
@@ -42,6 +42,8 @@ struct ProjectileEnemy {
     int width = 0; // 敌人的子弹宽度
     int height = 0; // 敌人的子弹高度
     int speed = 400; // 敌人的子弹速度
+
+    int damage = 60; // 敌人的伤害值
 };
 
 struct ProjectilePlayer {
@@ -50,8 +52,8 @@ struct ProjectilePlayer {
     int width = 0; // 玩家的子弹宽度
     int height = 0; // 玩家的子弹高度
     int speed = 500; // 玩家的子弹速度
-    
-    int damage = 40; // 玩家的子弹伤害值
+
+    int damage = 80; // 玩家的子弹伤害值
 };
 
 #endif // OBJECT_H

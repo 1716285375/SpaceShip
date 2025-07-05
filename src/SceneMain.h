@@ -22,6 +22,7 @@ public:
 
     void keyboardControl(float deltaTime); // 键盘控制
 
+    void updatePlayer(float deltaTime); // 玩家更新
     void shootPlayer(); // 玩家射击
     void updatePlayerProjectiles(float deltaTime); // 玩家子弹更新
     void renderPlayerProjectiles(); // 玩家子弹渲染
@@ -45,6 +46,7 @@ private:
     std::list<Enemy*> enemies; // 敌人对象列表
     std::list<ProjectileEnemy*> projectilesEnemy; // 敌人子弹对象列表
 
+    bool isDead = false; // 玩家是否死亡
     Player player; // 玩家对象
     ProjectilePlayer projectilePlayerTemplate; // 玩家子弹对象模板
     std::list<ProjectilePlayer*> projectilesPlayer; // 玩家子弹对象列表

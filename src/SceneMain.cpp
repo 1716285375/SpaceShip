@@ -18,6 +18,7 @@ SceneMain::~SceneMain()
 void SceneMain::update(float deltaTime)
 {
     keyboardControl(deltaTime);
+    updatePlayer(deltaTime);
     updatePlayerProjectiles(deltaTime);
     spawnEnemy();
     updateEnemies(deltaTime);
@@ -29,30 +30,34 @@ void SceneMain::render()
     // 渲染敌人
     renderEnemies();
 
-    // 渲染玩家残影
-    int alphaStep = 255 / (player.trail.size() + 1);
-    int alpha = alphaStep;
-    for (const auto& pos : player.trail) {
-        SDL_Rect shadowRect{
-            static_cast<int>(pos.x),
-            static_cast<int>(pos.y),
+    if (!isDead)
+    {
+        // 渲染玩家残影
+        int alphaStep = 255 / (player.trail.size() + 1);
+        int alpha = alphaStep;
+        for (const auto& pos : player.trail) {
+            SDL_Rect shadowRect{
+                static_cast<int>(pos.x),
+                static_cast<int>(pos.y),
+                player.width,
+                player.height
+            };
+            SDL_SetTextureAlphaMod(player.texture, alpha); // 设置透明度
+            SDL_RenderCopy(game.getRenderer(), player.texture, NULL, &shadowRect);
+            alpha += alphaStep;
+        }
+        SDL_SetTextureAlphaMod(player.texture, 255); // 恢复不透明
+
+        // 渲染玩家
+        SDL_Rect playerRect{
+            static_cast<int>(player.position.x),
+            static_cast<int>(player.position.y),
             player.width,
             player.height
         };
-        SDL_SetTextureAlphaMod(player.texture, alpha); // 设置透明度
-        SDL_RenderCopy(game.getRenderer(), player.texture, NULL, &shadowRect);
-        alpha += alphaStep;
+        
+        SDL_RenderCopy(game.getRenderer(), player.texture, NULL, &playerRect);
     }
-    SDL_SetTextureAlphaMod(player.texture, 255); // 恢复不透明
-
-    // 渲染玩家
-    SDL_Rect playerRect{
-        static_cast<int>(player.position.x),
-        static_cast<int>(player.position.y),
-        player.width,
-        player.height
-    };
-    SDL_RenderCopy(game.getRenderer(), player.texture, NULL, &playerRect);
 
     // 渲染玩家子弹
     renderPlayerProjectiles();
@@ -163,6 +168,10 @@ void SceneMain::clean()
 
 void SceneMain::keyboardControl(float deltaTime)
 {
+    if (isDead)
+    {
+        return;
+    }
     auto keyboardState = SDL_GetKeyboardState(NULL);
     
     // 按键控制, WSAD控制玩家移动
@@ -221,10 +230,44 @@ void SceneMain::keyboardControl(float deltaTime)
     }
 }
 
+void SceneMain::updatePlayer(float deltaTime)
+{
+    if (isDead)
+    {
+        return;
+    }
+    if (player.currentHealth <= 0)
+    {
+        // TODO: 游戏结束
+        isDead = true;
+    }
+    for (auto enemy: enemies)
+    {
+        SDL_Rect enemyRect = {
+            static_cast<int>(enemy->position.x),
+            static_cast<int>(enemy->position.y),
+            enemy->width,
+            enemy->height
+        };
+        SDL_Rect playerRect = {
+            static_cast<int>(player.position.x),
+            static_cast<int>(player.position.y),
+            player.width,
+            player.height
+        };
+        if (SDL_HasIntersection(&playerRect, &enemyRect))
+        {
+            // 玩家被敌人击中
+            player.currentHealth -= enemy->damage; // 扣除玩家的生命值
+            enemy->currentHealth = 0; // 敌人死亡
+        }
+    }
+}
+
 void SceneMain::shootPlayer()
 {
 
-    // TODO: 发射子弹
+    // 发射子弹
     auto projectile = new ProjectilePlayer(projectilePlayerTemplate);
     projectile->position.x = player.position.x + player.width / 2 - projectile->width / 2;
     projectile->position.y = player.position.y - projectile->height;
@@ -328,7 +371,7 @@ void SceneMain::updateEnemies(float deltaTime)
                 enemy->position.y < safeDistance)
             {
                 // 敌人在玩家上方，发射子弹
-                if (currentTime - enemy->lastShootTime > enemy->coolDown)
+                if (currentTime - enemy->lastShootTime > enemy->coolDown && !isDead)
                 {
                     shootEnemy(enemy);
                     enemy->lastShootTime = currentTime;
@@ -341,7 +384,7 @@ void SceneMain::updateEnemies(float deltaTime)
                     enemy->position.x + enemy->width < player.position.x) &&
                     enemy->position.y < player.position.y + player.height)
                 {
-                    if (currentTime - enemy->lastShootTime > enemy->coolDown)
+                    if (currentTime - enemy->lastShootTime > enemy->coolDown && !isDead)
                     {
                         shootEnemy(enemy);
                         enemy->lastShootTime = currentTime;
@@ -403,7 +446,30 @@ void SceneMain::updateEnemyProjectiles(float deltaTime)
         }
         else
         {
-            ++it;
+            SDL_Rect playerRect = {
+                static_cast<int>(player.position.x),
+                static_cast<int>(player.position.y),
+                player.width,
+                player.height
+            };
+            SDL_Rect projectileRect = {
+                static_cast<int>(projectile->position.x),
+                static_cast<int>(projectile->position.y),
+                projectile->width,
+                projectile->height
+            };
+            if (SDL_HasIntersection(&playerRect, &projectileRect) && !isDead)
+            {
+                // 子弹击中玩家
+                player.currentHealth -= projectile->damage; // 扣除玩家的生命值
+                delete projectile;
+                it = projectilesEnemy.erase(it);
+            }
+            else
+            {
+                ++it;
+            }
+
         }
     }
 }
