@@ -18,7 +18,7 @@ public:
     void init();
     void run();
     void clean();
-    void update();
+    void update(float deltaTime);
     void render();
     void changeScene(Scene* scene);
     void handleEvent(SDL_Event* event);
@@ -40,6 +40,9 @@ private:
     SDL_Renderer* renderer = nullptr; // 渲染器
     int windowWidth = 600; // 窗口宽度
     int windowHeight = 800; // 窗口高度
+    int FPS = 60; // 游戏帧率
+    Uint32 frameTime; // 每帧时间
+    float deltaTime; // 时间间隔
 };
 
 #endif
