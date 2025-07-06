@@ -23,13 +23,12 @@ void SceneMain::update(float deltaTime)
     spawnEnemy();
     updateEnemies(deltaTime);
     updateEnemyProjectiles(deltaTime);
+    updateExplosions(deltaTime);
+    updateItems(deltaTime);
 }
 
 void SceneMain::render()
 {
-    // 渲染敌人
-    renderEnemies();
-
     if (!isDead)
     {
         // 渲染玩家残影
@@ -58,16 +57,23 @@ void SceneMain::render()
         
         SDL_RenderCopy(game.getRenderer(), player.texture, NULL, &playerRect);
     }
+    // 渲染敌人
+    renderEnemies();
 
     // 渲染玩家子弹
     renderPlayerProjectiles();
     // 渲染敌人子弹
     renderEnemyProjectiles();
+    // 渲染爆炸
+    renderExplosions();
+    // 渲染道具
+    renderItems();
 
 }
 
 void SceneMain::handleEvent(SDL_Event *event)
 {
+    return;
 }
 
 void SceneMain::init()
@@ -103,6 +109,18 @@ void SceneMain::init()
     projectileEnemyTemplate.width /= 4;
     projectileEnemyTemplate.height /= 4;
 
+    // 初始化爆炸模板
+    explosionTemplate.texture = IMG_LoadTexture(game.getRenderer(), "../../assets/effect/explosion.png");
+    SDL_QueryTexture(explosionTemplate.texture, NULL, NULL, &explosionTemplate.width, &explosionTemplate.height);
+    explosionTemplate.totalFrames = explosionTemplate.width / explosionTemplate.height;
+    // explosionTemplate.height /= 4;
+    explosionTemplate.width = explosionTemplate.height;
+
+    // 初始化道具模板
+    itemTemplate.texture = IMG_LoadTexture(game.getRenderer(), "../../assets/image/bonus_life.png");
+    SDL_QueryTexture(itemTemplate.texture, NULL, NULL, &itemTemplate.width, &itemTemplate.height);
+    itemTemplate.width /= 4;
+    itemTemplate.height /= 4;
 }
 
 void SceneMain::clean()
@@ -137,6 +155,23 @@ void SceneMain::clean()
             delete projectile;
         }
     }
+    projectilesEnemy.clear();
+
+    // 释放爆炸资源
+    for (auto& explosion: explosions) {
+        if (explosion != nullptr)
+        {
+            delete explosion;
+        }
+    }
+    explosions.clear();
+
+    for (auto& item: items) {
+        if (item != nullptr)
+        {
+            delete item;
+        }
+    }
 
     // 清理模板
     // 释放玩家资源
@@ -162,8 +197,18 @@ void SceneMain::clean()
     {
         SDL_DestroyTexture(projectileEnemyTemplate.texture);
     }
+    
+    // 释放爆炸模板资源
+    if (explosionTemplate.texture != nullptr)
+    {
+        SDL_DestroyTexture(explosionTemplate.texture);
+    }
 
-
+    // 释放道具模板资源
+    if (itemTemplate.texture != nullptr)
+    {    
+        SDL_DestroyTexture(itemTemplate.texture);   
+    }
 }
 
 void SceneMain::keyboardControl(float deltaTime)
@@ -237,9 +282,16 @@ void SceneMain::updatePlayer(float deltaTime)
         return;
     }
     if (player.currentHealth <= 0)
-    {
-        // TODO: 游戏结束
+    {   
+        // 游戏结束
+        auto currentTime = SDL_GetTicks();
         isDead = true;
+        auto explosion = new Explosion(explosionTemplate);
+        explosion->position.x = player.position.x + player.width / 2 - explosion->width / 2;
+        explosion->position.y = player.position.y + player.height / 2 - explosion->height / 2;
+        explosion->startTime = currentTime;
+        explosions.push_back(explosion);
+        return;
     }
     for (auto enemy: enemies)
     {
@@ -336,6 +388,18 @@ void SceneMain::renderPlayerProjectiles()
             projectile->height
         };
         SDL_RenderCopy(game.getRenderer(), projectile->texture, NULL, &projectileRect);
+    }
+}
+
+void SceneMain::playerGetItem(Item *item)
+{
+    if (item->type == ItemType::Life)
+    {
+        player.currentHealth += 50;
+        if (player.currentHealth > player.health)
+        {
+            player.currentHealth = player.health;
+        }
     }
 }
 
@@ -492,7 +556,151 @@ void SceneMain::renderEnemyProjectiles()
 
 void SceneMain::enemyExplode(Enemy *enemy)
 {
+    auto currentTime = SDL_GetTicks();
+    auto explosion = new Explosion(explosionTemplate);
+    explosion->position.x = enemy->position.x + enemy->width / 2 - explosion->width / 2;
+    explosion->position.y = enemy->position.y + enemy->height / 2 - explosion->height / 2;
+    explosion->startTime = currentTime;
+    explosions.push_back(explosion);
+    if (dis(gen) < 0.5f)
+    {
+        dropItem(enemy);
+    }
+
     delete enemy;
+}
+
+void SceneMain::updateExplosions(float deltaTime)
+{
+    auto currentTime = SDL_GetTicks();
+    for (auto it = explosions.begin(); it != explosions.end();)
+    {
+        auto explosion = *it;
+        explosion->currentFrame = (currentTime - explosion->startTime) * explosion->FPS / 1000.0f;
+        if (explosion->currentFrame >= explosion->totalFrames)
+        {
+            delete explosion;
+            it = explosions.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
+}
+
+void SceneMain::renderExplosions()
+{
+    for (auto explosion: explosions)
+    {
+        SDL_Rect src = {
+            explosion->currentFrame * explosion->width,
+            0,
+            explosion->width,
+            explosion->height
+        };
+        SDL_Rect dst = {
+            static_cast<int>(explosion->position.x),
+            static_cast<int>(explosion->position.y),
+            explosion->width,
+            explosion->height
+        };
+        SDL_RenderCopy(game.getRenderer(), explosion->texture, &src, &dst);
+    }
+}
+
+void SceneMain::dropItem(Enemy *enemy)
+{
+    auto item = new Item(itemTemplate);
+    item->position.x = enemy->position.x + enemy->width / 2 - item->width / 2;
+    float angle = dis(gen) * 2 * M_PI;
+    item->direction.x = cos(angle);
+    item->direction.y = sin(angle);
+    items.push_back(item);
+}
+
+void SceneMain::updateItems(float deltaTime)
+{
+    for (auto it = items.begin(); it != items.end();)
+    {
+        auto item = *it;
+        // 物品的移动
+        item->position.x += item->speed * item->direction.x * deltaTime;
+        item->position.y += item->speed * item->direction.y * deltaTime;
+        // 物品与边界的碰撞检测
+        if (item->bounceCount > 0)
+        {
+            if (item->position.x < 0)
+            {
+                item->direction.x = -item->direction.x;
+                item->bounceCount--;
+            }
+            else if (item->position.x + item->width > game.getWindowWidth())
+            {
+                item->direction.x = -item->direction.x;
+                item->bounceCount--;
+            }
+            else if (item->position.y < 0)
+            {
+                item->direction.y = -item->direction.y;
+                item->bounceCount--;
+            }
+            else if (item->position.y + item->height > game.getWindowHeight())
+            {
+                item->direction.y = -item->direction.y;
+                item->bounceCount--;
+            }
+        }
+        // 物品的边界检测
+        if (item->position.x + item->width < 0 ||
+            item->position.x > game.getWindowWidth() ||
+            item->position.y + item->height < 0 ||
+            item->position.y > game.getWindowHeight())
+        {
+            delete item;
+            it = items.erase(it);
+        }
+        else
+        {
+            SDL_Rect playerRect = {
+                static_cast<int>(player.position.x),
+                static_cast<int>(player.position.y),
+                player.width,
+                player.height
+            };
+            SDL_Rect itemRect = {
+                static_cast<int>(item->position.x),
+                static_cast<int>(item->position.y),
+                item->width,
+                item->height
+            };
+            if (SDL_HasIntersection(&playerRect, &itemRect))
+            {
+                // 玩家获得物品
+                playerGetItem(item);
+                delete item;
+                it = items.erase(it);
+            }
+            else
+            {
+                ++it;
+            }
+        }
+    }
+}
+
+void SceneMain::renderItems()
+{
+    for (auto item: items)
+    {
+        SDL_Rect itemRect = {
+            static_cast<int>(item->position.x),
+            static_cast<int>(item->position.y),
+            item->width,
+            item->height
+        };
+        SDL_RenderCopy(game.getRenderer(), item->texture, NULL, &itemRect);
+    }
 }
 
 SDL_FPoint SceneMain::getDirection(Enemy *enemy)

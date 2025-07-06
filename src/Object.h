@@ -4,6 +4,25 @@
 #include <SDL.h>
 #include <deque>
 
+enum class ItemType {
+    Life,
+    Shield,
+    Time
+};
+
+// 道具
+struct Item {
+    SDL_Texture* texture = nullptr; // 道具的贴图
+    SDL_FPoint position{0, 0}; // 道具的位置
+    SDL_FPoint direction{0, 0}; // 道具的方向
+    int width = 0; // 道具的宽度
+    int height = 0; // 道具的高度
+    int speed = 300; // 道具的速度
+    int bounceCount = 3; // 道具的反弹次数
+    ItemType type = ItemType::Life; // 道具的类型
+};
+
+// 玩家
 struct Player {
     SDL_Texture* texture = nullptr; // 玩家的贴图
     SDL_FPoint position{0, 0}; // 玩家的位置
@@ -21,6 +40,7 @@ struct Player {
 
 };
 
+// 敌人
 struct Enemy {
     SDL_Texture* texture = nullptr; // 敌人的贴图
     SDL_FPoint position{0, 0}; // 敌人的位置
@@ -35,6 +55,7 @@ struct Enemy {
     int damage = 50; // 敌人的伤害值
 };
 
+// 敌人子弹
 struct ProjectileEnemy {
     SDL_Texture* texture = nullptr; // 敌人的子弹贴图
     SDL_FPoint position{0, 0}; // 敌人的子弹位置
@@ -46,6 +67,7 @@ struct ProjectileEnemy {
     int damage = 60; // 敌人的伤害值
 };
 
+// 玩家子弹
 struct ProjectilePlayer {
     SDL_Texture* texture = nullptr; // 玩家的子弹贴图
     SDL_FPoint position{0, 0}; // 玩家的子弹位置
@@ -54,6 +76,18 @@ struct ProjectilePlayer {
     int speed = 500; // 玩家的子弹速度
 
     int damage = 80; // 玩家的子弹伤害值
+};
+
+// 爆炸
+struct Explosion {
+    SDL_Texture* texture = nullptr; // 爆炸的贴图
+    SDL_FPoint position{0, 0}; // 爆炸的位置
+    int width = 0; // 爆炸的宽度
+    int height = 0; // 爆炸的高度
+    int currentFrame = 0; // 爆炸的当前帧
+    int totalFrames = 0; // 爆炸的总帧数
+    Uint32 startTime = 0; // 爆炸的开始时间
+    Uint32 FPS = 10; // 爆炸的帧率
 };
 
 #endif // OBJECT_H
