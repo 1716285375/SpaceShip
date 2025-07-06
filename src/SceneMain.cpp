@@ -258,7 +258,7 @@ void SceneMain::keyboardControl(float deltaTime)
     // 发射子弹
     if (keyboardState[SDL_SCANCODE_SPACE])
     {
-        // TODO: 发射子弹
+        // 发射子弹
         auto currentTime = SDL_GetTicks();
         if (currentTime - player.lastShootTime > player.coolDown)
         {
@@ -338,7 +338,7 @@ void SceneMain::updatePlayerProjectiles(float deltaTime)
         {
             delete projectile;
             it = projectilesPlayer.erase(it);
-            SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, "Projectile out of screen, deleted");
+            // SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, "Projectile out of screen, deleted");
         }
         else
         {
@@ -613,6 +613,7 @@ void SceneMain::dropItem(Enemy *enemy)
 {
     auto item = new Item(itemTemplate);
     item->position.x = enemy->position.x + enemy->width / 2 - item->width / 2;
+    item->position.y = enemy->position.y + enemy->height / 2 - item->height / 2;
     float angle = dis(gen) * 2 * M_PI;
     item->direction.x = cos(angle);
     item->direction.y = sin(angle);
@@ -633,21 +634,25 @@ void SceneMain::updateItems(float deltaTime)
             if (item->position.x < 0)
             {
                 item->direction.x = -item->direction.x;
+                item->speed += 100;
                 item->bounceCount--;
             }
             else if (item->position.x + item->width > game.getWindowWidth())
             {
                 item->direction.x = -item->direction.x;
+                item->speed += 100;
                 item->bounceCount--;
             }
             else if (item->position.y < 0)
             {
                 item->direction.y = -item->direction.y;
+                item->speed += 100;
                 item->bounceCount--;
             }
             else if (item->position.y + item->height > game.getWindowHeight())
             {
                 item->direction.y = -item->direction.y;
+                item->speed += 100;
                 item->bounceCount--;
             }
         }

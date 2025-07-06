@@ -17,7 +17,7 @@ struct Item {
     SDL_FPoint direction{0, 0}; // 道具的方向
     int width = 0; // 道具的宽度
     int height = 0; // 道具的高度
-    int speed = 300; // 道具的速度
+    int speed = 200; // 道具的速度
     int bounceCount = 3; // 道具的反弹次数
     ItemType type = ItemType::Life; // 道具的类型
 };
