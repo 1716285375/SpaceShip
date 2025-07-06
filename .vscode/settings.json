@@ -53,6 +53,8 @@
         "algorithm": "cpp",
         "optional": "cpp",
         "vector": "cpp",
-        "deque": "cpp"
+        "deque": "cpp",
+        "map": "cpp",
+        "xtree": "cpp"
     }
 }

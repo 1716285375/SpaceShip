@@ -78,6 +78,22 @@ void SceneMain::handleEvent(SDL_Event *event)
 
 void SceneMain::init()
 {
+    // 读取并播放音乐
+    bgMusic = Mix_LoadMUS("../../assets/music/03_Racing_Through_Asteroids_Loop.ogg");
+    if (bgMusic == nullptr)
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load bg music: %s", Mix_GetError());
+    }
+    Mix_PlayMusic(bgMusic, -1);
+
+    // 读取音效资源
+    sounds["player_shoot"] = Mix_LoadWAV("../../assets/sound/laser_shoot4.wav");
+    sounds["enemy_shoot"] = Mix_LoadWAV("../../assets/sound/xs_laser.wav");
+    sounds["player_explode"] = Mix_LoadWAV("../../assets/sound/explosion1.wav");
+    sounds["enemy_explode"] = Mix_LoadWAV("../../assets/sound/explosion3.wav");
+    sounds["ger_item"] = Mix_LoadWAV("../../assets/sound/eff5.wav");
+    sounds["hit"] = Mix_LoadWAV("../../assets/sound/eff11.wav");
+
     // 初始化随机数生成器
     std::random_device rd;
     gen = std::mt19937(rd());
@@ -125,6 +141,15 @@ void SceneMain::init()
 
 void SceneMain::clean()
 {
+    // 释放音效资源
+    for (auto& sound : sounds) {
+        if (sound.second != nullptr)
+        {
+            Mix_FreeChunk(sound.second);
+        }
+    }
+    sounds.clear();
+
     // 释放玩家子弹资源
     for (auto& projectile: projectilesPlayer) {
         if (projectile != nullptr)
@@ -209,6 +234,13 @@ void SceneMain::clean()
     {    
         SDL_DestroyTexture(itemTemplate.texture);   
     }
+
+    // 清理音乐资源
+    if (bgMusic != nullptr)
+    {
+        Mix_HaltMusic();
+        Mix_FreeMusic(bgMusic);
+    }
 }
 
 void SceneMain::keyboardControl(float deltaTime)
@@ -268,8 +300,8 @@ void SceneMain::keyboardControl(float deltaTime)
     }
     // 每帧更新时
     player.trail.push_back(player.position);
-    // 最多保留10个历史点
-    if (player.trail.size() > 10)
+    // 最多保留8个历史点
+    if (player.trail.size() > 8)
     { 
         player.trail.pop_front();
     }
@@ -291,6 +323,7 @@ void SceneMain::updatePlayer(float deltaTime)
         explosion->position.y = player.position.y + player.height / 2 - explosion->height / 2;
         explosion->startTime = currentTime;
         explosions.push_back(explosion);
+        Mix_PlayChannel(-1, sounds["player_explode"], 0);
         return;
     }
     for (auto enemy: enemies)
@@ -324,6 +357,7 @@ void SceneMain::shootPlayer()
     projectile->position.x = player.position.x + player.width / 2 - projectile->width / 2;
     projectile->position.y = player.position.y - projectile->height;
     projectilesPlayer.push_back(projectile);
+    Mix_PlayChannel(0, sounds["player_shoot"], 0);
 }
 
 void SceneMain::updatePlayerProjectiles(float deltaTime)
@@ -365,6 +399,7 @@ void SceneMain::updatePlayerProjectiles(float deltaTime)
                     delete projectile;
                     it = projectilesPlayer.erase(it);
                     hit = true;
+                    Mix_PlayChannel(-1, sounds["hit"], 0);
                     break;
                 }
             }
@@ -393,14 +428,34 @@ void SceneMain::renderPlayerProjectiles()
 
 void SceneMain::playerGetItem(Item *item)
 {
-    if (item->type == ItemType::Life)
+    switch (item->type)
     {
-        player.currentHealth += 50;
-        if (player.currentHealth > player.health)
+        case ItemType::Life:
         {
-            player.currentHealth = player.health;
+            player.currentHealth += 50;
+            if (player.currentHealth > player.health)
+            {
+                player.currentHealth = player.health;
+            }
         }
+        break;
+        case ItemType::Time:
+        {
+
+        }
+        break;
+        case ItemType::Shield:
+        {
+
+        }
+        default:
+        {
+
+        }
+            break;
     }
+
+    Mix_PlayChannel(-1, sounds["ger_item"], 0);
 }
 
 void SceneMain::spawnEnemy()
@@ -422,7 +477,12 @@ void SceneMain::updateEnemies(float deltaTime)
     for (auto it = enemies.begin(); it != enemies.end();)
     {
         auto enemy = *it;
-        enemy->position.y += deltaTime * enemy->speed;
+        if (!isDead)
+        {
+            // 玩家死亡后，敌人不再移动
+            enemy->position.y += deltaTime * enemy->speed;
+        }
+
         if (enemy->position.y > game.getWindowHeight())
         {
             delete enemy;
@@ -491,6 +551,7 @@ void SceneMain::shootEnemy(Enemy* enemy)
     projectile->position.y = enemy->position.y + enemy->height / 2 - projectile->height / 2;
     projectile->direction = getDirection(enemy);
     projectilesEnemy.push_back(projectile);
+    Mix_PlayChannel(-1, sounds["enemy_shoot"], 0);
 }
 
 void SceneMain::updateEnemyProjectiles(float deltaTime)
@@ -562,6 +623,7 @@ void SceneMain::enemyExplode(Enemy *enemy)
     explosion->position.y = enemy->position.y + enemy->height / 2 - explosion->height / 2;
     explosion->startTime = currentTime;
     explosions.push_back(explosion);
+    Mix_PlayChannel(-1, sounds["enemy_explode"], 0);
     if (dis(gen) < 0.5f)
     {
         dropItem(enemy);

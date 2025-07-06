@@ -4,7 +4,9 @@
 #include "Scene.h"
 #include "Object.h"
 #include <list>
+#include <map>
 #include <random>
+#include <SDL_mixer.h>
 
 
 class Game; // 前向声明 Game 类
@@ -47,6 +49,7 @@ public:
 
 private:
     Game& game; // 游戏对象
+    Mix_Music* bgMusic; // 背景音乐
 
     Enemy enemyTemplate; // 敌人对象模板
     ProjectileEnemy projectileEnemyTemplate; // 敌人子弹对象模板
@@ -63,6 +66,8 @@ private:
 
     Item itemTemplate; // 道具对象模板
     std::list<Item*> items; // 道具对象列表
+
+    std::map<std::string, Mix_Chunk*> sounds; // 存储声音
 
     std::mt19937 gen; // 随机数生成器
     std::uniform_real_distribution<float> dis; // 随机数分布器，用于生成随机的 x 坐标

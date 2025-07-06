@@ -6,7 +6,6 @@ project(SpaceShoot VERSION 0.1.0 LANGUAGES C CXX)
 set(TARGET ${PROJECT_NAME}-${CMAKE_SYSTEM_NAME})
 add_executable(${TARGET}
                 "src/main.cpp"
-                # "src/Scene.h"
                 "src/Game.cpp"
                 "src/SceneMain.cpp")
 
@@ -38,5 +37,6 @@ target_link_libraries(
     SDL2_image::SDL2_image
     SDL2_mixer::SDL2_mixer
     SDL2_ttf::SDL2_ttf
+    
     )
 
