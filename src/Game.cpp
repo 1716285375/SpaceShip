@@ -63,6 +63,23 @@ void Game::init()
     Mix_VolumeMusic(MIX_MAX_VOLUME / 4); // 设置音量
     Mix_Volume(-1, MIX_MAX_VOLUME / 8);
 
+    // 初始化背景
+    nearStars.texture = IMG_LoadTexture(renderer, "../../assets/image/Stars-A.png");
+    if (nearStars.texture == nullptr)
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load texture! SDL_Error: %s\n", IMG_GetError());
+        isRunning = false;
+    }
+    SDL_QueryTexture(nearStars.texture, NULL, NULL, &nearStars.width, &nearStars.height);
+    
+    farStars.texture = IMG_LoadTexture(renderer, "../../assets/image/Stars-B.png");
+    SDL_QueryTexture(farStars.texture, NULL, NULL, &farStars.width, &farStars.height);
+    if (farStars.texture == nullptr)
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load texture! SDL_Error: %s\n", IMG_GetError());
+        isRunning = false;
+    }
+    farStars.speed = 20;
 
     // 切换到主场景
     currentScene = new SceneMain();
@@ -102,6 +119,15 @@ void Game::clean()
         currentScene->clean();
         delete currentScene;
     }
+    if (nearStars.texture != nullptr)
+    {
+        SDL_DestroyTexture(nearStars.texture);
+    }
+    if (farStars.texture != nullptr)
+    {
+        SDL_DestroyTexture(farStars.texture);
+    }
+
     // 清理SDL_image
     IMG_Quit();
     // 清理SDL_mixer
@@ -136,14 +162,53 @@ void Game::handleEvent(SDL_Event* event)
         currentScene->handleEvent(event);
     }
 }
+
+void Game::backgroundUpdate(float deltaTime)
+{
+    nearStars.offset += nearStars.speed * deltaTime;
+    if (nearStars.offset >= 0)
+    {
+        nearStars.offset -= nearStars.height;
+    }
+
+    farStars.offset += farStars.speed * deltaTime;
+    if (farStars.offset >= 0){
+        farStars.offset -= farStars.height;
+    }
+}
+
+void Game::renderBackground()
+{
+    // 渲染远处的星星
+    for (int posY = static_cast<int>(farStars.offset); posY < getWindowHeight(); posY += farStars.height){
+        for (int posX = 0; posX < getWindowWidth(); posX += farStars.width){
+            SDL_Rect ds = {posX, posY, farStars.width, farStars.height};
+            SDL_RenderCopy(renderer, farStars.texture, NULL, &ds);
+        }
+    }
+    // 渲染近处的星星
+    for (int posY = static_cast<int>(nearStars.offset); posY < getWindowHeight(); posY += nearStars.height)
+    {
+        for (int posX = 0; posX < getWindowWidth(); posX += nearStars.width)
+        {
+            SDL_Rect dstRect = {posX, posY, nearStars.width, nearStars.height};
+            SDL_RenderCopy(renderer, nearStars.texture, NULL, &dstRect);
+        }
+        
+    }
+}
+
 void Game::update(float deltaTime)
 {
+    backgroundUpdate(deltaTime);
     currentScene->update(deltaTime);
 }
 void Game::render()
 {
     // 清空
     SDL_RenderClear(renderer);
+    // 渲染背景
+    renderBackground();
     // 渲染场景
     currentScene->render();
     // 显示渲染结果

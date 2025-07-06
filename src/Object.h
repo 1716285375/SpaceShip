@@ -90,4 +90,14 @@ struct Explosion {
     Uint32 FPS = 10; // 爆炸的帧率
 };
 
+// 背景
+struct Background {
+    SDL_Texture* texture = nullptr; // 背景的贴图
+    SDL_FPoint position{0, 0}; // 背景的位置
+    float offset = 0; // 背景的偏移量
+    int width = 0; // 背景的宽度
+    int height = 0; // 背景的高度
+    int speed = 30; // 背景的速度
+};
+
 #endif // OBJECT_H

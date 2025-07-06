@@ -2,8 +2,8 @@
 #define GAME_H
 
 #include "Scene.h"
+#include "Object.h"
 #include <SDL.h>
-
 
 class Game
 {
@@ -23,6 +23,8 @@ public:
     void changeScene(Scene* scene);
     void handleEvent(SDL_Event* event);
 
+    void backgroundUpdate(float deltaTime);
+    void renderBackground();   
 
     SDL_Window* getWindow() const { return window; }
     SDL_Renderer* getRenderer() const { return renderer; }
@@ -43,6 +45,9 @@ private:
     int FPS = 60; // 游戏帧率
     Uint32 frameTime; // 每帧时间
     float deltaTime; // 时间间隔
+
+    Background nearStars; // 近处背景
+    Background farStars; // 远处背景
 };
 
 #endif
