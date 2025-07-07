@@ -14,7 +14,6 @@ class Game; // 前向声明 Game 类
 
 class SceneMain : public Scene {
 public:
-    SceneMain();
     ~SceneMain();
 
     void update(float deltaTime) override;
@@ -23,6 +22,7 @@ public:
     void init() override;
     void clean() override;
 
+private:
     void keyboardControl(float deltaTime); // 键盘控制
 
     void updatePlayer(float deltaTime); // 玩家更新
@@ -51,7 +51,6 @@ public:
     SDL_FPoint getDirection(Enemy* enemy); // 获取敌人方向
 
 private:
-    Game& game; // 游戏对象
     Mix_Music* bgMusic; // 背景音乐
     SDL_Texture* uiHealth; // 生命值 UI 元素
     TTF_Font* scoreFont; // 字体

@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "SceneMain.h"
+#include "SceneTitle.h"
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
@@ -92,8 +93,17 @@ void Game::init()
     farStars.width /= 4;
     farStars.height /= 4;
 
+    // 初始化字体
+    titleFont = TTF_OpenFont("../../assets/font/VonwaonBitmap-16px.ttf", 32);
+    textFont = TTF_OpenFont("../../assets/font/VonwaonBitmap-16px.ttf", 32);
+    if (textFont == nullptr || titleFont == nullptr)
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load font! SDL_Error: %s\n", SDL_GetError());
+        isRunning = false;
+    }
+
     // 切换到主场景
-    currentScene = new SceneMain();
+    currentScene = new SceneTitle();
     currentScene->init();
 }
 
@@ -137,6 +147,14 @@ void Game::clean()
     if (farStars.texture != nullptr)
     {
         SDL_DestroyTexture(farStars.texture);
+    }
+    if (titleFont != nullptr)
+    {
+        TTF_CloseFont(titleFont);
+    }
+    if (textFont != nullptr)
+    {
+        TTF_CloseFont(textFont);
     }
 
     // 清理SDL_image
@@ -226,4 +244,37 @@ void Game::render()
     currentScene->render();
     // 显示渲染结果
     SDL_RenderPresent(renderer);
+}
+
+void Game::renderText(const std::string &text, int x, int y, int fontSize, SDL_Color color, FontType fontType)
+{
+    TTF_Font* font;
+    switch (fontType)
+    {
+    case FontType::Silver:
+        font = TTF_OpenFont("../../assets/font/Silver.ttf", fontSize);
+        break;
+    case FontType::Vonwaon:
+        font = TTF_OpenFont("../../assets/font/VonwaonBitmap-16px.ttf", fontSize);
+        break;
+    default:
+        break;
+    }
+    if (font == nullptr)
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load font! SDL_Error: %s\n", SDL_GetError());
+        isRunning = false;
+        return;
+    }
+    SDL_Surface* surface = TTF_RenderUTF8_Solid(font, text.c_str(), color);
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+    SDL_Rect dstRect = {
+        (x - surface->w) / 2,
+        y,
+        surface->w,
+        surface->h
+    };
+    SDL_RenderCopy(renderer, texture, NULL, &dstRect);
+    SDL_FreeSurface(surface);
+    SDL_DestroyTexture(texture);
 }

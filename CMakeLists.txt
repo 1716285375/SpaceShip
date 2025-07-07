@@ -7,7 +7,9 @@ set(TARGET ${PROJECT_NAME}-${CMAKE_SYSTEM_NAME})
 add_executable(${TARGET}
                 "src/main.cpp"
                 "src/Game.cpp"
-                "src/SceneMain.cpp")
+                "src/Scene.cpp"
+                "src/SceneMain.cpp"
+                "src/SceneTitle.cpp")
 
 # 设置C++标准
 set(CMAKE_CXX_STANDARD 17)

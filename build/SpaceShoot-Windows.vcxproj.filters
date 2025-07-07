@@ -7,7 +7,13 @@
     <ClCompile Include="C:\C\GameSeries\SpaceShoot\src\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\C\GameSeries\SpaceShoot\src\Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\C\GameSeries\SpaceShoot\src\SceneMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\C\GameSeries\SpaceShoot\src\SceneTitle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

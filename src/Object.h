@@ -10,6 +10,11 @@ enum class ItemType {
     Time
 };
 
+enum class FontType {
+    Silver,
+    Vonwaon,
+};
+
 // 道具
 struct Item {
     SDL_Texture* texture = nullptr; // 道具的贴图
