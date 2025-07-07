@@ -7,6 +7,7 @@
 #include <map>
 #include <random>
 #include <SDL_mixer.h>
+#include <SDL_ttf.h>
 
 
 class Game; // 前向声明 Game 类
@@ -53,6 +54,9 @@ private:
     Game& game; // 游戏对象
     Mix_Music* bgMusic; // 背景音乐
     SDL_Texture* uiHealth; // 生命值 UI 元素
+    TTF_Font* scoreFont; // 字体
+
+    int score = 0; // 得分
 
     Enemy enemyTemplate; // 敌人对象模板
     ProjectileEnemy projectileEnemyTemplate; // 敌人子弹对象模板

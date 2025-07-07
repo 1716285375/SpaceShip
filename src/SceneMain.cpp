@@ -2,6 +2,7 @@
 #include "Game.h"
 #include <SDL.h>
 #include <SDL_image.h>
+#include <string>
 
 
 
@@ -84,9 +85,22 @@ void SceneMain::init()
     bgMusic = Mix_LoadMUS("../../assets/music/03_Racing_Through_Asteroids_Loop.ogg");
     if (bgMusic == nullptr)
     {
-        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load bg music: %s", Mix_GetError());
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load bg music: %s", SDL_GetError());
+        game.setRunning(false);
     }
     Mix_PlayMusic(bgMusic, -1);
+
+    
+    // 初始化生命值UI
+    uiHealth = IMG_LoadTexture(game.getRenderer(), "../../assets/image/Health UI Black.png");
+    if (uiHealth == nullptr)
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load ui health texture: %s\n", SDL_GetError());
+        game.setRunning(false);
+    }
+
+    // 初始化得分字体
+    scoreFont = TTF_OpenFont("../../assets/font/VonwaonBitmap-12px.ttf", 24);
 
     // 读取音效资源
     sounds["player_shoot"] = Mix_LoadWAV("../../assets/sound/laser_shoot4.wav");
@@ -95,6 +109,13 @@ void SceneMain::init()
     sounds["enemy_explode"] = Mix_LoadWAV("../../assets/sound/explosion3.wav");
     sounds["ger_item"] = Mix_LoadWAV("../../assets/sound/eff5.wav");
     sounds["hit"] = Mix_LoadWAV("../../assets/sound/eff11.wav");
+    for (auto& sound : sounds) {
+        if (sound.second == nullptr)
+        {
+            SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load sound: %s", SDL_GetError());
+            game.setRunning(false);
+        }
+    }
 
     // 初始化随机数生成器
     std::random_device rd;
@@ -103,6 +124,11 @@ void SceneMain::init()
 
     // 初始化玩家对象
     player.texture = IMG_LoadTexture(game.getRenderer(), "../../assets/image/SpaceShip.png");
+    if (player.texture == nullptr)
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load player texture: %s\n", SDL_GetError());
+        game.setRunning(false);
+    }
     SDL_QueryTexture(player.texture, NULL, NULL, &player.width, &player.height);
     player.width /= 4;
     player.height /= 4;
@@ -114,18 +140,33 @@ void SceneMain::init()
     SDL_QueryTexture(projectilePlayerTemplate.texture, NULL, NULL, &projectilePlayerTemplate.width, &projectilePlayerTemplate.height);
     projectilePlayerTemplate.width /= 4;
     projectilePlayerTemplate.height /= 4;
+    if (projectilePlayerTemplate.texture == nullptr)
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load projectile player template texture: %s\n", SDL_GetError());
+        game.setRunning(false);
+    }
 
     // 初始化敌人对象模板
     enemyTemplate.texture = IMG_LoadTexture(game.getRenderer(), "../../assets/image/insect-1.png");
     SDL_QueryTexture(enemyTemplate.texture, NULL, NULL, &enemyTemplate.width, &enemyTemplate.height);
     enemyTemplate.width /= 4;
     enemyTemplate.height /= 4;
+    if (enemyTemplate.texture == nullptr)
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load enemy template texture: %s\n", SDL_GetError());
+        game.setRunning(false);
+    }
 
     // 初始化敌人子弹模板
     projectileEnemyTemplate.texture = IMG_LoadTexture(game.getRenderer(), "../../assets/image/bullet-1.png");
     SDL_QueryTexture(projectileEnemyTemplate.texture, NULL, NULL, &projectileEnemyTemplate.width, &projectileEnemyTemplate.height);
     projectileEnemyTemplate.width /= 4;
     projectileEnemyTemplate.height /= 4;
+    if (projectileEnemyTemplate.texture == nullptr)
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load projectile enemy template texture: %s\n", SDL_GetError());
+        game.setRunning(false);
+    }
 
     // 初始化爆炸模板
     explosionTemplate.texture = IMG_LoadTexture(game.getRenderer(), "../../assets/effect/explosion.png");
@@ -133,19 +174,38 @@ void SceneMain::init()
     explosionTemplate.totalFrames = explosionTemplate.width / explosionTemplate.height;
     // explosionTemplate.height /= 4;
     explosionTemplate.width = explosionTemplate.height;
+    if (explosionTemplate.texture == nullptr)
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load explosion template texture: %s\n");
+        game.setRunning(false);
+    }
 
     // 初始化道具模板
     itemTemplate.texture = IMG_LoadTexture(game.getRenderer(), "../../assets/image/bonus_life.png");
     SDL_QueryTexture(itemTemplate.texture, NULL, NULL, &itemTemplate.width, &itemTemplate.height);
     itemTemplate.width /= 4;
     itemTemplate.height /= 4;
-
-    // 初始化生命值UI
-    uiHealth = IMG_LoadTexture(game.getRenderer(), "../../assets/image/Health UI Black.png");
+    if (itemTemplate.texture == nullptr)
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load item template texture: %s\n", SDL_GetError());
+        game.setRunning(false);
+    }
 }
 
 void SceneMain::clean()
 {
+    // 清理生命值UI资源
+    if (uiHealth != nullptr)
+    {
+        SDL_DestroyTexture(uiHealth);
+    }
+    
+    // 清理得分字体资源
+    if (scoreFont != nullptr)
+    {
+        TTF_CloseFont(scoreFont);
+    }
+
     // 释放音效资源
     for (auto& sound : sounds) {
         if (sound.second != nullptr)
@@ -245,12 +305,6 @@ void SceneMain::clean()
     {
         Mix_HaltMusic();
         Mix_FreeMusic(bgMusic);
-    }
-
-    // 清理生命值UI资源
-    if (uiHealth != nullptr)
-    {
-        SDL_DestroyTexture(uiHealth);
     }
 }
 
@@ -439,6 +493,7 @@ void SceneMain::renderPlayerProjectiles()
 
 void SceneMain::playerGetItem(Item *item)
 {
+    score += 10;
     switch (item->type)
     {
         case ItemType::Life:
@@ -639,7 +694,7 @@ void SceneMain::enemyExplode(Enemy *enemy)
     {
         dropItem(enemy);
     }
-
+    score += 20;
     delete enemy;
 }
 
@@ -783,12 +838,12 @@ void SceneMain::renderItems()
 
 void SceneMain::renderUI()
 {
-    int x = 30;
-    int y = 30;
+    int x = 20;
+    int y = 20;
     int size = 32;
     int offset = 40;
     SDL_SetTextureColorMod(uiHealth, 100, 100, 100);
-    for(int i = 0; i < player.health / 10; i++)
+    for(int i = 0; i < player.health / 20; i++)
     {
         SDL_Rect rect = {
             x + i * offset,
@@ -799,7 +854,7 @@ void SceneMain::renderUI()
         SDL_RenderCopy(game.getRenderer(), uiHealth, NULL, &rect);
     }
     SDL_SetTextureColorMod(uiHealth, 255, 255, 255);
-    for(int i = 0; i < player.currentHealth / 10; i++)
+    for(int i = 0; i < player.currentHealth / 20; i++)
     {
         SDL_Rect rect = {
             x + i * offset,
@@ -810,6 +865,20 @@ void SceneMain::renderUI()
         SDL_RenderCopy(game.getRenderer(), uiHealth, NULL, &rect);
     }
 
+    // 渲染得分内容
+    auto text = "SCORE: " + std::to_string(score);
+    SDL_Color color = {255, 255, 255, 255};
+    SDL_Surface* surface = TTF_RenderUTF8_Solid(scoreFont, text.c_str(), color); // 不需要再使用SDL_QueryTexture获取宽高
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(game.getRenderer(), surface);
+    SDL_Rect rect = {
+        game.getWindowWidth() - 20 - surface->w,
+        y,
+        surface->w,
+        surface->h
+    };
+    SDL_RenderCopy(game.getRenderer(), texture, NULL, &rect);
+    SDL_FreeSurface(surface);
+    SDL_DestroyTexture(texture);
 }
 
 SDL_FPoint SceneMain::getDirection(Enemy *enemy)

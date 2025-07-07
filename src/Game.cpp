@@ -38,25 +38,32 @@ void Game::init()
     if (renderer == nullptr)
     {
         SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
+        isRunning = false;
     }
 
     // 初始化SDL_image
     if (IMG_Init(IMG_INIT_PNG) != IMG_INIT_PNG)
     {
-        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "SDL_image could not initialize! SDL_Error: %s\n", IMG_GetError());
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "SDL_image could not initialize! SDL_Error: %s\n", SDL_GetError());
+        isRunning = false;
     }
-
+    // 初始化SDL_ttf
+    if (TTF_Init() == -1)
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "SDL_ttf could not initialize! SDL_Error: %s\n", SDL_GetError());
+        isRunning = false;
+    }
     // 初始化SDL_mixer
     if (Mix_Init(MIX_INIT_MP3 | MIX_INIT_OGG) != (MIX_INIT_MP3 | MIX_INIT_OGG))
     {
-        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "SDL_mixer could not initialize! SDL_Error: %s\n", Mix_GetError());
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "SDL_mixer could not initialize! SDL_Error: %s\n", SDL_GetError());
         isRunning = false;
     }
 
     // 打开音频设备
     if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2028) < 0)
     {
-        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "SDL_mixer could not open audio! SDL_Error: %s\n", Mix_GetError());
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "SDL_mixer could not open audio! SDL_Error: %s\n", SDL_GetError());
         isRunning = false;
     }
     Mix_AllocateChannels(32); // 设置最大音频通道数
@@ -67,7 +74,7 @@ void Game::init()
     nearStars.texture = IMG_LoadTexture(renderer, "../../assets/image/Stars-A.png");
     if (nearStars.texture == nullptr)
     {
-        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load texture! SDL_Error: %s\n", IMG_GetError());
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load texture! SDL_Error: %s\n", SDL_GetError());
         isRunning = false;
     }
     SDL_QueryTexture(nearStars.texture, NULL, NULL, &nearStars.width, &nearStars.height);
@@ -78,7 +85,7 @@ void Game::init()
     SDL_QueryTexture(farStars.texture, NULL, NULL, &farStars.width, &farStars.height);
     if (farStars.texture == nullptr)
     {
-        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load texture! SDL_Error: %s\n", IMG_GetError());
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load texture! SDL_Error: %s\n", SDL_GetError());
         isRunning = false;
     }
     farStars.speed = 20;
@@ -134,6 +141,8 @@ void Game::clean()
 
     // 清理SDL_image
     IMG_Quit();
+    // 清理SDL_ttf
+    TTF_Quit();
     // 清理SDL_mixer
     Mix_CloseAudio();
     Mix_Quit();

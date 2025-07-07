@@ -30,6 +30,7 @@ public:
     SDL_Renderer* getRenderer() const { return renderer; }
     int getWindowWidth() const { return windowWidth; }
     int getWindowHeight() const { return windowHeight; }
+    void setRunning(bool running) { isRunning = running; }
 
 private:
     Game(); // 私有构造函数，禁止外部实例化
