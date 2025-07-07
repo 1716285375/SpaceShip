@@ -71,6 +71,8 @@ void Game::init()
         isRunning = false;
     }
     SDL_QueryTexture(nearStars.texture, NULL, NULL, &nearStars.width, &nearStars.height);
+    nearStars.width /= 4;
+    nearStars.height /= 4;
     
     farStars.texture = IMG_LoadTexture(renderer, "../../assets/image/Stars-B.png");
     SDL_QueryTexture(farStars.texture, NULL, NULL, &farStars.width, &farStars.height);
@@ -80,6 +82,8 @@ void Game::init()
         isRunning = false;
     }
     farStars.speed = 20;
+    farStars.width /= 4;
+    farStars.height /= 4;
 
     // 切换到主场景
     currentScene = new SceneMain();

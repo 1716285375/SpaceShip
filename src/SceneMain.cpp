@@ -68,6 +68,8 @@ void SceneMain::render()
     renderExplosions();
     // 渲染道具
     renderItems();
+    // 渲染UI
+    renderUI();
 
 }
 
@@ -137,6 +139,9 @@ void SceneMain::init()
     SDL_QueryTexture(itemTemplate.texture, NULL, NULL, &itemTemplate.width, &itemTemplate.height);
     itemTemplate.width /= 4;
     itemTemplate.height /= 4;
+
+    // 初始化生命值UI
+    uiHealth = IMG_LoadTexture(game.getRenderer(), "../../assets/image/Health UI Black.png");
 }
 
 void SceneMain::clean()
@@ -240,6 +245,12 @@ void SceneMain::clean()
     {
         Mix_HaltMusic();
         Mix_FreeMusic(bgMusic);
+    }
+
+    // 清理生命值UI资源
+    if (uiHealth != nullptr)
+    {
+        SDL_DestroyTexture(uiHealth);
     }
 }
 
@@ -768,6 +779,37 @@ void SceneMain::renderItems()
         };
         SDL_RenderCopy(game.getRenderer(), item->texture, NULL, &itemRect);
     }
+}
+
+void SceneMain::renderUI()
+{
+    int x = 30;
+    int y = 30;
+    int size = 32;
+    int offset = 40;
+    SDL_SetTextureColorMod(uiHealth, 100, 100, 100);
+    for(int i = 0; i < player.health / 10; i++)
+    {
+        SDL_Rect rect = {
+            x + i * offset,
+            y,
+            size,
+            size
+        };
+        SDL_RenderCopy(game.getRenderer(), uiHealth, NULL, &rect);
+    }
+    SDL_SetTextureColorMod(uiHealth, 255, 255, 255);
+    for(int i = 0; i < player.currentHealth / 10; i++)
+    {
+        SDL_Rect rect = {
+            x + i * offset,
+            y,
+            size,
+            size
+        };
+        SDL_RenderCopy(game.getRenderer(), uiHealth, NULL, &rect);
+    }
+
 }
 
 SDL_FPoint SceneMain::getDirection(Enemy *enemy)

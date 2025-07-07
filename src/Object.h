@@ -52,7 +52,7 @@ struct Enemy {
 
     int health = 100; // 敌人的总生命值
     int currentHealth = 100; // 敌人当前的生命值
-    int damage = 50; // 敌人的伤害值
+    int damage = 20; // 敌人的伤害值
 };
 
 // 敌人子弹
@@ -64,7 +64,7 @@ struct ProjectileEnemy {
     int height = 0; // 敌人的子弹高度
     int speed = 400; // 敌人的子弹速度
 
-    int damage = 60; // 敌人的伤害值
+    int damage = 10; // 敌人的伤害值
 };
 
 // 玩家子弹

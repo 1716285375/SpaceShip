@@ -45,11 +45,14 @@ public:
     void updateItems(float deltaTime); // 道具更新
     void renderItems(); // 道具渲染
 
+    void renderUI(); // 渲染 UI 元素
+
     SDL_FPoint getDirection(Enemy* enemy); // 获取敌人方向
 
 private:
     Game& game; // 游戏对象
     Mix_Music* bgMusic; // 背景音乐
+    SDL_Texture* uiHealth; // 生命值 UI 元素
 
     Enemy enemyTemplate; // 敌人对象模板
     ProjectileEnemy projectileEnemyTemplate; // 敌人子弹对象模板
