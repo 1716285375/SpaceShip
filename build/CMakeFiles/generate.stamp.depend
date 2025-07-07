@@ -1,13 +1,13 @@
 # CMake generation dependency list for this directory.
-C:/C/GameSeries/SDL2/cmake/sdl2-config-version.cmake
-C:/C/GameSeries/SDL2/cmake/sdl2-config.cmake
-C:/C/GameSeries/SDL2/cmake/sdl2_image-config-version.cmake
-C:/C/GameSeries/SDL2/cmake/sdl2_image-config.cmake
-C:/C/GameSeries/SDL2/cmake/sdl2_mixer-config-version.cmake
-C:/C/GameSeries/SDL2/cmake/sdl2_mixer-config.cmake
-C:/C/GameSeries/SDL2/cmake/sdl2_ttf-config-version.cmake
-C:/C/GameSeries/SDL2/cmake/sdl2_ttf-config.cmake
 C:/C/GameSeries/SpaceShoot/CMakeLists.txt
+C:/C/GameSeries/SpaceShoot/SDL2/cmake/sdl2-config-version.cmake
+C:/C/GameSeries/SpaceShoot/SDL2/cmake/sdl2-config.cmake
+C:/C/GameSeries/SpaceShoot/SDL2/cmake/sdl2_image-config-version.cmake
+C:/C/GameSeries/SpaceShoot/SDL2/cmake/sdl2_image-config.cmake
+C:/C/GameSeries/SpaceShoot/SDL2/cmake/sdl2_mixer-config-version.cmake
+C:/C/GameSeries/SpaceShoot/SDL2/cmake/sdl2_mixer-config.cmake
+C:/C/GameSeries/SpaceShoot/SDL2/cmake/sdl2_ttf-config-version.cmake
+C:/C/GameSeries/SpaceShoot/SDL2/cmake/sdl2_ttf-config.cmake
 C:/C/GameSeries/SpaceShoot/build/CMakeFiles/4.0.3/CMakeCCompiler.cmake
 C:/C/GameSeries/SpaceShoot/build/CMakeFiles/4.0.3/CMakeCXXCompiler.cmake
 C:/C/GameSeries/SpaceShoot/build/CMakeFiles/4.0.3/CMakeRCCompiler.cmake

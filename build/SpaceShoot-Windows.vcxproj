@@ -86,7 +86,8 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/C/GameSeries/SDL2/cmake/../include"</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:\C\GameSeries\SpaceShoot\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/C/GameSeries/SpaceShoot/SDL2/cmake/../include"</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -107,19 +108,31 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\C\GameSeries\SDL2\cmake\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\C\GameSeries\SpaceShoot\SDL2\include;C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\C\GameSeries\SDL2\cmake\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\C\GameSeries\SpaceShoot\SDL2\include;C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
       <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\D\tool\cmake-4.0.3\bin\cmake.exe -E copy_if_different C:/C/GameSeries/SpaceShoot/SDL2/lib/x64/SDL2.dll C:/C/GameSeries/SpaceShoot/SDL2/lib/x64/SDL2_image.dll C:/C/GameSeries/SpaceShoot/SDL2/lib/x64/SDL2_mixer.dll C:/C/GameSeries/SpaceShoot/SDL2/lib/x64/SDL2_ttf.dll C:/C/GameSeries/SpaceShoot/build/Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
     <Link>
-      <AdditionalDependencies>C:\C\GameSeries\SDL2\cmake\..\lib\x64\SDL2main.lib;C:\C\GameSeries\SDL2\cmake\..\lib\x64\SDL2.lib;C:\C\GameSeries\SDL2\cmake\..\lib\x64\SDL2_image.lib;C:\C\GameSeries\SDL2\cmake\..\lib\x64\SDL2_mixer.lib;C:\C\GameSeries\SDL2\cmake\..\lib\x64\SDL2_ttf.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\lib\x64\SDL2main.lib;C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\lib\x64\SDL2.lib;C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\lib\x64\SDL2_image.lib;C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\lib\x64\SDL2_mixer.lib;C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\lib\x64\SDL2_ttf.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:/C/GameSeries/SpaceShoot/SDL2/lib/x64;C:/C/GameSeries/SpaceShoot/SDL2/lib/x64/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -133,7 +146,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/C/GameSeries/SDL2/cmake/../include"</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:\C\GameSeries\SpaceShoot\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/C/GameSeries/SpaceShoot/SDL2/cmake/../include"</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -155,19 +169,31 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\C\GameSeries\SDL2\cmake\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\C\GameSeries\SpaceShoot\SDL2\include;C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\C\GameSeries\SDL2\cmake\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\C\GameSeries\SpaceShoot\SDL2\include;C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
       <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\D\tool\cmake-4.0.3\bin\cmake.exe -E copy_if_different C:/C/GameSeries/SpaceShoot/SDL2/lib/x64/SDL2.dll C:/C/GameSeries/SpaceShoot/SDL2/lib/x64/SDL2_image.dll C:/C/GameSeries/SpaceShoot/SDL2/lib/x64/SDL2_mixer.dll C:/C/GameSeries/SpaceShoot/SDL2/lib/x64/SDL2_ttf.dll C:/C/GameSeries/SpaceShoot/build/Release
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
     <Link>
-      <AdditionalDependencies>C:\C\GameSeries\SDL2\cmake\..\lib\x64\SDL2main.lib;C:\C\GameSeries\SDL2\cmake\..\lib\x64\SDL2.lib;C:\C\GameSeries\SDL2\cmake\..\lib\x64\SDL2_image.lib;C:\C\GameSeries\SDL2\cmake\..\lib\x64\SDL2_mixer.lib;C:\C\GameSeries\SDL2\cmake\..\lib\x64\SDL2_ttf.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\lib\x64\SDL2main.lib;C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\lib\x64\SDL2.lib;C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\lib\x64\SDL2_image.lib;C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\lib\x64\SDL2_mixer.lib;C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\lib\x64\SDL2_ttf.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:/C/GameSeries/SpaceShoot/SDL2/lib/x64;C:/C/GameSeries/SpaceShoot/SDL2/lib/x64/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -181,7 +207,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/C/GameSeries/SDL2/cmake/../include"</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:\C\GameSeries\SpaceShoot\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/C/GameSeries/SpaceShoot/SDL2/cmake/../include"</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -203,19 +230,31 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\C\GameSeries\SDL2\cmake\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\C\GameSeries\SpaceShoot\SDL2\include;C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\C\GameSeries\SDL2\cmake\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\C\GameSeries\SpaceShoot\SDL2\include;C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
       <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\D\tool\cmake-4.0.3\bin\cmake.exe -E copy_if_different C:/C/GameSeries/SpaceShoot/SDL2/lib/x64/SDL2.dll C:/C/GameSeries/SpaceShoot/SDL2/lib/x64/SDL2_image.dll C:/C/GameSeries/SpaceShoot/SDL2/lib/x64/SDL2_mixer.dll C:/C/GameSeries/SpaceShoot/SDL2/lib/x64/SDL2_ttf.dll C:/C/GameSeries/SpaceShoot/build/MinSizeRel
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
     <Link>
-      <AdditionalDependencies>C:\C\GameSeries\SDL2\cmake\..\lib\x64\SDL2main.lib;C:\C\GameSeries\SDL2\cmake\..\lib\x64\SDL2.lib;C:\C\GameSeries\SDL2\cmake\..\lib\x64\SDL2_image.lib;C:\C\GameSeries\SDL2\cmake\..\lib\x64\SDL2_mixer.lib;C:\C\GameSeries\SDL2\cmake\..\lib\x64\SDL2_ttf.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\lib\x64\SDL2main.lib;C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\lib\x64\SDL2.lib;C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\lib\x64\SDL2_image.lib;C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\lib\x64\SDL2_mixer.lib;C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\lib\x64\SDL2_ttf.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:/C/GameSeries/SpaceShoot/SDL2/lib/x64;C:/C/GameSeries/SpaceShoot/SDL2/lib/x64/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -229,7 +268,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/C/GameSeries/SDL2/cmake/../include"</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:\C\GameSeries\SpaceShoot\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/C/GameSeries/SpaceShoot/SDL2/cmake/../include"</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -250,19 +290,31 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\C\GameSeries\SDL2\cmake\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\C\GameSeries\SpaceShoot\SDL2\include;C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\C\GameSeries\SDL2\cmake\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\C\GameSeries\SpaceShoot\SDL2\include;C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
       <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\D\tool\cmake-4.0.3\bin\cmake.exe -E copy_if_different C:/C/GameSeries/SpaceShoot/SDL2/lib/x64/SDL2.dll C:/C/GameSeries/SpaceShoot/SDL2/lib/x64/SDL2_image.dll C:/C/GameSeries/SpaceShoot/SDL2/lib/x64/SDL2_mixer.dll C:/C/GameSeries/SpaceShoot/SDL2/lib/x64/SDL2_ttf.dll C:/C/GameSeries/SpaceShoot/build/RelWithDebInfo
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
     <Link>
-      <AdditionalDependencies>C:\C\GameSeries\SDL2\cmake\..\lib\x64\SDL2main.lib;C:\C\GameSeries\SDL2\cmake\..\lib\x64\SDL2.lib;C:\C\GameSeries\SDL2\cmake\..\lib\x64\SDL2_image.lib;C:\C\GameSeries\SDL2\cmake\..\lib\x64\SDL2_mixer.lib;C:\C\GameSeries\SDL2\cmake\..\lib\x64\SDL2_ttf.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\lib\x64\SDL2main.lib;C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\lib\x64\SDL2.lib;C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\lib\x64\SDL2_image.lib;C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\lib\x64\SDL2_mixer.lib;C:\C\GameSeries\SpaceShoot\SDL2\cmake\..\lib\x64\SDL2_ttf.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:/C/GameSeries/SpaceShoot/SDL2/lib/x64;C:/C/GameSeries/SpaceShoot/SDL2/lib/x64/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -287,7 +339,7 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\C\GameSeries\SDL2\cmake\sdl2-config-version.cmake;C:\C\GameSeries\SDL2\cmake\sdl2-config.cmake;C:\C\GameSeries\SDL2\cmake\sdl2_image-config-version.cmake;C:\C\GameSeries\SDL2\cmake\sdl2_image-config.cmake;C:\C\GameSeries\SDL2\cmake\sdl2_mixer-config-version.cmake;C:\C\GameSeries\SDL2\cmake\sdl2_mixer-config.cmake;C:\C\GameSeries\SDL2\cmake\sdl2_ttf-config-version.cmake;C:\C\GameSeries\SDL2\cmake\sdl2_ttf-config.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeCCompiler.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeCXXCompiler.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeRCCompiler.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeSystem.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeCInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeCXXInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeCommonLanguageInclude.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeGenericSystem.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeInitializeConfigs.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeLanguageInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeRCInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeSystemSpecificInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeSystemSpecificInitialize.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\FeatureSummary.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Internal\CMakeCLinkerInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Linker\MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Linker\MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Linker\MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-Initialize.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2-config-version.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2-config.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2_image-config-version.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2_image-config.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2_mixer-config-version.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2_mixer-config.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2_ttf-config-version.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2_ttf-config.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeCCompiler.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeCXXCompiler.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeRCCompiler.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeSystem.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeCInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeCXXInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeCommonLanguageInclude.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeGenericSystem.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeInitializeConfigs.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeLanguageInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeRCInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeSystemSpecificInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeSystemSpecificInitialize.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\FeatureSummary.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Internal\CMakeCLinkerInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Linker\MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Linker\MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Linker\MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-Initialize.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\C\GameSeries\SpaceShoot\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/C/GameSeries/SpaceShoot/CMakeLists.txt</Message>
@@ -300,7 +352,7 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\C\GameSeries\SDL2\cmake\sdl2-config-version.cmake;C:\C\GameSeries\SDL2\cmake\sdl2-config.cmake;C:\C\GameSeries\SDL2\cmake\sdl2_image-config-version.cmake;C:\C\GameSeries\SDL2\cmake\sdl2_image-config.cmake;C:\C\GameSeries\SDL2\cmake\sdl2_mixer-config-version.cmake;C:\C\GameSeries\SDL2\cmake\sdl2_mixer-config.cmake;C:\C\GameSeries\SDL2\cmake\sdl2_ttf-config-version.cmake;C:\C\GameSeries\SDL2\cmake\sdl2_ttf-config.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeCCompiler.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeCXXCompiler.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeRCCompiler.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeSystem.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeCInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeCXXInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeCommonLanguageInclude.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeGenericSystem.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeInitializeConfigs.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeLanguageInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeRCInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeSystemSpecificInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeSystemSpecificInitialize.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\FeatureSummary.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Internal\CMakeCLinkerInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Linker\MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Linker\MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Linker\MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-Initialize.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2-config-version.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2-config.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2_image-config-version.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2_image-config.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2_mixer-config-version.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2_mixer-config.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2_ttf-config-version.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2_ttf-config.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeCCompiler.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeCXXCompiler.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeRCCompiler.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeSystem.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeCInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeCXXInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeCommonLanguageInclude.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeGenericSystem.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeInitializeConfigs.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeLanguageInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeRCInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeSystemSpecificInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeSystemSpecificInitialize.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\FeatureSummary.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Internal\CMakeCLinkerInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Linker\MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Linker\MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Linker\MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-Initialize.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\C\GameSeries\SpaceShoot\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/C/GameSeries/SpaceShoot/CMakeLists.txt</Message>
@@ -313,7 +365,7 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\C\GameSeries\SDL2\cmake\sdl2-config-version.cmake;C:\C\GameSeries\SDL2\cmake\sdl2-config.cmake;C:\C\GameSeries\SDL2\cmake\sdl2_image-config-version.cmake;C:\C\GameSeries\SDL2\cmake\sdl2_image-config.cmake;C:\C\GameSeries\SDL2\cmake\sdl2_mixer-config-version.cmake;C:\C\GameSeries\SDL2\cmake\sdl2_mixer-config.cmake;C:\C\GameSeries\SDL2\cmake\sdl2_ttf-config-version.cmake;C:\C\GameSeries\SDL2\cmake\sdl2_ttf-config.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeCCompiler.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeCXXCompiler.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeRCCompiler.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeSystem.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeCInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeCXXInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeCommonLanguageInclude.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeGenericSystem.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeInitializeConfigs.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeLanguageInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeRCInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeSystemSpecificInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeSystemSpecificInitialize.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\FeatureSummary.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Internal\CMakeCLinkerInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Linker\MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Linker\MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Linker\MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-Initialize.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2-config-version.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2-config.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2_image-config-version.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2_image-config.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2_mixer-config-version.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2_mixer-config.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2_ttf-config-version.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2_ttf-config.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeCCompiler.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeCXXCompiler.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeRCCompiler.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeSystem.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeCInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeCXXInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeCommonLanguageInclude.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeGenericSystem.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeInitializeConfigs.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeLanguageInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeRCInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeSystemSpecificInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeSystemSpecificInitialize.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\FeatureSummary.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Internal\CMakeCLinkerInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Linker\MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Linker\MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Linker\MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-Initialize.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\C\GameSeries\SpaceShoot\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/C/GameSeries/SpaceShoot/CMakeLists.txt</Message>
@@ -326,7 +378,7 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\C\GameSeries\SDL2\cmake\sdl2-config-version.cmake;C:\C\GameSeries\SDL2\cmake\sdl2-config.cmake;C:\C\GameSeries\SDL2\cmake\sdl2_image-config-version.cmake;C:\C\GameSeries\SDL2\cmake\sdl2_image-config.cmake;C:\C\GameSeries\SDL2\cmake\sdl2_mixer-config-version.cmake;C:\C\GameSeries\SDL2\cmake\sdl2_mixer-config.cmake;C:\C\GameSeries\SDL2\cmake\sdl2_ttf-config-version.cmake;C:\C\GameSeries\SDL2\cmake\sdl2_ttf-config.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeCCompiler.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeCXXCompiler.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeRCCompiler.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeSystem.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeCInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeCXXInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeCommonLanguageInclude.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeGenericSystem.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeInitializeConfigs.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeLanguageInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeRCInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeSystemSpecificInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeSystemSpecificInitialize.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\FeatureSummary.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Internal\CMakeCLinkerInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Linker\MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Linker\MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Linker\MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-Initialize.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2-config-version.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2-config.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2_image-config-version.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2_image-config.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2_mixer-config-version.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2_mixer-config.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2_ttf-config-version.cmake;C:\C\GameSeries\SpaceShoot\SDL2\cmake\sdl2_ttf-config.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeCCompiler.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeCXXCompiler.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeRCCompiler.cmake;C:\C\GameSeries\SpaceShoot\build\CMakeFiles\4.0.3\CMakeSystem.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeCInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeCXXInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeCommonLanguageInclude.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeGenericSystem.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeInitializeConfigs.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeLanguageInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeRCInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeSystemSpecificInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\CMakeSystemSpecificInitialize.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Compiler\MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\FeatureSummary.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Internal\CMakeCLinkerInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Linker\MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Linker\MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Linker\MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Linker\Windows-MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-Initialize.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-MSVC-C.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-MSVC-CXX.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows-MSVC.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\Windows.cmake;C:\D\tool\cmake-4.0.3\share\cmake-4.0\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\C\GameSeries\SpaceShoot\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>

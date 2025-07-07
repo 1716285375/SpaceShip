@@ -14,18 +14,22 @@ SceneMain::~SceneMain()
 
 void SceneMain::update(float deltaTime)
 {
-    keyboardControl(deltaTime);
-    updatePlayer(deltaTime);
-    updatePlayerProjectiles(deltaTime);
-    spawnEnemy();
-    updateEnemies(deltaTime);
-    updateEnemyProjectiles(deltaTime);
-    updateExplosions(deltaTime);
-    updateItems(deltaTime);
-    if (isDead)
+    if (!m_isPaused)
     {
-        changeSceneDelay(deltaTime, 3.0f);
+        keyboardControl(deltaTime);
+        updatePlayer(deltaTime);
+        updatePlayerProjectiles(deltaTime);
+        spawnEnemy();
+        updateEnemies(deltaTime);
+        updateEnemyProjectiles(deltaTime);
+        updateExplosions(deltaTime);
+        updateItems(deltaTime);
+        if (isDead)
+        {
+            changeSceneDelay(deltaTime, 3.0f);
+        }
     }
+
 }
 
 void SceneMain::render()
@@ -82,6 +86,10 @@ void SceneMain::handleEvent(SDL_Event *event)
         {
             auto scene = new SceneTitle();
             game.changeScene(scene);
+        }
+        if (event->key.keysym.sym == SDLK_p)
+        {
+            m_isPaused =!m_isPaused;
         }
     }
     return;

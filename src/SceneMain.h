@@ -57,6 +57,7 @@ private:
     SDL_Texture* uiHealth; // 生命值 UI 元素
     TTF_Font* scoreFont; // 字体
 
+    bool m_isPaused = false; // 是否暂停
     int score = 0; // 得分
 
     Enemy enemyTemplate; // 敌人对象模板

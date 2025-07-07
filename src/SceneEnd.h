@@ -4,6 +4,7 @@
 
 #include "Scene.h"
 #include <string>
+#include <SDL_mixer.h>
 
 class SceneEnd : public Scene {
 public:

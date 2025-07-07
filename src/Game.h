@@ -57,6 +57,8 @@ private:
     Game(const Game&) = delete; // 禁止拷贝构造函数
     Game& operator=(const Game&) = delete; // 禁止拷贝赋值运算符
 
+    bool isFullScreen = false; // 是否全屏
+    
     int finalScore = 0; // 最终得分
     std::multimap<int, std::string, std::greater<int>> scoreBoard; // 得分排行榜
     
