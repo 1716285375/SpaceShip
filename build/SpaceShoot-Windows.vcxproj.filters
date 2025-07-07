@@ -16,6 +16,9 @@
     <ClCompile Include="C:\C\GameSeries\SpaceShoot\src\SceneTitle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\C\GameSeries\SpaceShoot\src\SceneEnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\C\GameSeries\SpaceShoot\CMakeLists.txt" />

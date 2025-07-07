@@ -8,8 +8,6 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <SDL_mixer.h>
-#include <random>
-#include <ctime>
 
 
 class Game; // 前向声明 Game 类

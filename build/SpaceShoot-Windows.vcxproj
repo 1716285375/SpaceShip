@@ -337,6 +337,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\C\GameSeries\SpaceShoot\src\Scene.cpp" />
     <ClCompile Include="C:\C\GameSeries\SpaceShoot\src\SceneMain.cpp" />
     <ClCompile Include="C:\C\GameSeries\SpaceShoot\src\SceneTitle.cpp" />
+    <ClCompile Include="C:\C\GameSeries\SpaceShoot\src\SceneEnd.cpp" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

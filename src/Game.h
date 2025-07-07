@@ -7,6 +7,7 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <string>
+#include <map>
 
 class Game
 {
@@ -38,12 +39,26 @@ public:
     int getFPS() const { return FPS; }
     void setRunning(bool running) { isRunning = running; }
 
+    SDL_Point renderTextCenter(const std::string& text, int x, int y, int fontSize, SDL_Color color, FontType fontType);
     void renderText(const std::string& text, int x, int y, int fontSize, SDL_Color color, FontType fontType);
+    void renderTextRight(const std::string& text, int x, int y, int fontSize, SDL_Color color, FontType fontType);
+
+    void setScore(int score) { finalScore = score; }
+    int getScore() const { return finalScore; }
+
+    void addToScoreBoard(int score, const std::string& name);
+    std::multimap<int, std::string, std::greater<int>>& getScoreBoard() { return scoreBoard; }
+    
+    void saveData();
+    void loadData();
 
 private:
     Game(); // 私有构造函数，禁止外部实例化
     Game(const Game&) = delete; // 禁止拷贝构造函数
     Game& operator=(const Game&) = delete; // 禁止拷贝赋值运算符
+
+    int finalScore = 0; // 最终得分
+    std::multimap<int, std::string, std::greater<int>> scoreBoard; // 得分排行榜
     
     TTF_Font* titleFont; // 标题字体
     TTF_Font* textFont; // 文本字体

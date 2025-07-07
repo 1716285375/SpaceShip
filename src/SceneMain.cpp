@@ -1,5 +1,6 @@
 #include "SceneMain.h"
 #include "SceneTitle.h"
+#include "SceneEnd.h"
 #include "Game.h"
 #include <SDL.h>
 #include <SDL_image.h>
@@ -21,6 +22,10 @@ void SceneMain::update(float deltaTime)
     updateEnemyProjectiles(deltaTime);
     updateExplosions(deltaTime);
     updateItems(deltaTime);
+    if (isDead)
+    {
+        changeSceneDelay(deltaTime, 3.0f);
+    }
 }
 
 void SceneMain::render()
@@ -392,6 +397,7 @@ void SceneMain::updatePlayer(float deltaTime)
         explosion->startTime = currentTime;
         explosions.push_back(explosion);
         Mix_PlayChannel(-1, sounds["player_explode"], 0);
+        game.setScore(score);
         return;
     }
     for (auto enemy: enemies)
@@ -412,6 +418,7 @@ void SceneMain::updatePlayer(float deltaTime)
         {
             // 玩家被敌人击中
             player.currentHealth -= enemy->damage; // 扣除玩家的生命值
+            isCrashed[enemy] = true;
             enemy->currentHealth = 0; // 敌人死亡
         }
     }
@@ -538,6 +545,7 @@ void SceneMain::spawnEnemy()
     enemy->position.x = dis(gen) * static_cast<float>(game.getWindowWidth() - enemy->width);
     enemy->position.y = -static_cast<float>(enemy->height);
     enemies.push_back(enemy);
+    isCrashed.insert({enemy, false});
 }
 
 void SceneMain::updateEnemies(float deltaTime)
@@ -695,7 +703,11 @@ void SceneMain::enemyExplode(Enemy *enemy)
     Mix_PlayChannel(-1, sounds["enemy_explode"], 0);
     if (dis(gen) < 0.5f)
     {
-        dropItem(enemy);
+        if (!isCrashed[enemy])
+        {
+            dropItem(enemy);
+        }
+
     }
     score += 20;
     delete enemy;
@@ -882,6 +894,16 @@ void SceneMain::renderUI()
     SDL_RenderCopy(game.getRenderer(), texture, NULL, &rect);
     SDL_FreeSurface(surface);
     SDL_DestroyTexture(texture);
+}
+
+void SceneMain::changeSceneDelay(float deltaTime, float delay)
+{
+    timerEnd += deltaTime;
+    if (timerEnd >= delay)
+    {
+        auto scene = new SceneEnd();
+        game.changeScene(scene);
+    }
 }
 
 SDL_FPoint SceneMain::getDirection(Enemy *enemy)

@@ -27,17 +27,17 @@ void SceneTitle::render()
 {
     std::string titleText = "Space Shoot";
     SDL_Color textColor = { 255, 255, 255, 255 };
-    game.renderText(titleText, game.getWindowWidth(), game.getWindowHeight() / 8, 72, textColor, FontType::Silver);
+    game.renderTextCenter(titleText, game.getWindowWidth(), game.getWindowHeight() / 8, 72, textColor, FontType::Silver);
     if (timer < 0.5f)
     {
         std::string startText = "Press key Enter to start";
-        game.renderText(startText, game.getWindowWidth(), game.getWindowHeight() / 2, 48, textColor, FontType::Silver);
+        game.renderTextCenter(startText, game.getWindowWidth(), game.getWindowHeight() / 2, 48, textColor, FontType::Silver);
     }
 }
 
 void SceneTitle::clean()
 {
-    
+
 }
 
 void SceneTitle::handleEvent(SDL_Event *event)

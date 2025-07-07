@@ -48,6 +48,8 @@ private:
 
     void renderUI(); // 渲染 UI 元素
 
+    void changeSceneDelay(float deltaTime, float delay);
+
     SDL_FPoint getDirection(Enemy* enemy); // 获取敌人方向
 
 private:
@@ -62,6 +64,7 @@ private:
     std::list<Enemy*> enemies; // 敌人对象列表
     std::list<ProjectileEnemy*> projectilesEnemy; // 敌人子弹对象列表
 
+    float timerEnd = 0.0f; // 计时器结束时间
     bool isDead = false; // 玩家是否死亡
     Player player; // 玩家对象
     ProjectilePlayer projectilePlayerTemplate; // 玩家子弹对象模板
@@ -72,6 +75,8 @@ private:
 
     Item itemTemplate; // 道具对象模板
     std::list<Item*> items; // 道具对象列表
+
+    std::map<Enemy*, bool> isCrashed; // 是否和敌人撞机
 
     std::map<std::string, Mix_Chunk*> sounds; // 存储声音
 

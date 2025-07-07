@@ -5,7 +5,52 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <SDL_mixer.h>
+#include <fstream>
 
+
+
+void Game::addToScoreBoard(int score, const std::string &name)
+{
+    scoreBoard.insert({std::make_pair(score, name)});
+    if (scoreBoard.size() > 8)
+    {
+        scoreBoard.erase(--scoreBoard.end());
+    }
+}
+
+void Game::saveData()
+{
+    // 保存得分的文件
+    std::ofstream file("../../data/score.dat");
+    if (!file.is_open())
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to open file! SDL_Error: %s\n", SDL_GetError());
+        return;
+    }
+
+    for (const auto &item : scoreBoard)
+    {
+        file << item.first << " " << item.second << std::endl;
+    }
+}
+
+void Game::loadData()
+{
+    // 加载得分的文件
+    std::ifstream file("../../data/score.dat");
+    if (!file.is_open())
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to open file! SDL_Error: %s\n", SDL_GetError());
+        return;
+    }
+    scoreBoard.clear();
+    int score;
+    std::string name;
+    while (file >> score >> name)
+    {
+        addToScoreBoard(score, name);
+    }
+}
 
 Game::Game()
 {
@@ -14,6 +59,7 @@ Game::Game()
 
 Game::~Game()
 {
+    saveData(); // 保存得分数据
     clean();
 }
 
@@ -101,6 +147,9 @@ void Game::init()
         SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load font! SDL_Error: %s\n", SDL_GetError());
         isRunning = false;
     }
+
+    // 加载数据
+    loadData(); // 加载得分数据
 
     // 切换到主场景
     currentScene = new SceneTitle();
@@ -246,7 +295,79 @@ void Game::render()
     SDL_RenderPresent(renderer);
 }
 
+SDL_Point Game::renderTextCenter(const std::string &text, int x, int y, int fontSize, SDL_Color color, FontType fontType)
+{
+    TTF_Font* font;
+    switch (fontType)
+    {
+    case FontType::Silver:
+        font = TTF_OpenFont("../../assets/font/Silver.ttf", fontSize);
+        break;
+    case FontType::Vonwaon:
+        font = TTF_OpenFont("../../assets/font/VonwaonBitmap-16px.ttf", fontSize);
+        break;
+    default:
+        break;
+    }
+    if (font == nullptr)
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load font! SDL_Error: %s\n", SDL_GetError());
+        isRunning = false;
+        return SDL_Point{0, 0};
+    }
+    SDL_Surface* surface = TTF_RenderUTF8_Solid(font, text.c_str(), color);
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+    SDL_Rect dstRect = {
+        (x - surface->w) / 2,
+        y,
+        surface->w,
+        surface->h
+    };
+    SDL_RenderCopy(renderer, texture, NULL, &dstRect);
+    SDL_FreeSurface(surface);
+    SDL_DestroyTexture(texture);
+
+    // 返回文字的右上角坐标
+    return SDL_Point{
+        dstRect.x + dstRect.w,
+        dstRect.y
+    };
+}
+
 void Game::renderText(const std::string &text, int x, int y, int fontSize, SDL_Color color, FontType fontType)
+{
+        TTF_Font* font;
+    switch (fontType)
+    {
+    case FontType::Silver:
+        font = TTF_OpenFont("../../assets/font/Silver.ttf", fontSize);
+        break;
+    case FontType::Vonwaon:
+        font = TTF_OpenFont("../../assets/font/VonwaonBitmap-16px.ttf", fontSize);
+        break;
+    default:
+        break;
+    }
+    if (font == nullptr)
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load font! SDL_Error: %s\n", SDL_GetError());
+        isRunning = false;
+        return;
+    }
+    SDL_Surface* surface = TTF_RenderUTF8_Solid(font, text.c_str(), color);
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+    SDL_Rect dstRect = {
+        x,
+        y,
+        surface->w,
+        surface->h
+    };
+    SDL_RenderCopy(renderer, texture, NULL, &dstRect);
+    SDL_FreeSurface(surface);
+    SDL_DestroyTexture(texture);
+}
+
+void Game::renderTextRight(const std::string &text, int x, int y, int fontSize, SDL_Color color, FontType fontType)
 {
     TTF_Font* font;
     switch (fontType)
@@ -269,7 +390,7 @@ void Game::renderText(const std::string &text, int x, int y, int fontSize, SDL_C
     SDL_Surface* surface = TTF_RenderUTF8_Solid(font, text.c_str(), color);
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_Rect dstRect = {
-        (x - surface->w) / 2,
+        windowWidth - x - surface->w,
         y,
         surface->w,
         surface->h
