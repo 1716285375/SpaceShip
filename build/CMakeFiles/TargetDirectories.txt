@@ -1,3 +1,0 @@
-C:/C/GameSeries/SpaceShoot/build/CMakeFiles/SpaceShoot-Windows.dir
-C:/C/GameSeries/SpaceShoot/build/CMakeFiles/ALL_BUILD.dir
-C:/C/GameSeries/SpaceShoot/build/CMakeFiles/ZERO_CHECK.dir
