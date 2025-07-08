@@ -7,13 +7,29 @@
 ### 游戏玩法
 | 操作 | 介绍 |
 | --- | --- |
-| 移动 | 玩家可以用方向键**WSAD**移动飞机
-| 射击 | 玩家可以用**空格键**发射子弹，飞机会随机出现在屏幕上，玩家需要躲避飞机或者选择击落飞机以获得分数，否则会受到伤害
+| 移动 | 玩家可以用方向键 [**WSAD**] 移动飞机
+| 射击 | 玩家可以用 [**空格键(Space)**]发射子弹，飞机会随机出现在屏幕上，玩家需要躲避飞机或者选择击落飞机以获得分数，否则会受到伤害
 | 开始游戏 | 在主菜单界面，玩家可以按**Enter**键开始游戏
-| 暂停 | 玩家可以按**P**键暂停游戏
-| 全屏 | 玩家可以按**F11**键切换全屏模式
+| 暂停 | 玩家可以按 [**P**] 键暂停游戏
+| 全屏 | 玩家可以按 [**F11**] 键切换全屏模式
+### DONE
+| 已经实现的一些内容
+1. ✅ 玩家普通攻击
+2. ✅ 敌机普通攻击
+3. ✅ 敌机道具BUFF掉落
+4. ✅ 主菜单界面
+5. ✅ 单个关卡
+6. ✅ 游戏结算画面
+7. ✅ 得分数据记录本地存储     
+### TODO
+| 未完待续，后续会进一步完善这个小游戏
+包括但不限于：
+* - [ ] 增加敌机BOSS
+* - [ ] 增加关卡选择
+* - [ ] 增加玩家技能
+* - [ ] 增加物品种类掉落
+* ...
 ### 游戏内容
-
 * **菜单界面**  
 <div align="center">
   <img src="./doc/img/menu.png" style="width: 200px; height: auto; display: block; margin: 10px 0;">
@@ -50,6 +66,7 @@ SpaceShoot
 * 第三方库：SDL2
 * 运行平台：Windows11 x64（其他平台未测试）
 ## 运行方式
+### 源码构建
 1. 克隆项目到本地
 ```
 git clone https://github.com/1716285375/SpaceShip.git
@@ -70,7 +87,13 @@ cmake --build . --config Release
 cd build/Release
 SpaceShip.exe
 ```
+### 下载二进制
+1. 下载 [SpaceShoot-Setup.exe](https://github.com/1716285375/SpaceShip/releases/tag/v1.0.0-beta) 安装包
 
+
+
+2. 安装程序
+3. 双击 **SpaceShoot.exe** 运行
 ## 附录
 ### 参考文献
 *  [【C++游戏开发之旅】SDL2与太空战机](https://en.wikipedia.org/wiki/Space_Shooter)
