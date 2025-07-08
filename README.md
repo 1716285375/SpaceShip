@@ -12,8 +12,15 @@
 | 开始游戏 | 在主菜单界面，玩家可以按**Enter**键开始游戏
 | 暂停 | 玩家可以按**P**键暂停游戏
 | 全屏 | 玩家可以按**F11**键切换全屏模式
+### TODO
+| 未完待续，后续会进一步完善这个小游戏
+包括但不限于：
+* 增加敌机BOSS
+* 增加关卡选择
+* 增加玩家技能
+* 增加物品种类掉落
+* ...
 ### 游戏内容
-
 * **菜单界面**  
 <div align="center">
   <img src="./doc/img/menu.png" style="width: 200px; height: auto; display: block; margin: 10px 0;">
