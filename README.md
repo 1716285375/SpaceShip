@@ -50,6 +50,7 @@ SpaceShoot
 * 第三方库：SDL2
 * 运行平台：Windows11 x64（其他平台未测试）
 ## 运行方式
+### 源码构建
 1. 克隆项目到本地
 ```
 git clone https://github.com/1716285375/SpaceShip.git
@@ -70,7 +71,11 @@ cmake --build . --config Release
 cd build/Release
 SpaceShip.exe
 ```
-
+### 下载二进制
+1. 下载setup安装包
+[windows exe](https://github.com/1716285375/SpaceShip/releases/tag/v1.0.0-beta)
+2. 安装程序
+3. 双击 **SpaceShoot.exe** 运行
 ## 附录
 ### 参考文献
 *  [【C++游戏开发之旅】SDL2与太空战机](https://en.wikipedia.org/wiki/Space_Shooter)
