@@ -12,7 +12,22 @@
 | 开始游戏 | 在主菜单界面，玩家可以按**Enter**键开始游戏
 | 暂停 | 玩家可以按**P**键暂停游戏
 | 全屏 | 玩家可以按**F11**键切换全屏模式
+### 游戏内容
 
+* **菜单界面**  
+<div align="center">
+  <img src="./doc/img/menu.png" style="width: 200px; height: auto; display: block; margin: 10px 0;">
+</div>
+
+* **关卡界面**  
+<div align="center">
+    <img src="./doc/img/level1.png" style="width: 200px; height: auto; display: block; margin: 10px 0;">
+</div>
+
+* **结束界面**  
+<div align="center">
+    <img src="./doc/img/gameover.png" style="width: 200px; height: auto; display: block; margin: 10px 0;">
+</div>
 ## 项目结构
 ```
 SpaceShoot
