@@ -72,7 +72,8 @@ cd build/Release
 SpaceShip.exe
 ```
 ### 下载二进制
-1. 下载setup安装包
+1. 下载 **SpaceShoot-Setup.exe 
+** 安装包
 [windows exe](https://github.com/1716285375/SpaceShip/releases/tag/v1.0.0-beta)
 2. 安装程序
 3. 双击 **SpaceShoot.exe** 运行
