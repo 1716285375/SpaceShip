@@ -98,7 +98,7 @@ void SceneMain::handleEvent(SDL_Event *event)
 void SceneMain::init()
 {
     // 读取并播放音乐
-    bgMusic = Mix_LoadMUS("../../assets/music/03_Racing_Through_Asteroids_Loop.ogg");
+    bgMusic = Mix_LoadMUS("../../assets/music/level1_loop.ogg");
     if (bgMusic == nullptr)
     {
         SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load bg music: %s", SDL_GetError());
@@ -139,15 +139,15 @@ void SceneMain::init()
     dis = std::uniform_real_distribution<float>(0.0f, 1.0f);
 
     // 初始化玩家对象
-    player.texture = IMG_LoadTexture(game.getRenderer(), "../../assets/image/SpaceShip.png");
+    player.texture = IMG_LoadTexture(game.getRenderer(), "../../assets/image/player/PlayerRed_Frame_01_png_processed.png");
     if (player.texture == nullptr)
     {
         SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load player texture: %s\n", SDL_GetError());
         game.setRunning(false);
     }
     SDL_QueryTexture(player.texture, NULL, NULL, &player.width, &player.height);
-    player.width /= 4;
-    player.height /= 4;
+    player.width /= 2;
+    player.height /= 2;
     player.position.x = static_cast<float>(game.getWindowWidth()) / 2 - static_cast<float>(player.width) / 2;
     player.position.y = static_cast<float>(game.getWindowHeight()) - static_cast<float>(player.height);
 
@@ -176,8 +176,8 @@ void SceneMain::init()
     // 初始化敌人子弹模板
     projectileEnemyTemplate.texture = IMG_LoadTexture(game.getRenderer(), "../../assets/image/bullet-1.png");
     SDL_QueryTexture(projectileEnemyTemplate.texture, NULL, NULL, &projectileEnemyTemplate.width, &projectileEnemyTemplate.height);
-    projectileEnemyTemplate.width /= 4;
-    projectileEnemyTemplate.height /= 4;
+    projectileEnemyTemplate.width /= 2;
+    projectileEnemyTemplate.height /= 2;
     if (projectileEnemyTemplate.texture == nullptr)
     {
         SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load projectile enemy template texture: %s\n", SDL_GetError());
@@ -188,7 +188,7 @@ void SceneMain::init()
     explosionTemplate.texture = IMG_LoadTexture(game.getRenderer(), "../../assets/effect/explosion.png");
     SDL_QueryTexture(explosionTemplate.texture, NULL, NULL, &explosionTemplate.width, &explosionTemplate.height);
     explosionTemplate.totalFrames = explosionTemplate.width / explosionTemplate.height;
-    // explosionTemplate.height /= 4;
+    explosionTemplate.height *= 2;
     explosionTemplate.width = explosionTemplate.height;
     if (explosionTemplate.texture == nullptr)
     {
@@ -197,11 +197,11 @@ void SceneMain::init()
     }
 
     // 初始化道具模板
-    itemTemplate.texture = IMG_LoadTexture(game.getRenderer(), "../../assets/image/bonus_life.png");
-    SDL_QueryTexture(itemTemplate.texture, NULL, NULL, &itemTemplate.width, &itemTemplate.height);
-    itemTemplate.width /= 4;
-    itemTemplate.height /= 4;
-    if (itemTemplate.texture == nullptr)
+    itemHealthTemplate.texture = IMG_LoadTexture(game.getRenderer(), "../../assets/image/item/Powerup_Health_png_processed.png");
+    SDL_QueryTexture(itemHealthTemplate.texture, NULL, NULL, &itemHealthTemplate.width, &itemHealthTemplate.height);
+    itemHealthTemplate.width /= 2;
+    itemHealthTemplate.height /= 2;
+    if (itemHealthTemplate.texture == nullptr)
     {
         SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load item template texture: %s\n", SDL_GetError());
         game.setRunning(false);
@@ -311,9 +311,9 @@ void SceneMain::clean()
     }
 
     // 释放道具模板资源
-    if (itemTemplate.texture != nullptr)
+    if (itemHealthTemplate.texture != nullptr)
     {    
-        SDL_DestroyTexture(itemTemplate.texture);   
+        SDL_DestroyTexture(itemHealthTemplate.texture);   
     }
 
     // 清理音乐资源
@@ -747,8 +747,8 @@ void SceneMain::renderExplosions()
         SDL_Rect src = {
             explosion->currentFrame * explosion->width,
             0,
-            explosion->width,
-            explosion->height
+            explosion->width / 2,
+            explosion->height / 2
         };
         SDL_Rect dst = {
             static_cast<int>(explosion->position.x),
@@ -762,7 +762,7 @@ void SceneMain::renderExplosions()
 
 void SceneMain::dropItem(Enemy *enemy)
 {
-    auto item = new Item(itemTemplate);
+    auto item = new Item(itemHealthTemplate);
     item->position.x = enemy->position.x + enemy->width / 2 - item->width / 2;
     item->position.y = enemy->position.y + enemy->height / 2 - item->height / 2;
     float angle = dis(gen) * 2 * M_PI;

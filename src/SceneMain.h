@@ -74,7 +74,7 @@ private:
     Explosion explosionTemplate; // 爆炸对象模板
     std::list<Explosion*> explosions; // 爆炸对象列表
 
-    Item itemTemplate; // 道具对象模板
+    Item itemHealthTemplate; // 道具对象模板
     std::list<Item*> items; // 道具对象列表
 
     std::map<Enemy*, bool> isCrashed; // 是否和敌人撞机

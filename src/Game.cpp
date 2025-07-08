@@ -80,6 +80,21 @@ void Game::init()
         SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Window could not be created! SDL_Error: %s\n", SDL_GetError());
         isRunning = false;
     }
+
+    // 加载图标
+    SDL_Surface* icon = SDL_LoadBMP("../../assets/image/icon/app-icon.bmp");  // 替换为你的图标路径
+    if (!icon) {
+        SDL_Log("图标加载失败: %s", SDL_GetError());
+        // 即使图标加载失败，也可以继续运行程序
+    }
+    else {
+        // 设置窗口图标
+        SDL_SetWindowIcon(window, icon);
+        // 释放表面资源
+        SDL_FreeSurface(icon);
+    }
+
+
     // 创建渲染器
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     if (renderer == nullptr)

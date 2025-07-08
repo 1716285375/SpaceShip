@@ -38,13 +38,20 @@ endif()
 
 # 添加可执行文件
 set(TARGET ${PROJECT_NAME}-${CMAKE_SYSTEM_NAME})
-add_executable(${TARGET}
+set(SOURCES
                 "src/main.cpp"
                 "src/Game.cpp"
                 "src/Scene.cpp"
                 "src/SceneMain.cpp"
                 "src/SceneTitle.cpp"
-                "src/SceneEnd.cpp")
+                "src/SceneEnd.cpp"
+            )
+
+if (WIN32)
+    list(APPEND SOURCES resources.rc)
+endif()
+add_executable(${TARGET} ${SOURCES})
+
 
 # 设置C++标准
 set(CMAKE_CXX_STANDARD 17)
@@ -87,4 +94,9 @@ if(WIN32)
         "${SDL2_LIB_DIR}/SDL2_ttf.dll"
         $<TARGET_FILE_DIR:${TARGET}>
     )
+endif()
+
+# 不显示控制台窗口
+if (MSVC)
+    target_link_options(${TARGET} PRIVATE /SUBSYSTEM:WINDOWS)
 endif()

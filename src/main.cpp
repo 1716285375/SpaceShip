@@ -10,7 +10,6 @@ int main(int argc, char* argv[])
 {
     Game& game = Game::getInstance();
     game.init();
-    SDL_Log("Base path: %s\n", SDL_GetBasePath());
     game.run();
     return 0;
 }

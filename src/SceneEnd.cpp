@@ -82,7 +82,7 @@ void SceneEnd::handleEvent(SDL_Event *event)
                 }
                 game.addToScoreBoard(game.getScore(), m_name);
             }
-            if (event->key.keysym.sym == SDL_SCANCODE_BACKSPACE)
+            if (event->key.keysym.scancode == SDL_SCANCODE_BACKSPACE)
             {
                 removeUTF8Char(m_name);
             }
