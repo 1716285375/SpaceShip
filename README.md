@@ -28,6 +28,7 @@
 <div align="center">
     <img src="./doc/img/gameover.png" style="width: 200px; height: auto; display: block; margin: 10px 0;">
 </div>
+
 ## 项目结构
 ```
 SpaceShoot
