@@ -45,6 +45,15 @@
     <img src="./doc/img/gameover.png" style="width: 200px; height: auto; display: block; margin: 10px 0;">
 </div>
 
+### 视频演示
+
+<div align="center">
+  <a href="./doc/video/sapceshoot-demo.mp4">
+    <img src="./doc/img/menu.png" width="50%">
+  </a>
+  <p><span>▶️ SpaceShoot 游戏演示视频</span></p>
+</div>
+
 ## 项目结构
 ```
 SpaceShoot
