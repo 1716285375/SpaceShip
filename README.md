@@ -48,11 +48,16 @@
 ### 视频演示
 
 <div align="center">
-  <a href="./doc/video/sapceshoot-demo.mp4">
-    <img src="./doc/img/menu.png" width="50%">
-  </a>
-  <p><span>▶️ SpaceShoot 游戏演示视频</span></p>
+<a href="https://www.douyin.com/user/self?from_tab_name=live&modal_id=7524562945532120339&showTab=post">
+  <img src="./doc/img/menu.png" 
+        width="50%"
+        style="border: 1px solid #eee; border-radius: 8px;">
+</a>
+<p><a href="https://www.douyin.com/user/self?from_tab_name=live&modal_id=7524562945532120339&showTab=post">▶️ SpaceShoot 游戏演示视频</a></p>
 </div>
+
+
+
 
 ## 项目结构
 ```
