@@ -110,5 +110,6 @@ SpaceShip.exe
 3. 双击 **SpaceShoot.exe** 运行
 ## 附录
 ### 参考文献
-*  [【C++游戏开发之旅】SDL2与太空战机](https://en.wikipedia.org/wiki/Space_Shooter)
+*  [【C++游戏开发之旅】SDL2与太空战机](https://www.bilibili.com/video/BV1wSCFYQEyc/?spm_id_from=333.1387.upload.video_card.click&vd_source=7a81dc5bef20d936c5750de5bc7d724d)
+
 * [SDL2 API Documentation](https://wiki.libsdl.org/wiki/index)
