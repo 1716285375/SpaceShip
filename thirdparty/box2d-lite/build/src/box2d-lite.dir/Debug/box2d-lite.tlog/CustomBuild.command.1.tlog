@@ -1,0 +1,10 @@
+^C:\E\ENGINE\PHYSICS\BOX2D-LITE-MASTER\SRC\CMAKELISTS.TXT
+setlocal
+C:\D\tool\cmake-4.0.3\bin\cmake.exe -SC:/E/Engine/Physics/box2d-lite-master -BC:/E/Engine/Physics/box2d-lite-master/build --check-stamp-file C:/E/Engine/Physics/box2d-lite-master/build/src/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

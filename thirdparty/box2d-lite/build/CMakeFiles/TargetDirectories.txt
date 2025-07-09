@@ -1,0 +1,11 @@
+C:/E/Engine/Physics/box2d-lite-master/build/CMakeFiles/ALL_BUILD.dir
+C:/E/Engine/Physics/box2d-lite-master/build/CMakeFiles/ZERO_CHECK.dir
+C:/E/Engine/Physics/box2d-lite-master/build/src/CMakeFiles/box2d-lite.dir
+C:/E/Engine/Physics/box2d-lite-master/build/extern/glad/CMakeFiles/glad.dir
+C:/E/Engine/Physics/box2d-lite-master/build/extern/glad/CMakeFiles/ALL_BUILD.dir
+C:/E/Engine/Physics/box2d-lite-master/build/extern/glfw/CMakeFiles/glfw.dir
+C:/E/Engine/Physics/box2d-lite-master/build/extern/glfw/CMakeFiles/ALL_BUILD.dir
+C:/E/Engine/Physics/box2d-lite-master/build/extern/imgui/CMakeFiles/imgui.dir
+C:/E/Engine/Physics/box2d-lite-master/build/extern/imgui/CMakeFiles/ALL_BUILD.dir
+C:/E/Engine/Physics/box2d-lite-master/build/samples/CMakeFiles/samples.dir
+C:/E/Engine/Physics/box2d-lite-master/build/samples/CMakeFiles/ALL_BUILD.dir

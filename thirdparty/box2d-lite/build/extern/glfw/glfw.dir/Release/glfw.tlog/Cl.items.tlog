@@ -1,0 +1,15 @@
+C:\E\Engine\Physics\box2d-lite-master\extern\glfw\src\context.c;C:\E\Engine\Physics\box2d-lite-master\build\extern\glfw\glfw.dir\Release\context.obj
+C:\E\Engine\Physics\box2d-lite-master\extern\glfw\src\init.c;C:\E\Engine\Physics\box2d-lite-master\build\extern\glfw\glfw.dir\Release\init.obj
+C:\E\Engine\Physics\box2d-lite-master\extern\glfw\src\input.c;C:\E\Engine\Physics\box2d-lite-master\build\extern\glfw\glfw.dir\Release\input.obj
+C:\E\Engine\Physics\box2d-lite-master\extern\glfw\src\monitor.c;C:\E\Engine\Physics\box2d-lite-master\build\extern\glfw\glfw.dir\Release\monitor.obj
+C:\E\Engine\Physics\box2d-lite-master\extern\glfw\src\vulkan.c;C:\E\Engine\Physics\box2d-lite-master\build\extern\glfw\glfw.dir\Release\vulkan.obj
+C:\E\Engine\Physics\box2d-lite-master\extern\glfw\src\window.c;C:\E\Engine\Physics\box2d-lite-master\build\extern\glfw\glfw.dir\Release\window.obj
+C:\E\Engine\Physics\box2d-lite-master\extern\glfw\src\win32_init.c;C:\E\Engine\Physics\box2d-lite-master\build\extern\glfw\glfw.dir\Release\win32_init.obj
+C:\E\Engine\Physics\box2d-lite-master\extern\glfw\src\win32_joystick.c;C:\E\Engine\Physics\box2d-lite-master\build\extern\glfw\glfw.dir\Release\win32_joystick.obj
+C:\E\Engine\Physics\box2d-lite-master\extern\glfw\src\win32_monitor.c;C:\E\Engine\Physics\box2d-lite-master\build\extern\glfw\glfw.dir\Release\win32_monitor.obj
+C:\E\Engine\Physics\box2d-lite-master\extern\glfw\src\win32_time.c;C:\E\Engine\Physics\box2d-lite-master\build\extern\glfw\glfw.dir\Release\win32_time.obj
+C:\E\Engine\Physics\box2d-lite-master\extern\glfw\src\win32_thread.c;C:\E\Engine\Physics\box2d-lite-master\build\extern\glfw\glfw.dir\Release\win32_thread.obj
+C:\E\Engine\Physics\box2d-lite-master\extern\glfw\src\win32_window.c;C:\E\Engine\Physics\box2d-lite-master\build\extern\glfw\glfw.dir\Release\win32_window.obj
+C:\E\Engine\Physics\box2d-lite-master\extern\glfw\src\wgl_context.c;C:\E\Engine\Physics\box2d-lite-master\build\extern\glfw\glfw.dir\Release\wgl_context.obj
+C:\E\Engine\Physics\box2d-lite-master\extern\glfw\src\egl_context.c;C:\E\Engine\Physics\box2d-lite-master\build\extern\glfw\glfw.dir\Release\egl_context.obj
+C:\E\Engine\Physics\box2d-lite-master\extern\glfw\src\osmesa_context.c;C:\E\Engine\Physics\box2d-lite-master\build\extern\glfw\glfw.dir\Release\osmesa_context.obj

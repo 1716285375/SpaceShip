@@ -1,0 +1,12 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/E/Engine/Physics/box2d-lite-master/build/cmake_install.cmake",
+		"C:/E/Engine/Physics/box2d-lite-master/build/src/cmake_install.cmake",
+		"C:/E/Engine/Physics/box2d-lite-master/build/extern/glad/cmake_install.cmake",
+		"C:/E/Engine/Physics/box2d-lite-master/build/extern/glfw/cmake_install.cmake",
+		"C:/E/Engine/Physics/box2d-lite-master/build/extern/imgui/cmake_install.cmake",
+		"C:/E/Engine/Physics/box2d-lite-master/build/samples/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
