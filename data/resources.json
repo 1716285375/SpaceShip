@@ -1,0 +1,7 @@
+{
+    "animations": "../../data/animation.json",
+    "textures": "../../data/texture.json",
+    "sounds": "../../data/sound.json",
+    "fonts": "../../data/font.json",
+    "music": "../../data/music.json"
+}

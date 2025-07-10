@@ -1,14 +1,18 @@
 #ifndef SCENE_H
 #define SCENE_H
+
+#include <SDL.h>
+
 //场景基类
 class Scene
 {
 public:
     Scene();
-    // virtual ~Scene();
-    // virtual void Init() = 0;
-    // virtual void Update(float dt) = 0;
-    // virtual void Render() = 0;
-    // virtual void HandleInput() = 0;
+    virtual ~Scene() = default;
+    virtual void update(float deltaTime) = 0;
+    virtual void render(SDL_Renderer* renderer) = 0;
+    virtual void handleInput(const SDL_Event& event) = 0;
+    virtual void onEnter() {}; //进入场景
+    virtual void onExit() {}; //退出场景
 };
 #endif // SCENE_H

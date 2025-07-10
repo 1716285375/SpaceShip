@@ -1,0 +1,20 @@
+{
+    "Silver": {
+        "filePath": "../../assets/font/Silver.ttf",
+        "size": 16,
+        "bold": false,
+        "italic": false
+    },
+    "VonwaonBitmap-12": {
+        "filePath": "../../assets/font/VonwaonBitmap-12px.ttf",
+        "size": 12,
+        "bold": false,
+        "italic": false
+    },
+    "VonwaonBitmap-16": {
+        "filePath": "../../assets/font/VonwaonBitmap-16px.ttf",
+        "size": 16,
+        "bold": false,
+        "italic": false
+    }
+}

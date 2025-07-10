@@ -46,13 +46,20 @@ find_package(SDL2_image REQUIRED)
 find_package(SDL2_mixer REQUIRED)
 find_package(SDL2_ttf REQUIRED)
 find_package(nlohmann_json REQUIRED)
+find_package(spdlog REQUIRED)
 
 # 链接指定库
 target_link_libraries(
     ${TARGET}
     PRIVATE
-    debug src::scenes # Debug 版本
-    optimized src::scenes # Release 版本
+    debug game::scenes # Debug 版本
+    optimized game::scenes # Release 版本
+    debug game::resources # Debug 版本
+    optimized game::resources # Release 版本
+    # debug game::input # Debug 版本
+    # optimized game::input # Release 版本
+    # debug game::entity # Debug 版本
+    # optimized game::entity # Release 版本
     ${SDL2_LIBRARIES}
     SDL2_image::SDL2_image
     SDL2_mixer::SDL2_mixer
@@ -81,3 +88,6 @@ endif()
 
 # 添加子目录（使用命名空间）
 add_subdirectory(scenes)
+add_subdirectory(resources)
+# add_subdirectory(input)
+add_subdirectory(entity)

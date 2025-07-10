@@ -24,7 +24,7 @@ list(APPEND SCENES_SOURCES
 )
 
 # 创建场景库
-add_library(Scenes SHARED ${SCENES_SOURCES})
+add_library(Scenes STATIC ${SCENES_SOURCES})
 
 target_include_directories(Scenes PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
@@ -37,11 +37,13 @@ target_link_libraries(Scenes PRIVATE
 )
 
 # 显式设置链接器语言、指定 Scene.dll 生成的目录
+
 set_target_properties(Scenes PROPERTIES
     LINKER_LANGUAGE CXX
-    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+    RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_SOURCE_DIR}/bin/Debug
+    RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_SOURCE_DIR}/bin/Release
     DEBUG_POSTFIX "d" # Debug 版本的可执行文件后缀
 )
 
 # 创建别名目标方便外层引用
-add_library(src::scenes ALIAS Scenes)
+add_library(game::scenes ALIAS Scenes)

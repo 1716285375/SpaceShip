@@ -178,6 +178,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{C708DA7C-E12C-3C4E-B4B3-B3A716D33D79}</Project>
       <Name>OpenXLSX</Name>
     </ProjectReference>
+    <ProjectReference Include="C:\C\GameSeries\SpaceShoot\build\src\resources\Resources.vcxproj">
+      <Project>{F4A2653B-FB18-3763-B530-2F8DB837DBC3}</Project>
+      <Name>Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="C:\C\GameSeries\SpaceShoot\build\src\scenes\Scenes.vcxproj">
       <Project>{93707E1C-EB63-307D-9578-6412A546C6F4}</Project>
       <Name>Scenes</Name>

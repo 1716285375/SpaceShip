@@ -1,0 +1,13 @@
+
+{
+    "explosion": {
+        "image": "../../assets/effect/explosion.png",
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 32,
+        "currentFrame": 0,
+        "totalFrames": 8,
+        "frameDuration": 3.0
+    }
+}
