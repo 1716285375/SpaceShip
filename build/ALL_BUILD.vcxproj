@@ -174,6 +174,14 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
+    <ProjectReference Include="C:\C\GameSeries\SpaceShoot\build\src\engine\Engine.vcxproj">
+      <Project>{3C925761-4406-3F7D-9568-B05B270D30C5}</Project>
+      <Name>Engine</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\C\GameSeries\SpaceShoot\build\src\log\Logger.vcxproj">
+      <Project>{BBE23767-E126-3F9E-B1FD-B931CB76A5E0}</Project>
+      <Name>Logger</Name>
+    </ProjectReference>
     <ProjectReference Include="C:\C\GameSeries\SpaceShoot\build\thirdparty\OpenXLSX\OpenXLSX.vcxproj">
       <Project>{C708DA7C-E12C-3C4E-B4B3-B3A716D33D79}</Project>
       <Name>OpenXLSX</Name>
@@ -189,6 +197,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ProjectReference Include="C:\C\GameSeries\SpaceShoot\build\src\SpaceShoot-Windows.vcxproj">
       <Project>{AA86B02B-8A49-3794-BEDB-F7ECE979914B}</Project>
       <Name>SpaceShoot-Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\C\GameSeries\SpaceShoot\build\src\misc\Utils.vcxproj">
+      <Project>{B119AB55-2A5C-3372-A895-18C51D87135D}</Project>
+      <Name>Utils</Name>
     </ProjectReference>
     <ProjectReference Include="C:\C\GameSeries\SpaceShoot\build\thirdparty\box2d-lite\src\box2d-lite.vcxproj">
       <Project>{FD0B9286-70A4-3886-801D-016E3DD6A745}</Project>

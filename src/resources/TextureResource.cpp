@@ -1,6 +1,6 @@
 #include "TextureResource.h"
 
-TextureResource::TextureResource(SDL_Texture *texture, int width, int height) : m_texture(texture), m_width(width), m_height(height)
+TextureResource::TextureResource(SDL_Texture *texture, int w, int h) : m_texture(texture), m_w(w), m_h(h)
 {
     
 }
@@ -21,10 +21,10 @@ void TextureResource::unload()
 
 int TextureResource::getWidth() const
 {
-    return m_width;
+    return m_w;
 }
 
 int TextureResource::getHeight() const
 {
-    return m_height;
+    return m_h;
 }

@@ -4,17 +4,14 @@
 #include <SDL_mixer.h>
 #include <SDL_ttf.h>
 
-#include "Game.h"
-#include "resources/ResourceManager.h"
+#include "Engine.h"
+#include "Logger.h"
 
 int main(int argc, char* argv[])
 {
-    std::string path = "../../data/resources.json";
-    auto &rm = ResourceManager::getInstance();
-
-    Game& game = Game::getInstance();
-    game.init();
-    rm.loadAll(game.getRenderer(), path);
-    game.run();
+    // initLogger();
+    // initAsyncLogger();
+    Engine& engine = Engine::getInstance();
+    engine.run();
     return 0;
 }

@@ -1,4 +1,6 @@
 
+# 父级目录
+
 
 # 过渡效果子系统
 set (SCENES_TRANSITION_SOURCES
@@ -21,6 +23,7 @@ set(SCENES_SOURCES
 list(APPEND SCENES_SOURCES
     MenuScene.cpp
     LevelScene.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Game.cpp
 )
 
 # 创建场景库

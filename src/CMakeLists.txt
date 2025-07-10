@@ -1,10 +1,10 @@
 set(SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/Game.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/Scene.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/SceneMain.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/SceneTitle.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/SceneEnd.cpp"
+    # "${CMAKE_CURRENT_SOURCE_DIR}/Game.cpp"
+    # "${CMAKE_CURRENT_SOURCE_DIR}/Scene.cpp"
+    # "${CMAKE_CURRENT_SOURCE_DIR}/SceneMain.cpp"
+    # "${CMAKE_CURRENT_SOURCE_DIR}/SceneTitle.cpp"
+    # "${CMAKE_CURRENT_SOURCE_DIR}/SceneEnd.cpp"
 )
 
 # 添加可执行文件
@@ -26,14 +26,19 @@ endif()
 add_executable(${TARGET} ${SOURCES})
 
 # 设置C++标准
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # 设置编译选项
 if (MSVC)
     add_compile_options(/W4)
+    
 else()
     add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
+
+if(MSVC)
+    add_compile_options("/source-charset:utf-8")
 endif()
 
 # 设置编译输出目录
@@ -52,10 +57,16 @@ find_package(spdlog REQUIRED)
 target_link_libraries(
     ${TARGET}
     PRIVATE
+    debug game::engine # Debug 版本
+    optimized game::engine # Release 版本
     debug game::scenes # Debug 版本
     optimized game::scenes # Release 版本
     debug game::resources # Debug 版本
     optimized game::resources # Release 版本
+    debug game::utils # Debug 版本
+    optimized game::utils # Release 版本
+    debug game::logger # Debug 版本
+    optimized game::logger # Release 版本
     # debug game::input # Debug 版本
     # optimized game::input # Release 版本
     # debug game::entity # Debug 版本
@@ -87,7 +98,9 @@ if(WIN32)
 endif()
 
 # 添加子目录（使用命名空间）
+add_subdirectory(engine)
 add_subdirectory(scenes)
 add_subdirectory(resources)
-# add_subdirectory(input)
+add_subdirectory(log)
 add_subdirectory(entity)
+add_subdirectory(misc)

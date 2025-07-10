@@ -144,7 +144,7 @@ void ResourceManager::loadAnimation(SDL_Renderer* renderer, const std::string &f
     } catch (const std::exception& e) {
         spdlog::error("Failed to parse texture file {}: {}", filePath.c_str(), e.what());
     }
-    
+
     for (auto& [tag, path] : data.items()) {
         auto it = m_animations.find(tag);
         if (it != m_animations.end()) {
@@ -180,41 +180,52 @@ void ResourceManager::loadAnimation(SDL_Renderer* renderer, const std::string &f
     }
 }
 
-void ResourceManager::loadAll(SDL_Renderer* renderer, const std::string &filePath)
+bool ResourceManager::loadAll(SDL_Renderer* renderer, const std::string &filePath)
 {
-    std::ifstream file(filePath);
-    spdlog::info("Loading resources from {}", filePath);
-    if (!file.is_open()) {
-        spdlog::error("Failed to open resource file {}", filePath.c_str());
-    }
-    json data;
     try {
-        data = json::parse(file);
-        file.close();
-    } catch (const std::exception& e) {
-        spdlog::error("Failed to parse resource file {}: {}", filePath.c_str(), e.what());
-    }
+        std::ifstream file(filePath);
+        spdlog::info("Loading resources from {}", filePath);
+        if (!file.is_open()) {
+            spdlog::error("Failed to open resource file {}", filePath.c_str());
+        }
+        json data;
+        try {
+            data = json::parse(file);
+            file.close();
+        } catch (const std::exception& e) {
+            spdlog::error("Failed to parse resource file {}: {}", filePath.c_str(), e.what());
+        }
+        try {
+            for (auto& [tag, path] : data.items()) {
+                if (tag == "textures") {
+                    spdlog::info("Loading textures from {}", path.get<std::string>());
+                    loadTexture(renderer, path.get<std::string>());
+                } else if (tag == "fonts") {
+                    spdlog::info("Loading fonts from {}", path.get<std::string>());
+                    loadFont(path.get<std::string>());
+                } else if (tag == "music") {
+                    spdlog::info("Loading music from {}", path.get<std::string>());
+                    loadMusic(path.get<std::string>());
+                } else if (tag == "sounds") {
+                    spdlog::info("Loading sounds from {}", path.get<std::string>());
+                    loadSound(path.get<std::string>());
+                } else if (tag == "animations") {
+                    spdlog::info("Loading animations from {}", path.get<std::string>());
+                    loadAnimation(renderer, path.get<std::string>());
+                }
+                else {
+                    spdlog::warn("Unknown resource type: {}", tag);
+                }
+            }
+            return true;
+        } catch (const std::exception& e) {
+            spdlog::error("Failed to load resources: {}", e.what());
+            return false;
+        }
 
-    for (auto& [tag, path] : data.items()) {
-        if (tag == "textures") {
-            spdlog::info("Loading textures from {}", path.get<std::string>());
-            loadTexture(renderer, path.get<std::string>());
-        } else if (tag == "fonts") {
-            spdlog::info("Loading fonts from {}", path.get<std::string>());
-            loadFont(path.get<std::string>());
-        } else if (tag == "music") {
-            spdlog::info("Loading music from {}", path.get<std::string>());
-            loadMusic(path.get<std::string>());
-        } else if (tag == "sounds") {
-            spdlog::info("Loading sounds from {}", path.get<std::string>());
-            loadSound(path.get<std::string>());
-        } else if (tag == "animations") {
-            spdlog::info("Loading animations from {}", path.get<std::string>());
-            loadAnimation(renderer, path.get<std::string>());
-        }
-        else {
-            spdlog::warn("Unknown resource type: {}", tag);
-        }
+    } catch (const std::exception& e) {
+        spdlog::error("Failed to open resource file {}: {}", filePath.c_str(), e.what());
+        return false;
     }
 }
 

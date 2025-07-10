@@ -11,7 +11,7 @@ public:
     virtual ~Scene() = default;
     virtual void update(float deltaTime) = 0;
     virtual void render(SDL_Renderer* renderer) = 0;
-    virtual void handleInput(const SDL_Event& event) = 0;
+    virtual void handleInput(SDL_Event* event) = 0;
     virtual void onEnter() {}; //进入场景
     virtual void onExit() {}; //退出场景
 };

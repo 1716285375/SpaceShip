@@ -26,7 +26,7 @@ class ResourceManager {
         void loadMusic(const std::string& filePath);
         void loadSound(const std::string& filePath);
         void loadAnimation(SDL_Renderer* renderer, const std::string& filePath);
-        void loadAll(SDL_Renderer* renderer, const std::string& filePath);
+        bool loadAll(SDL_Renderer* renderer, const std::string& filePath);
         void unloadAll();
 
     private:
