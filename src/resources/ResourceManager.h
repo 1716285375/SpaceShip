@@ -28,6 +28,11 @@ class ResourceManager {
         void loadAnimation(SDL_Renderer* renderer, const std::string& filePath);
         bool loadAll(SDL_Renderer* renderer, const std::string& filePath);
         void unloadAll();
+        std::unordered_map<std::string, std::unique_ptr<TextureResource>>& getTextures() { return m_textures; }
+        std::unordered_map<std::string, std::unique_ptr<FontResource>>& getFonts() { return m_fonts; }
+        std::unordered_map<std::string, std::unique_ptr<MusicResource>>& getMusic() { return m_music; }
+        std::unordered_map<std::string, std::unique_ptr<SoundResource>>& getSounds() { return m_sounds; }
+        std::unordered_map<std::string, std::unique_ptr<AnimationResource>>& getAnimations() { return m_animations; }
 
     private:
         ResourceManager() {}

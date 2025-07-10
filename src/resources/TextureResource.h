@@ -9,7 +9,7 @@ class TextureResource : public Resource {
         TextureResource(SDL_Texture* texture, int w, int h);
         ~TextureResource();
         void unload() override;
-        SDL_Texture* getTexture() const;
+        SDL_Texture* getTexture() const { return m_texture; };
         int getWidth() const;
         int getHeight() const;
 

@@ -33,6 +33,10 @@ target_include_directories(Scenes PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/transitions
     ${CMAKE_CURRENT_SOURCE_DIR}/config
+    ${CMAKE_SOURCE_DIR}/src/Engine
+    ${CMAKE_SOURCE_DIR}/src/resources
+    ${CMAKE_SOURCE_DIR}/src/misc
+
     )
 
 target_link_libraries(Scenes PRIVATE

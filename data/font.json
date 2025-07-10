@@ -1,18 +1,18 @@
 {
     "Silver": {
-        "filePath": "../../assets/font/Silver.ttf",
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\font\\Silver.ttf",
         "size": 16,
         "bold": false,
         "italic": false
     },
-    "VonwaonBitmap-12": {
-        "filePath": "../../assets/font/VonwaonBitmap-12px.ttf",
+    "VonwaonBitmap-12px": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\font\\VonwaonBitmap-12px.ttf",
         "size": 12,
         "bold": false,
         "italic": false
     },
-    "VonwaonBitmap-16": {
-        "filePath": "../../assets/font/VonwaonBitmap-16px.ttf",
+    "VonwaonBitmap-16px": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\font\\VonwaonBitmap-16px.ttf",
         "size": 16,
         "bold": false,
         "italic": false

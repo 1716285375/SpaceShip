@@ -1,7 +1,812 @@
 {
-    "player": {
-        "file": "../../assets/image/player/PlayerRed_Frame_01_png_processed.png",
+    "bg": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\bg.png",
+        "w": 1000,
+        "h": 1000
+    },
+    "bonus_life": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\bonus_life.png",
+        "w": 87,
+        "h": 87
+    },
+    "bonus_shield": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\bonus_shield.png",
+        "w": 87,
+        "h": 87
+    },
+    "bonus_time": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\bonus_time.png",
+        "w": 87,
+        "h": 87
+    },
+    "bullet-1": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\bullet-1.png",
+        "w": 14,
+        "h": 42
+    },
+    "bullet-2": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\bullet-2.png",
+        "w": 15,
+        "h": 35
+    },
+    "bullet": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\bullet.png",
+        "w": 81,
+        "h": 126
+    },
+    "farbg": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\farbg.png",
+        "w": 350,
+        "h": 400
+    },
+    "fire": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\fire.png",
+        "w": 96,
+        "h": 96
+    },
+    "Health UI Black": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\Health UI Black.png",
+        "w": 32,
+        "h": 32
+    },
+    "insect-1": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\insect-1.png",
+        "w": 110,
+        "h": 97
+    },
+    "insect-2": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\insect-2.png",
+        "w": 182,
+        "h": 160
+    },
+    "large-A": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\large-A.png",
+        "w": 192,
+        "h": 194
+    },
+    "large-B": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\large-B.png",
+        "w": 192,
+        "h": 194
+    },
+    "laser-1": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\laser-1.png",
+        "w": 81,
+        "h": 126
+    },
+    "laser-2": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\laser-2.png",
+        "w": 81,
+        "h": 126
+    },
+    "laser-3": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\laser-3.png",
+        "w": 81,
+        "h": 126
+    },
+    "medium-A": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\medium-A.png",
+        "w": 126,
+        "h": 128
+    },
+    "medium-B": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\medium-B.png",
+        "w": 126,
+        "h": 128
+    },
+    "plasm": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\plasm.png",
+        "w": 81,
+        "h": 126
+    },
+    "rocket": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\rocket.png",
+        "w": 81,
+        "h": 126
+    },
+    "shield": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\shield.png",
+        "w": 323,
+        "h": 180
+    },
+    "small-A": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\small-A.png",
+        "w": 96,
+        "h": 87
+    },
+    "small-B": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\small-B.png",
+        "w": 96,
+        "h": 87
+    },
+    "SpaceShip": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\SpaceShip.png",
+        "w": 241,
+        "h": 187
+    },
+    "Stars-A": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\Stars-A.png",
+        "w": 1000,
+        "h": 1000
+    },
+    "Stars-B": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\Stars-B.png",
+        "w": 1000,
+        "h": 1000
+    },
+    "support": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\support.png",
+        "w": 84,
+        "h": 72
+    },
+    "app-icon": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\icon\\app-icon.png",
+        "w": 55,
+        "h": 55
+    },
+    "Powerup_Ammo_png_processed": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\item\\Powerup_Ammo_png_processed.png",
+        "w": 48,
+        "h": 29
+    },
+    "Powerup_Energy_png_processed": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\item\\Powerup_Energy_png_processed.png",
+        "w": 48,
+        "h": 29
+    },
+    "Powerup_Health_png_processed": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\item\\Powerup_Health_png_processed.png",
+        "w": 48,
+        "h": 29
+    },
+    "Powerup_Rockets_png_processed": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\item\\Powerup_Rockets_png_processed.png",
+        "w": 47,
+        "h": 29
+    },
+    "PlayerRed_Frame_01_png_processed": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\player\\PlayerRed_Frame_01_png_processed.png",
+        "w": 64,
+        "h": 64
+    },
+    "banner_classic_curtain": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\banner_classic_curtain.png",
+        "w": 256,
+        "h": 64
+    },
+    "banner_hanging": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\banner_hanging.png",
+        "w": 256,
+        "h": 64
+    },
+    "banner_modern": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\banner_modern.png",
+        "w": 256,
+        "h": 48
+    },
+    "button_brown": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\button_brown.png",
+        "w": 48,
+        "h": 24
+    },
+    "button_brown_close": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\button_brown_close.png",
+        "w": 48,
+        "h": 24
+    },
+    "button_grey": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\button_grey.png",
+        "w": 48,
+        "h": 24
+    },
+    "button_grey_close": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\button_grey_close.png",
+        "w": 48,
+        "h": 24
+    },
+    "button_red": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\button_red.png",
+        "w": 48,
+        "h": 24
+    },
+    "button_red_close": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\button_red_close.png",
+        "w": 48,
+        "h": 24
+    },
+    "checkbox_beige_checked": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\checkbox_beige_checked.png",
+        "w": 24,
+        "h": 24
+    },
+    "checkbox_beige_cross": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\checkbox_beige_cross.png",
+        "w": 24,
+        "h": 24
+    },
+    "checkbox_beige_empty": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\checkbox_beige_empty.png",
+        "w": 24,
+        "h": 24
+    },
+    "checkbox_brown_checked": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\checkbox_brown_checked.png",
+        "w": 24,
+        "h": 24
+    },
+    "checkbox_brown_cross": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\checkbox_brown_cross.png",
+        "w": 24,
+        "h": 24
+    },
+    "checkbox_brown_empty": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\checkbox_brown_empty.png",
+        "w": 24,
+        "h": 24
+    },
+    "checkbox_grey_checked": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\checkbox_grey_checked.png",
+        "w": 24,
+        "h": 24
+    },
+    "checkbox_grey_cross": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\checkbox_grey_cross.png",
+        "w": 24,
+        "h": 24
+    },
+    "checkbox_grey_empty": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\checkbox_grey_empty.png",
+        "w": 24,
+        "h": 24
+    },
+    "hexagon_brown": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\hexagon_brown.png",
+        "w": 48,
+        "h": 64
+    },
+    "hexagon_brown_dark": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\hexagon_brown_dark.png",
+        "w": 48,
+        "h": 64
+    },
+    "hexagon_damaged_brown": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\hexagon_damaged_brown.png",
+        "w": 48,
+        "h": 64
+    },
+    "hexagon_damaged_brown_dark": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\hexagon_damaged_brown_dark.png",
+        "w": 48,
+        "h": 64
+    },
+    "hexagon_grey": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\hexagon_grey.png",
+        "w": 48,
+        "h": 64
+    },
+    "hexagon_grey_dark": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\hexagon_grey_dark.png",
+        "w": 48,
+        "h": 64
+    },
+    "hexagon_grey_green": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\hexagon_grey_green.png",
+        "w": 48,
+        "h": 64
+    },
+    "hexagon_grey_red": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\hexagon_grey_red.png",
+        "w": 48,
+        "h": 64
+    },
+    "minimap_arrow_a": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_arrow_a.png",
+        "w": 16,
+        "h": 16
+    },
+    "minimap_arrow_b": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_arrow_b.png",
+        "w": 16,
+        "h": 16
+    },
+    "minimap_arrow_c": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_arrow_c.png",
+        "w": 12,
+        "h": 16
+    },
+    "minimap_arrow_d": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_arrow_d.png",
+        "w": 16,
+        "h": 16
+    },
+    "minimap_compass_future_e": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_compass_future_e.png",
+        "w": 20,
+        "h": 22
+    },
+    "minimap_compass_future_n": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_compass_future_n.png",
+        "w": 20,
+        "h": 22
+    },
+    "minimap_compass_future_s": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_compass_future_s.png",
+        "w": 20,
+        "h": 22
+    },
+    "minimap_compass_future_w": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_compass_future_w.png",
+        "w": 20,
+        "h": 22
+    },
+    "minimap_compass_toon_e": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_compass_toon_e.png",
+        "w": 16,
+        "h": 20
+    },
+    "minimap_compass_toon_n": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_compass_toon_n.png",
+        "w": 20,
+        "h": 20
+    },
+    "minimap_compass_toon_s": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_compass_toon_s.png",
+        "w": 16,
+        "h": 20
+    },
+    "minimap_compass_toon_w": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_compass_toon_w.png",
+        "w": 26,
+        "h": 20
+    },
+    "minimap_icon_exclamation_red": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_icon_exclamation_red.png",
+        "w": 8,
+        "h": 16
+    },
+    "minimap_icon_exclamation_white": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_icon_exclamation_white.png",
+        "w": 8,
+        "h": 16
+    },
+    "minimap_icon_exclamation_yellow": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_icon_exclamation_yellow.png",
+        "w": 8,
+        "h": 16
+    },
+    "minimap_icon_jewel_red": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_icon_jewel_red.png",
+        "w": 16,
+        "h": 16
+    },
+    "minimap_icon_jewel_white": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_icon_jewel_white.png",
+        "w": 16,
+        "h": 16
+    },
+    "minimap_icon_jewel_yellow": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_icon_jewel_yellow.png",
+        "w": 16,
+        "h": 16
+    },
+    "minimap_icon_star_red": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_icon_star_red.png",
+        "w": 16,
+        "h": 16
+    },
+    "minimap_icon_star_white": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_icon_star_white.png",
+        "w": 16,
+        "h": 16
+    },
+    "minimap_icon_star_yellow": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_icon_star_yellow.png",
+        "w": 16,
+        "h": 16
+    },
+    "minimap_ring_brown": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_ring_brown.png",
         "w": 128,
         "h": 128
+    },
+    "minimap_ring_brown_detail": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_ring_brown_detail.png",
+        "w": 128,
+        "h": 128
+    },
+    "minimap_ring_grey": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_ring_grey.png",
+        "w": 128,
+        "h": 128
+    },
+    "minimap_ring_grey_detail": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_ring_grey_detail.png",
+        "w": 128,
+        "h": 128
+    },
+    "minimap_ring_white": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\minimap_ring_white.png",
+        "w": 128,
+        "h": 128
+    },
+    "panel_border_brown": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_border_brown.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_border_brown_detail": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_border_brown_detail.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_border_grey": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_border_grey.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_border_grey_detail": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_border_grey_detail.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_brown": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_brown.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_brown_arrows": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_brown_arrows.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_brown_arrows_dark": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_brown_arrows_dark.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_brown_arrows_dark_detail": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_brown_arrows_dark_detail.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_brown_arrows_detail": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_brown_arrows_detail.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_brown_corners_a": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_brown_corners_a.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_brown_corners_b": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_brown_corners_b.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_brown_damaged": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_brown_damaged.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_brown_damaged_dark": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_brown_damaged_dark.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_brown_dark": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_brown_dark.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_brown_dark_corners_a": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_brown_dark_corners_a.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_brown_dark_corners_b": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_brown_dark_corners_b.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_grey": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_grey.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_grey_blue": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_grey_blue.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_grey_bolts": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_grey_bolts.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_grey_bolts_blue": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_grey_bolts_blue.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_grey_bolts_dark": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_grey_bolts_dark.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_grey_bolts_detail_a": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_grey_bolts_detail_a.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_grey_bolts_detail_b": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_grey_bolts_detail_b.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_grey_bolts_green": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_grey_bolts_green.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_grey_bolts_red": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_grey_bolts_red.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_grey_dark": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_grey_dark.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_grey_green": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_grey_green.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_grey_red": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_grey_red.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_grid_blueprint": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_grid_blueprint.png",
+        "w": 64,
+        "h": 64
+    },
+    "panel_grid_paper": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\panel_grid_paper.png",
+        "w": 64,
+        "h": 64
+    },
+    "pattern_diagonal_grey_large": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\pattern_diagonal_grey_large.png",
+        "w": 32,
+        "h": 32
+    },
+    "pattern_diagonal_grey_small": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\pattern_diagonal_grey_small.png",
+        "w": 32,
+        "h": 32
+    },
+    "pattern_diagonal_red_large": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\pattern_diagonal_red_large.png",
+        "w": 32,
+        "h": 32
+    },
+    "pattern_diagonal_red_small": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\pattern_diagonal_red_small.png",
+        "w": 32,
+        "h": 32
+    },
+    "pattern_diagonal_transparent_large": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\pattern_diagonal_transparent_large.png",
+        "w": 32,
+        "h": 32
+    },
+    "pattern_diagonal_transparent_small": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\pattern_diagonal_transparent_small.png",
+        "w": 32,
+        "h": 32
+    },
+    "pattern_grid_blueprint": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\pattern_grid_blueprint.png",
+        "w": 32,
+        "h": 32
+    },
+    "pattern_grid_paper": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\pattern_grid_paper.png",
+        "w": 32,
+        "h": 32
+    },
+    "progress_blue": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\progress_blue.png",
+        "w": 16,
+        "h": 32
+    },
+    "progress_blue_border": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\progress_blue_border.png",
+        "w": 16,
+        "h": 32
+    },
+    "progress_blue_small": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\progress_blue_small.png",
+        "w": 16,
+        "h": 16
+    },
+    "progress_blue_small_border": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\progress_blue_small_border.png",
+        "w": 16,
+        "h": 16
+    },
+    "progress_green": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\progress_green.png",
+        "w": 16,
+        "h": 32
+    },
+    "progress_green_border": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\progress_green_border.png",
+        "w": 16,
+        "h": 32
+    },
+    "progress_green_small": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\progress_green_small.png",
+        "w": 16,
+        "h": 16
+    },
+    "progress_green_small_border": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\progress_green_small_border.png",
+        "w": 16,
+        "h": 16
+    },
+    "progress_red": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\progress_red.png",
+        "w": 16,
+        "h": 32
+    },
+    "progress_red_border": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\progress_red_border.png",
+        "w": 16,
+        "h": 32
+    },
+    "progress_red_small": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\progress_red_small.png",
+        "w": 16,
+        "h": 16
+    },
+    "progress_red_small_border": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\progress_red_small_border.png",
+        "w": 16,
+        "h": 16
+    },
+    "progress_transparent": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\progress_transparent.png",
+        "w": 16,
+        "h": 32
+    },
+    "progress_transparent_small": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\progress_transparent_small.png",
+        "w": 16,
+        "h": 16
+    },
+    "progress_white": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\progress_white.png",
+        "w": 16,
+        "h": 32
+    },
+    "progress_white_border": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\progress_white_border.png",
+        "w": 16,
+        "h": 32
+    },
+    "progress_white_small": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\progress_white_small.png",
+        "w": 16,
+        "h": 16
+    },
+    "progress_white_small_border": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\progress_white_small_border.png",
+        "w": 16,
+        "h": 16
+    },
+    "round_brown": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\round_brown.png",
+        "w": 64,
+        "h": 64
+    },
+    "round_brown_dark": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\round_brown_dark.png",
+        "w": 64,
+        "h": 64
+    },
+    "round_damaged_brown": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\round_damaged_brown.png",
+        "w": 64,
+        "h": 64
+    },
+    "round_damaged_brown_dark": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\round_damaged_brown_dark.png",
+        "w": 64,
+        "h": 64
+    },
+    "round_grey": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\round_grey.png",
+        "w": 64,
+        "h": 64
+    },
+    "round_grey_dark": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\round_grey_dark.png",
+        "w": 64,
+        "h": 64
+    },
+    "round_grey_detailed_green": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\round_grey_detailed_green.png",
+        "w": 64,
+        "h": 64
+    },
+    "round_grey_detailed_red": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\round_grey_detailed_red.png",
+        "w": 64,
+        "h": 64
+    },
+    "scrollbar_brown": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\scrollbar_brown.png",
+        "w": 16,
+        "h": 64
+    },
+    "scrollbar_brown_small": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\scrollbar_brown_small.png",
+        "w": 16,
+        "h": 24
+    },
+    "scrollbar_future_grey": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\scrollbar_future_grey.png",
+        "w": 16,
+        "h": 64
+    },
+    "scrollbar_future_grey_small": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\scrollbar_future_grey_small.png",
+        "w": 16,
+        "h": 24
+    },
+    "scrollbar_future_red": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\scrollbar_future_red.png",
+        "w": 16,
+        "h": 64
+    },
+    "scrollbar_future_red_small": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\scrollbar_future_red_small.png",
+        "w": 16,
+        "h": 24
+    },
+    "scrollbar_future_transparent": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\scrollbar_future_transparent.png",
+        "w": 16,
+        "h": 64
+    },
+    "scrollbar_future_transparent_small": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\scrollbar_future_transparent_small.png",
+        "w": 16,
+        "h": 24
+    },
+    "scrollbar_grey": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\scrollbar_grey.png",
+        "w": 16,
+        "h": 64
+    },
+    "scrollbar_grey_small": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\scrollbar_grey_small.png",
+        "w": 16,
+        "h": 24
+    },
+    "scrollbar_transparent": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\scrollbar_transparent.png",
+        "w": 16,
+        "h": 64
+    },
+    "scrollbar_transparent_small": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\image\\ui\\menu\\scrollbar_transparent_small.png",
+        "w": 16,
+        "h": 24
     }
 }
