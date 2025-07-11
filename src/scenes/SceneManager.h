@@ -37,7 +37,6 @@ class SceneManager {
         Scene* m_nextScene = nullptr;
         std::stack<std::string> m_sceneHistory;
         std::unordered_map<std::string, std::function<Scene*()>> m_sceneCreators;
-
         Scene* createScene(const std::string& name);
 
 };

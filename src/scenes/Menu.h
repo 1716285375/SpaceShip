@@ -46,6 +46,8 @@ class Menu {
         std::vector<std::string> getMenuItemTexts() const { return m_menuItemTexts; }
         int selectItem(int x, int y);
         int getCurrentItemIndex() const { return m_selectedItemIndex; }
+        int getPrevCurrentItemIndex() const { return m_prevSelectedItemIndex; }
+        int setPrevCurrentItemIndex(int index) { m_prevSelectedItemIndex = index; }
         void selectItemUp();
         void selectItemDown();
         void render();
@@ -55,6 +57,7 @@ class Menu {
         std::vector<std::string> m_menuItemTexts;
         MenuItem* m_selectedItem = nullptr;
         int m_selectedItemIndex = 0;
+        int m_prevSelectedItemIndex = 0;
         int m_selectedItemX;
         int m_selectedItemY;
         int m_selectedItemHeight;

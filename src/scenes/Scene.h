@@ -4,6 +4,7 @@
 
 #include <SDL.h>
 #include <SDL_mixer.h>
+#include <SDL_ttf.h>
 #include <unordered_map>
 #include <string>
 #include <vector>
@@ -35,6 +36,7 @@ protected:
     std::vector<Mix_Music*> m_music;
     std::unordered_map<std::string, Mix_Chunk*> m_soundEffectMap; // 音效映射
     std::unordered_map<std::string, Mix_Music*> m_musicMap; // 音乐映射
+    TTF_Font* m_sceneFont_; // 字体
 private:
     Engine& m_engine;
     SDL_Renderer* m_renderer;
