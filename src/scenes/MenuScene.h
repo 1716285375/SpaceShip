@@ -29,10 +29,24 @@ class MenuScene : public Scene {
         // 菜单选项的数量
         const int m_numOptions;
         // 菜单选项的文本
-        const std::vector<std::string> m_optionTexts = {"Play", "Options", "Quit"};
+        const std::vector<std::string> m_optionTexts = {
+            "Play",
+            "Option",
+            "Setting",
+            "Help",
+            "Quit"
+        };
+
+        const std::vector<std::string> m_optionSceneTexts = {
+            "LevelScene",
+            "OptionScene",
+            "SettingScene",
+            "HelpScene",
+            "QuitScene"
+        };
 
         // 菜单选项的位置
-        const int m_optionX = 100;
+        const int m_optionX = Scene::getWindowWidth();
         const int m_optionY = 100;
         // 菜单选项的颜色
         const SDL_Color m_optionColor = {255, 255, 255, 255};

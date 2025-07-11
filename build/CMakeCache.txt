@@ -338,6 +338,9 @@ OpenXLSX.Library_SOURCE_DIR:STATIC=C:/C/GameSeries/SpaceShoot/thirdparty/OpenXLS
 //Dependencies for the target
 Resources_LIB_DEPENDS:STATIC=general;SDL2::SDL2main;general;SDL2::SDL2;general;SDL2_image::SDL2_image;general;SDL2_mixer::SDL2_mixer;general;SDL2_ttf::SDL2_ttf;general;spdlog::spdlog;
 
+//Dependencies for the target
+Scenes_LIB_DEPENDS:STATIC=general;spdlog::spdlog;
+
 //Value Computed by CMake
 SpaceShoot_BINARY_DIR:STATIC=C:/C/GameSeries/SpaceShoot/build
 

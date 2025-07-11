@@ -1,6 +1,30 @@
 {
-    "explosion-3": {
-        "file": "../../assets/sound/explosion3.wav",
-        "volume": 0.5
+    "eff11": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\sound\\eff11.wav",
+        "volume": 1.0
+    },
+    "eff5": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\sound\\eff5.wav",
+        "volume": 1.0
+    },
+    "explosion1": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\sound\\explosion1.wav",
+        "volume": 1.0
+    },
+    "explosion3": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\sound\\explosion3.wav",
+        "volume": 1.0
+    },
+    "laser_shoot4": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\sound\\laser_shoot4.wav",
+        "volume": 1.0
+    },
+    "menu_select": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\sound\\menu_select.mp3",
+        "volume": 1.0
+    },
+    "xs_laser": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\sound\\xs_laser.wav",
+        "volume": 1.0
     }
 }

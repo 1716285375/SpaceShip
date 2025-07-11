@@ -1,6 +1,18 @@
 {
-    "backgroundMusic": {
-        "file": "../../assets/music/level1_loop.ogg",
-        "volume": 0.5
+    "03_Racing_Through_Asteroids_Loop": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\music\\03_Racing_Through_Asteroids_Loop.ogg",
+        "volume": 1.0
+    },
+    "06_Battle_in_Space_Intro": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\music\\06_Battle_in_Space_Intro.ogg",
+        "volume": 1.0
+    },
+    "bg_menu_scene": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\music\\bg_menu_scene.mp3",
+        "volume": 1.0
+    },
+    "level1_loop": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\music\\level1_loop.ogg",
+        "volume": 1.0
     }
 }

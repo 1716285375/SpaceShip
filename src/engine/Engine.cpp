@@ -9,7 +9,7 @@
 #include <memory>
 #include <string>
 #include <iostream>
-
+#include <spdlog/spdlog.h>
 Engine::Engine() : m_resourceManager(ResourceManager::getInstance()), m_sceneManager(SceneManager::getInstance())
 {
 
@@ -17,6 +17,10 @@ Engine::Engine() : m_resourceManager(ResourceManager::getInstance()), m_sceneMan
 
 Engine::~Engine()
 {
+    if (m_isRunning) {
+        spdlog::info("Quitting engine...");
+        quit();
+    }
 }
 
 

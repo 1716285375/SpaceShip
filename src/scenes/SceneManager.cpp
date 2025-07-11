@@ -1,4 +1,6 @@
 #include "SceneManager.h"
+#include "spdlog/spdlog.h"
+
 
 SceneManager::SceneManager()
 {
@@ -15,6 +17,7 @@ void SceneManager::changeScene(const std::string &name)
         m_currentScene->onExit();
         m_sceneHistory.push(m_currentSceneName);
     }
+    spdlog::info("Changing scene to {}", name);
     m_currentScene = createScene(name);
     m_currentSceneName = name;
     m_currentScene->onEnter();
@@ -37,6 +40,7 @@ void SceneManager::goBack()
 
 void SceneManager::registerScene(const std::string &name, std::function<std::unique_ptr<Scene>()> creator)
 {
+    spdlog::info("Registering scene {}", name);
     m_sceneCreators[name] = creator;
 }
 
@@ -44,6 +48,7 @@ std::unique_ptr<Scene> SceneManager::createScene(const std::string &name)
 {
     auto it = m_sceneCreators.find(name);
     if (it!= m_sceneCreators.end()) {
+        spdlog::info("Creating scene {}", name);
         return it->second();
     }
     return nullptr;

@@ -18,6 +18,8 @@ class MenuItem {
         void render();
         bool isSelected() const { return m_isSelected; }
         bool select(int x, int y);
+        void select() { m_isSelected = true; }
+        void deselect() { m_isSelected = false; }
         
     private:
         SDL_Renderer* m_renderer;
@@ -39,15 +41,20 @@ class Menu {
     public:
         Menu(SDL_Renderer* renderer, const std::vector<std::string>& menuItems);
         ~Menu();
-        void addMenuItem(TextureResource* texture, const std::string& text, FontResource* font, int x, int y, int width, int height, SDL_Color normalColor, SDL_Color selectedColor);
+        void addMenuItem(TextureResource* texture, const std::string &text, FontResource* font, int x, int y, int width, int height, SDL_Color normalColor, SDL_Color selectedColor);
+        std::vector<MenuItem*> getMenuItems() const { return m_menuItems; }
+        std::vector<std::string> getMenuItemTexts() const { return m_menuItemTexts; }
         int selectItem(int x, int y);
+        int getCurrentItemIndex() const { return m_selectedItemIndex; }
+        void selectItemUp();
+        void selectItemDown();
         void render();
     private:
         SDL_Renderer* m_renderer;
         std::vector<MenuItem*> m_menuItems;
         std::vector<std::string> m_menuItemTexts;
-        int m_selectedItem;
-        int m_selectedItemIndex;
+        MenuItem* m_selectedItem = nullptr;
+        int m_selectedItemIndex = 0;
         int m_selectedItemX;
         int m_selectedItemY;
         int m_selectedItemHeight;

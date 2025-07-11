@@ -38,8 +38,9 @@ void ResourceManager::loadTexture(SDL_Renderer *renderer, const std::string &fil
         }
 
         // SDL_QueryTexture(texture, nullptr, nullptr, &w, &h);
-        spdlog::info("--- Loading texture {} from file: {} | w: {} | h: {}", tag, imagePath, w, h);
-        m_textures[tag] = std::make_unique<TextureResource>(texture, w, h);
+        // spdlog::info("--- Loading texture {} from file: {} | w: {} | h: {}", tag, imagePath, w, h);
+
+        m_textures[tag] = new TextureResource(texture, w, h);
     }
 }
 
@@ -56,7 +57,7 @@ void ResourceManager::loadFont(const std::string &filePath)
         spdlog::error("Failed to parse font file {}: {}", filePath.c_str(), e.what());
     }
     for (auto& [tag, path] : data.items()) {
-        spdlog::debug("Loading font with tag: {}", tag);
+        // spdlog::debug("Loading font with tag: {}", tag);
         auto it = m_fonts.find(tag);
         if ( it != m_fonts.end()) {
             continue;
@@ -71,9 +72,9 @@ void ResourceManager::loadFont(const std::string &filePath)
             spdlog::error("Failed to load font {}: {}", filePath.c_str(), SDL_GetError());
             font = nullptr;
         }
-        spdlog::info("--- Loading font {} from file: {} | ptsize: {} | bold: {} | italic: {} | fontName: {}", 
-                    tag, fontPath, ptsize, bold, italic, fontName);
-        m_fonts[tag] = std::make_unique<FontResource>(font, ptsize, bold, italic, fontName); 
+        // spdlog::info("--- Loading font {} from file: {} | ptsize: {} | bold: {} | italic: {} | fontName: {}", 
+        //             tag, fontPath, ptsize, bold, italic, fontName);
+        m_fonts[tag] = new FontResource(font, ptsize, bold, italic, fontName); 
     }
 }
 
@@ -100,8 +101,8 @@ void ResourceManager::loadMusic(const std::string &filePath)
         if (!music) {
             spdlog::error("Failed to load music {}: {}", filePath.c_str(), SDL_GetError());
         }
-        MusicResource* musicResource = new MusicResource(music, volume);
-        m_music[tag] = std::unique_ptr<MusicResource>(musicResource);
+
+        m_music[tag] = new MusicResource(music, volume);
     }
 
 
@@ -130,8 +131,7 @@ void ResourceManager::loadSound(const std::string &filePath)
         if (!sound) {
             spdlog::error("Failed to load sound {}: {}", filePath.c_str(), SDL_GetError());
         }
-        SoundResource* soundResource = new SoundResource(sound, volume);
-        m_sounds[tag] = std::unique_ptr<SoundResource>(soundResource);
+        m_sounds[tag] = new SoundResource(sound, volume);
     }
 
 }
@@ -180,8 +180,7 @@ void ResourceManager::loadAnimation(SDL_Renderer* renderer, const std::string &f
             frameDuration
         };
         Animation* animation = new Animation(&frames);
-        AnimationResource* animationResource = new AnimationResource(animation);
-        m_animations[tag] = std::unique_ptr<AnimationResource>(animationResource);
+        m_animations[tag] = new AnimationResource(animation);
     }
 }
 

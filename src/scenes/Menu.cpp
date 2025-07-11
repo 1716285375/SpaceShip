@@ -3,7 +3,7 @@
 #include "TextureResource.h"
 #include "FontResource.h"
 
-MenuItem::MenuItem(SDL_Renderer *renderer, TextureResource *texture, const std::string &text, FontResource *font,
+MenuItem::MenuItem(SDL_Renderer *renderer, TextureResource* texture, const std::string &text, FontResource* font,
     int x, int y, int width, int height, SDL_Color normalColor, SDL_Color selectedColor) :
     m_renderer(renderer), m_texture(texture), m_text(text), m_font(font),
     m_x(x), m_y(y), m_width(width), m_height(height), m_normalColor(normalColor), m_selectedColor(selectedColor)
@@ -36,8 +36,9 @@ void MenuItem::render()
     SDL_RenderCopy(m_renderer, m_texture->getTexture(), NULL, &dstRectTexture);
     // 渲染文字
     SDL_Color textColor = m_isSelected? m_selectedColor : m_normalColor;
-    m_fontRect = renderTextCenter(m_renderer, m_font->getFont(), m_text, m_x, m_y, textColor);
+    renderTextCenter(m_renderer, m_font->getFont(), m_text, m_x, m_y, textColor);
 
+    m_fontRect = dstRectTexture;
 }
 
 bool MenuItem::select(int x, int y)
@@ -64,7 +65,7 @@ Menu::~Menu()
     m_menuItems.clear();  // 清空向量
 }
 
-void Menu::addMenuItem(TextureResource *texture, const std::string &text, FontResource *font, int x, int y, int width, int height, SDL_Color normalColor, SDL_Color selectedColor)
+void Menu::addMenuItem(TextureResource* texture, const std::string &text, FontResource* font, int x, int y, int width, int height, SDL_Color normalColor, SDL_Color selectedColor)
 {
     MenuItem* item = new MenuItem(m_renderer, texture, text, font, x, y, width, height, normalColor, selectedColor);
     m_menuItems.push_back(item);
@@ -76,9 +77,40 @@ int Menu::selectItem(int x, int y)
     for (int i = 0; i < m_totalMenuItems; i++) {
         if (m_menuItems[i]->select(x, y)) {
             selectedIndex = i;
+            m_selectedItemIndex = selectedIndex;
         }
     }
+    for (auto& item : m_menuItems) {
+        item->deselect(); // 取消所有项的选中状态
+    }
+    m_menuItems[m_selectedItemIndex]->select();
     return selectedIndex;
+}
+
+void Menu::selectItemUp()
+{
+    if (m_selectedItemIndex > 0) {
+        m_selectedItemIndex--;
+    } else {
+        m_selectedItemIndex = m_totalMenuItems - 1; // 循环到最后一个
+    }
+    for (auto& item : m_menuItems) {
+        item->deselect(); // 取消所有项的选中状态
+    }
+    m_menuItems[m_selectedItemIndex]->select();
+}
+
+void Menu::selectItemDown()
+{
+    if (m_selectedItemIndex < m_totalMenuItems - 1) {
+        m_selectedItemIndex++;
+    } else {
+        m_selectedItemIndex = 0; // 循环到第一个
+    }
+    for (auto& item : m_menuItems) {
+        item->deselect(); // 取消所有项的选中状态
+    }
+    m_menuItems[m_selectedItemIndex]->select();
 }
 
 void Menu::render()

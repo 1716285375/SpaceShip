@@ -5,13 +5,28 @@
 classDiagram
     class ResourceManager {
         + static ResourceManager& getInstance()
-        - void LoadTexture(SDL_Renderer*, const string&)
-        - void LoadFont(const string&)
-        - void loadSound(const string&)
-        - void loadMusic(const string&)
-        - void loadAnimation(const string&)
-        - void loadAll()
-        - void unLoadAll()
+        + void LoadTexture(SDL_Renderer*, const string&)
+        + void LoadFont(const string&)
+        + void loadSound(const string&)
+        + void loadMusic(const string&)
+        + void loadAnimation(const string&)
+        + void loadAll()
+        + void unLoadAll()
+        + getTextures() unordered_map~string, unique_ptr~TextureResource~~&
+        + getFonts() unordered_map<string, unique_ptr<FontResource>>&
+        + getSounds() unordered_map<string, unique_ptr<SoundResource>>&
+        + getMusic() unordered_map<string, unique_ptr<MusicResource>>&
+        + getAnimations() unordered_map<string, unique_ptr<AnimationResource>>&
+        - ResourceManager()
+        - ResourceManager(const ResourceManager&) = delete
+        - ResourceManager& operator=(const ResourceManager&) = delete
+        - ~ResourceManager()
+        - unordered_map<string, unique_ptr<TextureResource>> m_textures
+        - unordered_map<string, unique_ptr<SoundResource>> m_sounds
+        - unordered_map<string, unique_ptr<MusicResource>> m_music
+        - unordered_map<string, unique_ptr<FontResource>> m_fonts
+        - unordered_map<string, unique_ptr<AnimationResource>> m_animations
+
     }
 
     ResourceManager "1"--> "1" Resource
