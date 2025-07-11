@@ -20,15 +20,15 @@ SDL_Rect renderTextCenter(SDL_Renderer* renderer, TTF_Font* font, const std::str
     return dstRect;
 }
 
-void renderText(SDL_Renderer* renderer, TTF_Font* font, const std::string& text, int x, int y, SDL_Color color)
+void renderText(SDL_Renderer* renderer, TTF_Font* font, const std::string& text, int x, int y, int w, int h, SDL_Color color)
 {
     SDL_Surface* surface = TTF_RenderUTF8_Solid(font, text.c_str(), color);
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_Rect dstRect = {
         x,
         y,
-        surface->w,
-        surface->h
+        w,
+        h
     };
 
     SDL_RenderCopy(renderer, texture, NULL, &dstRect);

@@ -21,10 +21,10 @@ void MenuScene::update(float deltaTime)
 {
 
 }
-
 void MenuScene::render(SDL_Renderer *renderer)
 {
-
+    renderText(renderer, m_mainFont->getFont(), "Space Shoot", Scene::getWindowWidth() / 2 -200, Scene::getWindowHeight() / 4 - 100, 400, 100, { 55, 149, 135, 255 });
+    renderText(renderer, m_mainFont->getFont(), "Author: Jiecode CopyRight@2025 Version: 1.0.1", Scene::getWindowWidth() - 404, Scene::getWindowHeight() - 24, 400, 20, { 175, 221, 255, 255 });
     m_menu->render();
 }
 
