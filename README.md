@@ -30,6 +30,13 @@
 * - [ ] 增加物品种类掉落
 * ...
 ### 游戏内容
+**开发中**
+| 新的游戏主菜单界面
+<div align="center">
+  <img src="./doc/img/menu_prev.png" style="width: 200px; height: auto; display: block; margin: 10px 0;">
+</div>
+
+**OLD**
 * **菜单界面**  
 <div align="center">
   <img src="./doc/img/menu.png" style="width: 200px; height: auto; display: block; margin: 10px 0;">
