@@ -3,7 +3,7 @@
 #include <iostream>
 #include <fstream>
 
-SDL_Point renderTextCenter(SDL_Renderer* renderer, TTF_Font* font, const std::string &text, int x, int y, SDL_Color color)
+SDL_Rect renderTextCenter(SDL_Renderer* renderer, TTF_Font* font, const std::string &text, int x, int y, SDL_Color color)
 {
     SDL_Surface* surface = TTF_RenderUTF8_Solid(font, text.c_str(), color);
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
@@ -17,10 +17,7 @@ SDL_Point renderTextCenter(SDL_Renderer* renderer, TTF_Font* font, const std::st
     SDL_FreeSurface(surface);
     SDL_DestroyTexture(texture);
 
-    return SDL_Point{
-        dstRect.x + dstRect.w,
-        dstRect.y
-    };
+    return dstRect;
 }
 
 void renderText(const std::string &text, int x, int y, int fontSize, SDL_Color color)

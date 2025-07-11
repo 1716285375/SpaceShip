@@ -11,10 +11,13 @@ class TextureResource;
 
 class MenuItem {
     public:
-        MenuItem(SDL_Renderer* renderer, TextureResource* texture, const std::string& text, FontResource* font, int x, int y, int width, int height, SDL_Color color);
+        MenuItem(SDL_Renderer* renderer, TextureResource* texture, const std::string& text, FontResource* font,
+            int x, int y, int width, int height, SDL_Color normalColor, SDL_Color selectedColor);
         ~MenuItem();
 
         void render();
+        bool isSelected() const { return m_isSelected; }
+        bool select(int x, int y);
         
     private:
         SDL_Renderer* m_renderer;
@@ -25,14 +28,19 @@ class MenuItem {
         int m_y;
         int m_width;
         int m_height;
-        SDL_Color m_color;
+        SDL_Color m_selectedColor;
+        SDL_Color m_normalColor;
+        bool m_isSelected;
+        SDL_Rect m_fontRect;
+
 };
 
 class Menu {
     public:
         Menu(SDL_Renderer* renderer, const std::vector<std::string>& menuItems);
         ~Menu();
-        void addMenuItem(TextureResource* texture, const std::string& text, FontResource* font, int x, int y, int width, int height, SDL_Color color);
+        void addMenuItem(TextureResource* texture, const std::string& text, FontResource* font, int x, int y, int width, int height, SDL_Color normalColor, SDL_Color selectedColor);
+        int selectItem(int x, int y);
         void render();
     private:
         SDL_Renderer* m_renderer;

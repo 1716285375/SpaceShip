@@ -3,8 +3,9 @@
 #include "ResourceManager.h"
 
 
-Scene::Scene() : m_renderer(Engine::getInstance().getRenderer()), m_resourceManager(ResourceManager::getInstance()),
-    m_windowWidth(Engine::getInstance().getWindowWidth()), m_windowHeight(Engine::getInstance().getWindowHeight())
+Scene::Scene() : m_engine(Engine::getInstance()), m_resourceManager(ResourceManager::getInstance())
 {
-    
+    m_renderer = m_engine.getRenderer();
+    m_windowWidth = m_engine.getWindowWidth();
+    m_windowHeight = m_engine.getWindowHeight();
 }

@@ -3,11 +3,12 @@
 #include "TextureResource.h"
 #include "FontResource.h"
 
-MenuItem::MenuItem(SDL_Renderer *renderer, TextureResource *texture, const std::string &text, FontResource *font, int x, int y, int width, int height, SDL_Color color) :
-    m_renderer(renderer), m_texture(texture), m_text(text), m_font(font), m_x(x), m_y(y), m_width(width), m_height(height), m_color(color)
+MenuItem::MenuItem(SDL_Renderer *renderer, TextureResource *texture, const std::string &text, FontResource *font,
+    int x, int y, int width, int height, SDL_Color normalColor, SDL_Color selectedColor) :
+    m_renderer(renderer), m_texture(texture), m_text(text), m_font(font),
+    m_x(x), m_y(y), m_width(width), m_height(height), m_normalColor(normalColor), m_selectedColor(selectedColor)
 {
-
-
+    m_isSelected = false; // 默认未选中
 }
 
 MenuItem::~MenuItem()
@@ -17,9 +18,7 @@ MenuItem::~MenuItem()
 
 void MenuItem::render()
 {    
-    // 渲染文字
-    renderTextCenter(m_renderer, m_font->getFont(), m_text, m_x, m_y, m_color);
-    
+
     // 渲染纹理
     SDL_Rect srcRectTexture = {
         0,
@@ -28,13 +27,27 @@ void MenuItem::render()
         m_texture->getHeight()
     };
     SDL_Rect dstRectTexture = {
-        m_x,
-        m_y,
-        m_texture->getWidth() * 2,
+        (m_x - m_texture->getWidth()) / 2,
+        m_y - 2,
+        m_texture->getWidth(),
         m_texture->getHeight()
     };
 
-    SDL_RenderCopy(m_renderer, m_texture->getTexture(), &srcRectTexture, &dstRectTexture);
+    SDL_RenderCopy(m_renderer, m_texture->getTexture(), NULL, &dstRectTexture);
+    // 渲染文字
+    SDL_Color textColor = m_isSelected? m_selectedColor : m_normalColor;
+    m_fontRect = renderTextCenter(m_renderer, m_font->getFont(), m_text, m_x, m_y, textColor);
+
+}
+
+bool MenuItem::select(int x, int y)
+{
+    if (x >= m_fontRect.x && x <= m_fontRect.x + m_fontRect.w && y >= m_fontRect.y && y <= m_fontRect.y + m_fontRect.h) {
+        m_isSelected = true;
+        return true;
+    }
+    m_isSelected = false;
+    return false;
 }
 
 Menu::Menu(SDL_Renderer *renderer, const std::vector<std::string>& menuItemTexts) :
@@ -51,10 +64,21 @@ Menu::~Menu()
     m_menuItems.clear();  // 清空向量
 }
 
-void Menu::addMenuItem(TextureResource *texture, const std::string &text, FontResource *font, int x, int y, int width, int height, SDL_Color color)
+void Menu::addMenuItem(TextureResource *texture, const std::string &text, FontResource *font, int x, int y, int width, int height, SDL_Color normalColor, SDL_Color selectedColor)
 {
-    MenuItem* item = new MenuItem(m_renderer, texture, text, font, x, y, width, height, color);
+    MenuItem* item = new MenuItem(m_renderer, texture, text, font, x, y, width, height, normalColor, selectedColor);
     m_menuItems.push_back(item);
+}
+
+int Menu::selectItem(int x, int y)
+{
+    int selectedIndex = -1;
+    for (int i = 0; i < m_totalMenuItems; i++) {
+        if (m_menuItems[i]->select(x, y)) {
+            selectedIndex = i;
+        }
+    }
+    return selectedIndex;
 }
 
 void Menu::render()

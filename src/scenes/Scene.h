@@ -25,6 +25,7 @@ protected:
     SDL_Renderer* getRenderer() const { return m_renderer; };
     ResourceManager& getResourceManager() const { return m_resourceManager; };
 private:
+    Engine& m_engine;
     mutable SDL_Renderer* m_renderer;
     ResourceManager& m_resourceManager;
     int m_windowWidth;
