@@ -13,7 +13,7 @@ FontResource::~FontResource()
 
 void FontResource::unload()
 {
-    if (m_font) {
+    if (m_font != nullptr) {
         TTF_CloseFont(m_font);
         m_font = nullptr;
     }
@@ -21,8 +21,16 @@ void FontResource::unload()
 
 TTF_Font *FontResource::getFont() const
 {
-    if (m_font) {
+    if (m_font != nullptr) {
         return m_font;
     }
     return nullptr;
+}
+
+int FontResource::getHeight() const
+{
+    if (m_font != nullptr) {
+        return TTF_FontHeight(m_font);
+    }
+    return 0;
 }

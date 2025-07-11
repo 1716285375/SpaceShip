@@ -28,15 +28,18 @@ void ResourceManager::loadTexture(SDL_Renderer *renderer, const std::string &fil
         if (it != m_textures.end()) {
             continue;
         }
-        SDL_Texture* texture = IMG_LoadTexture(renderer, path["file"].get<std::string>().c_str());
+        std::string imagePath = path["file"].get<std::string>();
+        int w = path["w"].get<int>();
+        int h = path["h"].get<int>();
+
+        SDL_Texture* texture = IMG_LoadTexture(renderer, imagePath.c_str());
         if (!texture) {
             spdlog::error("Failed to load texture {}: {}", filePath.c_str(), SDL_GetError());
         }
-        int w = path["w"].get<int>();
-        int h = path["h"].get<int>();
+
         // SDL_QueryTexture(texture, nullptr, nullptr, &w, &h);
-        TextureResource* textureResource = new TextureResource(texture, w, h);
-        m_textures[tag] = std::unique_ptr<TextureResource>(textureResource);
+        spdlog::info("--- Loading texture {} from file: {} | w: {} | h: {}", tag, imagePath, w, h);
+        m_textures[tag] = std::make_unique<TextureResource>(texture, w, h);
     }
 }
 
@@ -53,11 +56,12 @@ void ResourceManager::loadFont(const std::string &filePath)
         spdlog::error("Failed to parse font file {}: {}", filePath.c_str(), e.what());
     }
     for (auto& [tag, path] : data.items()) {
+        spdlog::debug("Loading font with tag: {}", tag);
         auto it = m_fonts.find(tag);
         if ( it != m_fonts.end()) {
             continue;
         }
-        std::string fontPath = path["filePath"].get<std::string>();
+        std::string fontPath = path["file"].get<std::string>();
         int ptsize = path["size"].get<int>();
         bool bold = path["bold"].get<bool>();
         bool italic = path["italic"].get<bool>();
@@ -67,8 +71,9 @@ void ResourceManager::loadFont(const std::string &filePath)
             spdlog::error("Failed to load font {}: {}", filePath.c_str(), SDL_GetError());
             font = nullptr;
         }
-        FontResource* fontResource = new FontResource(font, ptsize, bold, italic, fontName);
-        m_fonts[tag] = std::unique_ptr<FontResource>(fontResource); 
+        spdlog::info("--- Loading font {} from file: {} | ptsize: {} | bold: {} | italic: {} | fontName: {}", 
+                    tag, fontPath, ptsize, bold, italic, fontName);
+        m_fonts[tag] = std::make_unique<FontResource>(font, ptsize, bold, italic, fontName); 
     }
 }
 
@@ -197,6 +202,10 @@ bool ResourceManager::loadAll(SDL_Renderer* renderer, const std::string &filePat
         }
         try {
             for (auto& [tag, path] : data.items()) {
+                if (!path.is_string()) {
+                        spdlog::error("Failed to load resources: path is not a string, but is {}", path.dump());
+                        return false;
+                }
                 if (tag == "textures") {
                     spdlog::info("Loading textures from {}", path.get<std::string>());
                     loadTexture(renderer, path.get<std::string>());

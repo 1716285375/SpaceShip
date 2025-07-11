@@ -8,7 +8,7 @@
 
 #include <memory>
 #include <string>
-
+#include <iostream>
 
 Engine::Engine() : m_resourceManager(ResourceManager::getInstance()), m_sceneManager(SceneManager::getInstance())
 {
@@ -88,7 +88,11 @@ void Engine::init()
     Mix_Volume(-1, MIX_MAX_VOLUME / 8);
 
     std::string resPath = "../../data/resources.json";
-    m_resourceManager.loadAll(m_renderer, resPath);
+    bool isLoaded = m_resourceManager.loadAll(m_renderer, resPath);
+    if (!isLoaded) {
+        std::cout << "资源加载失败" << std::endl;
+        m_isRunning = false;
+    }
     m_sceneManager.registerScene("MenuScene", []() {
         return std::unique_ptr<MenuScene>(new MenuScene());
     });

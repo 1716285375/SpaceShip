@@ -23,7 +23,8 @@ set(SCENES_SOURCES
 list(APPEND SCENES_SOURCES
     MenuScene.cpp
     LevelScene.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../Game.cpp
+    Menu.cpp
+    ${CMAKE_SOURCE_DIR}/src
 )
 
 # 创建场景库

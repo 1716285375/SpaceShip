@@ -23,6 +23,9 @@ class Engine {
         void render();
         void handleEvents(SDL_Event* event);
         void quit();
+
+        int getWindowWidth() const { return m_windowWidth; }
+        int getWindowHeight() const { return m_windowHeight; }
         
 
     private:

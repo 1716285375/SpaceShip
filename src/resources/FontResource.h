@@ -10,6 +10,11 @@ class FontResource : public Resource {
         virtual ~FontResource() override;
         void unload() override;
         TTF_Font* getFont() const;
+        bool isBold() const { return m_bold; };
+        bool isItalic() const { return m_italic; };
+        int getStringWidth() const { return m_fontSize; };
+        const std::string& getFontName() const { return m_fontName; };
+        int getHeight() const;
     private:
         TTF_Font* m_font;
         int m_fontSize;
