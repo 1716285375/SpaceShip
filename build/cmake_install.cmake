@@ -37,6 +37,8 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("C:/C/GameSeries/SpaceShoot/build/thirdparty/glm/cmake_install.cmake")
   include("C:/C/GameSeries/SpaceShoot/build/thirdparty/OpenXLSX/cmake_install.cmake")
   include("C:/C/GameSeries/SpaceShoot/build/thirdparty/box2d-lite/cmake_install.cmake")
+  include("C:/C/GameSeries/SpaceShoot/build/thirdparty/nlohmann_json/cmake_install.cmake")
+  include("C:/C/GameSeries/SpaceShoot/build/thirdparty/spdlog/cmake_install.cmake")
   include("C:/C/GameSeries/SpaceShoot/build/src/cmake_install.cmake")
 
 endif()

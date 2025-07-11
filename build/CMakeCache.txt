@@ -314,6 +314,36 @@ GLM_ENABLE_SIMD_SSSE3:BOOL=OFF
 //Force 'pure' instructions
 GLM_FORCE_PURE:BOOL=OFF
 
+//Enable CI build targets.
+JSON_CI:BOOL=OFF
+
+//Enable diagnostic positions.
+JSON_Diagnostic_Positions:BOOL=OFF
+
+//Use extended diagnostic messages.
+JSON_Diagnostics:BOOL=OFF
+
+//Disable default integer enum serialization.
+JSON_DisableEnumSerialization:BOOL=OFF
+
+//Place user-defined string literals in the global namespace.
+JSON_GlobalUDLs:BOOL=ON
+
+//Enable implicit conversions.
+JSON_ImplicitConversions:BOOL=ON
+
+//Install CMake targets during install step.
+JSON_Install:BOOL=OFF
+
+//Enable legacy discarded value comparison.
+JSON_LegacyDiscardedValueComparison:BOOL=OFF
+
+//Use non-amalgamated version of the library.
+JSON_MultipleHeaders:BOOL=ON
+
+//Include as system headers (skip for clang-tidy).
+JSON_SystemInclude:BOOL=OFF
+
 //Dependencies for the target
 Logger_LIB_DEPENDS:STATIC=general;spdlog::spdlog;
 
@@ -337,6 +367,101 @@ OpenXLSX.Library_SOURCE_DIR:STATIC=C:/C/GameSeries/SpaceShoot/thirdparty/OpenXLS
 
 //Dependencies for the target
 Resources_LIB_DEPENDS:STATIC=general;SDL2::SDL2main;general;SDL2::SDL2;general;SDL2_image::SDL2_image;general;SDL2_mixer::SDL2_mixer;general;SDL2_ttf::SDL2_ttf;general;spdlog::spdlog;
+
+//Build all artifacts
+SPDLOG_BUILD_ALL:BOOL=OFF
+
+//Build benchmarks (Requires https://github.com/google/benchmark.git
+// to be installed)
+SPDLOG_BUILD_BENCH:BOOL=OFF
+
+//Build example
+SPDLOG_BUILD_EXAMPLE:BOOL=OFF
+
+//Build header only example
+SPDLOG_BUILD_EXAMPLE_HO:BOOL=OFF
+
+//Build position independent code (-fPIC)
+SPDLOG_BUILD_PIC:BOOL=OFF
+
+//Build shared library
+SPDLOG_BUILD_SHARED:BOOL=OFF
+
+//Build tests
+SPDLOG_BUILD_TESTS:BOOL=OFF
+
+//Build tests using the header only version
+SPDLOG_BUILD_TESTS_HO:BOOL=OFF
+
+//Enable compiler warnings
+SPDLOG_BUILD_WARNINGS:BOOL=OFF
+
+//non supported option
+SPDLOG_CLOCK_COARSE:BOOL=OFF
+
+//Disable default logger creation
+SPDLOG_DISABLE_DEFAULT_LOGGER:BOOL=OFF
+
+//Build static or shared library using precompiled header to speed
+// up compilation time
+SPDLOG_ENABLE_PCH:BOOL=OFF
+
+//Use external fmt library instead of bundled
+SPDLOG_FMT_EXTERNAL:BOOL=OFF
+
+//Use external fmt header-only library instead of bundled
+SPDLOG_FMT_EXTERNAL_HO:BOOL=OFF
+
+//Use the unlocked variant of fwrite. Leave this on unless your
+// libc doesn't have it
+SPDLOG_FWRITE_UNLOCKED:BOOL=ON
+
+//Generate the install target
+SPDLOG_INSTALL:BOOL=OFF
+
+//Enable/disable msvc /utf-8 flag required by fmt lib
+SPDLOG_MSVC_UTF8:BOOL=ON
+
+//prevent spdlog from using of std::atomic log levels (use only
+// if your code never modifies log levels concurrently
+SPDLOG_NO_ATOMIC_LEVELS:BOOL=OFF
+
+//Compile with -fno-exceptions. Call abort() on any spdlog exceptions
+SPDLOG_NO_EXCEPTIONS:BOOL=OFF
+
+//prevent spdlog from querying the thread id on each log call if
+// thread id is not needed
+SPDLOG_NO_THREAD_ID:BOOL=OFF
+
+//prevent spdlog from using thread local storage
+SPDLOG_NO_TLS:BOOL=OFF
+
+//Prevent from child processes to inherit log file descriptors
+SPDLOG_PREVENT_CHILD_FD:BOOL=OFF
+
+//Enable address sanitizer in tests
+SPDLOG_SANITIZE_ADDRESS:BOOL=OFF
+
+//Enable thread sanitizer in tests
+SPDLOG_SANITIZE_THREAD:BOOL=OFF
+
+//Include as system headers (skip for clang-tidy).
+SPDLOG_SYSTEM_INCLUDES:BOOL=OFF
+
+//run clang-tidy
+SPDLOG_TIDY:BOOL=OFF
+
+//Use std::format instead of fmt library.
+SPDLOG_USE_STD_FORMAT:BOOL=OFF
+
+//Support wchar output to console
+SPDLOG_WCHAR_CONSOLE:BOOL=OFF
+
+//Support wchar filenames
+SPDLOG_WCHAR_FILENAMES:BOOL=OFF
+
+//Support wchar api
+SPDLOG_WCHAR_SUPPORT:BOOL=OFF
 
 //Dependencies for the target
 Scenes_LIB_DEPENDS:STATIC=general;spdlog::spdlog;
@@ -362,9 +487,6 @@ box2d-lite_IS_TOP_LEVEL:STATIC=OFF
 //Value Computed by CMake
 box2d-lite_SOURCE_DIR:STATIC=C:/C/GameSeries/SpaceShoot/thirdparty/box2d-lite
 
-//The directory containing a CMake configuration file for fmt.
-fmt_DIR:PATH=C:/Users/Jie/AppData/Local/miniconda3/Library/lib/cmake/fmt
-
 //Value Computed by CMake
 glm_BINARY_DIR:STATIC=C:/C/GameSeries/SpaceShoot/build/thirdparty/glm
 
@@ -374,11 +496,29 @@ glm_IS_TOP_LEVEL:STATIC=OFF
 //Value Computed by CMake
 glm_SOURCE_DIR:STATIC=C:/C/GameSeries/SpaceShoot/thirdparty/glm
 
+//Value Computed by CMake
+nlohmann_json_BINARY_DIR:STATIC=C:/C/GameSeries/SpaceShoot/build/thirdparty/nlohmann_json
+
 //The directory containing a CMake configuration file for nlohmann_json.
-nlohmann_json_DIR:PATH=C:/Users/Jie/AppData/Local/miniconda3/Library/share/cmake/nlohmann_json
+nlohmann_json_DIR:PATH=nlohmann_json_DIR-NOTFOUND
+
+//Value Computed by CMake
+nlohmann_json_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+nlohmann_json_SOURCE_DIR:STATIC=C:/C/GameSeries/SpaceShoot/thirdparty/nlohmann_json
+
+//Value Computed by CMake
+spdlog_BINARY_DIR:STATIC=C:/C/GameSeries/SpaceShoot/build/thirdparty/spdlog
 
 //The directory containing a CMake configuration file for spdlog.
-spdlog_DIR:PATH=C:/Users/Jie/AppData/Local/miniconda3/Library/lib/cmake/spdlog
+spdlog_DIR:PATH=spdlog_DIR-NOTFOUND
+
+//Value Computed by CMake
+spdlog_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+spdlog_SOURCE_DIR:STATIC=C:/C/GameSeries/SpaceShoot/thirdparty/spdlog
 
 
 ########################
@@ -507,7 +647,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MT
 CMAKE_MT-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=13
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=15
 //Platform information initialized
 CMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1
 //noop for ranlib
@@ -559,8 +699,11 @@ COMPILER_HAS_DEPRECATED:INTERNAL=1
 COMPILER_HAS_DEPRECATED_ATTR:INTERNAL=
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
-//Details about finding nlohmann_json
-FIND_PACKAGE_MESSAGE_DETAILS_nlohmann_json:INTERNAL=[C:/Users/Jie/AppData/Local/miniconda3/Library/share/cmake/nlohmann_json/nlohmann_jsonConfig.cmake][v3.11.2()]
+//Have symbol _fwrite_nolock
+HAVE_FWRITE_UNLOCKED:INTERNAL=1
+//Build the unit tests when BUILD_TESTING is enabled.
+JSON_BuildTests:INTERNAL=OFF
+NLOHMANN_JSON_CONFIG_INSTALL_DIR:INTERNAL=share/cmake/nlohmann_json
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=C:/Program Files/SpaceShoot
 

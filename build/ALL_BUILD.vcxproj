@@ -210,6 +210,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{C730F837-E7F7-3121-91FF-71EFCE6EC191}</Project>
       <Name>glm</Name>
     </ProjectReference>
+    <ProjectReference Include="C:\C\GameSeries\SpaceShoot\build\thirdparty\spdlog\spdlog.vcxproj">
+      <Project>{05AFE7B3-8619-3C44-A4ED-164E9F5E3512}</Project>
+      <Name>spdlog</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

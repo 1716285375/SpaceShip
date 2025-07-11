@@ -2,6 +2,9 @@
 cmake_minimum_required(VERSION 3.10.0)
 project(SpaceShoot VERSION 0.1.0 LANGUAGES C CXX)
 
+set(JSON_BuildTests OFF CACHE INTERNAL ""
+)
+
 # 设置项目根目录
 set(ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 # 设置SDL2库的根目录（根据你的实际路径修改）
@@ -42,7 +45,7 @@ set(RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_SOURCE_DIR}/bin/Release)
 
 set(THIRDPARTY_DIR ${CMAKE_SOURCE_DIR}/thirdparty)
 set(CMAKE_PREFIX_PATH
-    ${THIRDPARTY_DIR}/json;
+    ${THIRDPARTY_DIR}/nlohmann_json;
     ${THIRDPARTY_DIR}/SDL2;
     ${THIRDPARTY_DIR}/spdlog;
 )
@@ -51,6 +54,8 @@ set_property(DIRECTORY PROPERTY CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH})
 add_subdirectory(${THIRDPARTY_DIR}/glm)
 add_subdirectory(${THIRDPARTY_DIR}/OpenXLSX)
 add_subdirectory(${THIRDPARTY_DIR}/box2d-lite)
+add_subdirectory(${THIRDPARTY_DIR}/nlohmann_json)
+add_subdirectory(${THIRDPARTY_DIR}/spdlog)
 
 add_subdirectory(src)
 
