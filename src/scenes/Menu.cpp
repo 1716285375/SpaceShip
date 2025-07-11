@@ -13,7 +13,12 @@ MenuItem::MenuItem(SDL_Renderer *renderer, TextureResource* texture, const std::
 
 MenuItem::~MenuItem()
 {
-
+    // if (m_texture != nullptr) {
+    //     delete m_texture; // 释放纹理资源
+    // }
+    // if (m_font != nullptr) {
+    //     delete m_font; // 释放字体资源
+    // }
 }
 
 void MenuItem::render()
@@ -59,10 +64,7 @@ Menu::Menu(SDL_Renderer *renderer, const std::vector<std::string>& menuItemTexts
 
 Menu::~Menu()
 {
-    for (MenuItem* item : m_menuItems) {
-        delete item;  // 释放每个 MenuItem 对象
-    }
-    m_menuItems.clear();  // 清空向量
+    // m_menuItems.clear();  // 清空向量
 }
 
 void Menu::addMenuItem(TextureResource* texture, const std::string &text, FontResource* font, int x, int y, int width, int height, SDL_Color normalColor, SDL_Color selectedColor)

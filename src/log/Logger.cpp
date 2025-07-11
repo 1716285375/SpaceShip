@@ -12,7 +12,7 @@ void initAsyncLogger() {
         spdlog::init_thread_pool(8192, 1);
 
         // 创建异步日志记录器
-        auto async_logger = spdlog::create_async<spdlog::sinks::basic_file_sink_mt>("async_logger", "..\..\logs\async_game.log", true);
+        auto async_logger = spdlog::create_async<spdlog::sinks::basic_file_sink_mt>("async_logger", "..\\..\logs\\async_game.log", true);
         if (!async_logger) {
             throw spdlog::spdlog_ex("Failed to create async logger");
         }

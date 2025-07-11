@@ -50,7 +50,7 @@ class MenuScene : public Scene {
         const int m_optionY = 100;
         // 菜单选项的颜色
         const SDL_Color m_optionColor = {255, 255, 255, 255};
-        std::unique_ptr<Menu> m_menu;
+        Menu* m_menu;
         const SDL_Color m_selectedColor = {255, 0, 0, 255};
         
         

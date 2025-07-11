@@ -12,7 +12,7 @@
 #include <spdlog/spdlog.h>
 #include <iostream>
 
-MenuScene::MenuScene() : m_numOptions(3), m_menu(std::make_unique<Menu>(getRenderer(), m_optionTexts))
+MenuScene::MenuScene() : m_numOptions(3), m_menu(new Menu(getRenderer(), m_optionTexts))
 {
 
 }
@@ -73,19 +73,19 @@ void MenuScene::onEnter()
 {
     spdlog::debug("Menu scene entered");
     Scene::getSceneManager().registerScene("LevelScene", []() {
-        return std::unique_ptr<LevelScene>(new LevelScene());
+        return new LevelScene();
     });
     Scene::getSceneManager().registerScene("HelpScene", []() {
-        return std::unique_ptr<HelpScene>(new HelpScene());
+        return new HelpScene();
     });
     Scene::getSceneManager().registerScene("OptionScene", []() {
-        return std::unique_ptr<OptionScene>(new OptionScene());
+        return new OptionScene();
     });
     Scene::getSceneManager().registerScene("SettingScene", []() {
-        return std::unique_ptr<SettingScene>(new SettingScene());
+        return new SettingScene();
     });
     Scene::getSceneManager().registerScene("QuitScene", []() {
-        return std::unique_ptr<QuitScene>(new QuitScene());
+        return new QuitScene();
     });
     std::string menuAsset = "../../data/scenes/menu/menu_scene.txt";
     std::string musicAsset = "../../data/scenes/menu/menu_music.txt";
@@ -150,5 +150,7 @@ void MenuScene::onExit()
 {
     spdlog::debug("Menu scene exited");
     Mix_HaltMusic(); // 停止播放菜单音乐
+    Scene::clean(); // 清理资源
+    delete m_menu; // 删除菜单对象
     
 }

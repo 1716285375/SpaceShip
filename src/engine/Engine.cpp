@@ -98,7 +98,7 @@ void Engine::init()
         m_isRunning = false;
     }
     m_sceneManager.registerScene("MenuScene", []() {
-        return std::unique_ptr<MenuScene>(new MenuScene());
+        return new MenuScene();
     });
     m_sceneManager.changeScene("MenuScene");
 

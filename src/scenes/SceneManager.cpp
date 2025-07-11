@@ -38,13 +38,13 @@ void SceneManager::goBack()
     }
 }
 
-void SceneManager::registerScene(const std::string &name, std::function<std::unique_ptr<Scene>()> creator)
+void SceneManager::registerScene(const std::string &name, std::function<Scene*()> creator)
 {
     spdlog::info("Registering scene {}", name);
     m_sceneCreators[name] = creator;
 }
 
-std::unique_ptr<Scene> SceneManager::createScene(const std::string &name)
+Scene* SceneManager::createScene(const std::string &name)
 {
     auto it = m_sceneCreators.find(name);
     if (it!= m_sceneCreators.end()) {

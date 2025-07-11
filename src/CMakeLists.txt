@@ -37,21 +37,20 @@ else()
     add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-if(MSVC)
-    add_compile_options("/source-charset:utf-8")
-endif()
+# if(MSVC)
+#     add_compile_options("/source-charset:utf-8")
+# endif()
 
 # 设置编译输出目录
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_SOURCE_DIR})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_SOURCE_DIR})
 
+# 设置搜索路径
 # 查找Cmake预设
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 find_package(SDL2_mixer REQUIRED)
 find_package(SDL2_ttf REQUIRED)
-find_package(nlohmann_json REQUIRED)
-find_package(spdlog REQUIRED)
 
 # 链接指定库
 target_link_libraries(

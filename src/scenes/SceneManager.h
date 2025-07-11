@@ -2,7 +2,6 @@
 #define SCENEMANAGER_H
 
 #include "Scene.h"
-#include <memory>
 #include <stack>
 #include <string>
 #include <functional>
@@ -19,8 +18,8 @@ class SceneManager {
 
         void changeScene(const std::string& name);
         void goBack();
-        void registerScene(const std::string& name, std::function<std::unique_ptr<Scene>()> creator);
-        std::unique_ptr<Scene>& getCurrentScene() {
+        void registerScene(const std::string& name, std::function<Scene*()> creator);
+        Scene* getCurrentScene() {
             return m_currentScene;
         }
         std::string& getCurrentSceneName() {
@@ -33,13 +32,13 @@ class SceneManager {
         SceneManager(const SceneManager&) = delete;
         SceneManager& operator=(const SceneManager&) = delete;
         SDL_Renderer* m_renderer;
-        std::unique_ptr<Scene> m_currentScene = nullptr;
+        Scene* m_currentScene = nullptr;
         std::string m_currentSceneName;
-        std::unique_ptr<Scene> m_nextScene = nullptr;
+        Scene* m_nextScene = nullptr;
         std::stack<std::string> m_sceneHistory;
-        std::unordered_map<std::string, std::function<std::unique_ptr<Scene>()>> m_sceneCreators;
+        std::unordered_map<std::string, std::function<Scene*()>> m_sceneCreators;
 
-        std::unique_ptr<Scene> createScene(const std::string& name);
+        Scene* createScene(const std::string& name);
 
 };
 
