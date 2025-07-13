@@ -47,6 +47,7 @@ target_include_directories(Scenes PUBLIC
     ${CMAKE_SOURCE_DIR}/src/Engine
     ${CMAKE_SOURCE_DIR}/src/resources
     ${CMAKE_SOURCE_DIR}/src/misc
+    ${IMGUI_INCLUDE_DIRS}
 
     )
 

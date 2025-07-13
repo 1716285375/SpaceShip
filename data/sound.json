@@ -19,8 +19,12 @@
         "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\sound\\laser_shoot4.wav",
         "volume": 1.0
     },
+    "menu_change": {
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\sound\\menu_change.wav",
+        "volume": 1.0
+    },
     "menu_select": {
-        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\sound\\menu_select.mp3",
+        "file": "C:\\C\\GameSeries\\SpaceShoot\\assets\\sound\\menu_select.wav",
         "volume": 1.0
     },
     "xs_laser": {

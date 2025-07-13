@@ -499,9 +499,6 @@ glm_SOURCE_DIR:STATIC=C:/C/GameSeries/SpaceShoot/thirdparty/glm
 //Value Computed by CMake
 nlohmann_json_BINARY_DIR:STATIC=C:/C/GameSeries/SpaceShoot/build/thirdparty/nlohmann_json
 
-//The directory containing a CMake configuration file for nlohmann_json.
-nlohmann_json_DIR:PATH=nlohmann_json_DIR-NOTFOUND
-
 //Value Computed by CMake
 nlohmann_json_IS_TOP_LEVEL:STATIC=OFF
 
@@ -510,9 +507,6 @@ nlohmann_json_SOURCE_DIR:STATIC=C:/C/GameSeries/SpaceShoot/thirdparty/nlohmann_j
 
 //Value Computed by CMake
 spdlog_BINARY_DIR:STATIC=C:/C/GameSeries/SpaceShoot/build/thirdparty/spdlog
-
-//The directory containing a CMake configuration file for spdlog.
-spdlog_DIR:PATH=spdlog_DIR-NOTFOUND
 
 //Value Computed by CMake
 spdlog_IS_TOP_LEVEL:STATIC=OFF
@@ -701,6 +695,8 @@ COMPILER_HAS_DEPRECATED_ATTR:INTERNAL=
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //Have symbol _fwrite_nolock
 HAVE_FWRITE_UNLOCKED:INTERNAL=1
+//imgui include dirs
+IMGUI_INCLUDE_DIRS:INTERNAL=C:/C/GameSeries/SpaceShoot/thirdparty/imgui;C:/C/GameSeries/SpaceShoot/thirdparty/imgui/backends
 //Build the unit tests when BUILD_TESTING is enabled.
 JSON_BuildTests:INTERNAL=OFF
 NLOHMANN_JSON_CONFIG_INSTALL_DIR:INTERNAL=share/cmake/nlohmann_json

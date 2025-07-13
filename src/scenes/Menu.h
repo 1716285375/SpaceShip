@@ -1,5 +1,5 @@
 #ifndef MENU_H
-#define MEN
+#define MENU_H
 
 #include <string>
 #include <SDL.h>
@@ -8,8 +8,9 @@
 
 class FontResource;
 class TextureResource;
+class Engine;
 
-class MenuItem {
+class MenuItem final {
     public:
         MenuItem(SDL_Renderer* renderer, TextureResource* texture, const std::string& text, FontResource* font,
             int x, int y, int width, int height, SDL_Color normalColor, SDL_Color selectedColor);
@@ -37,7 +38,7 @@ class MenuItem {
 
 };
 
-class Menu {
+class Menu final {
     public:
         Menu(SDL_Renderer* renderer, const std::vector<std::string>& menuItems);
         ~Menu();
@@ -56,8 +57,8 @@ class Menu {
         std::vector<MenuItem*> m_menuItems;
         std::vector<std::string> m_menuItemTexts;
         MenuItem* m_selectedItem = nullptr;
-        int m_selectedItemIndex = 0;
-        int m_prevSelectedItemIndex = 0;
+        int m_selectedItemIndex = -1;
+        int m_prevSelectedItemIndex = -1;
         int m_selectedItemX;
         int m_selectedItemY;
         int m_selectedItemHeight;

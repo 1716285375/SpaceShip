@@ -85,7 +85,11 @@ int Menu::selectItem(int x, int y)
     for (auto& item : m_menuItems) {
         item->deselect(); // 取消所有项的选中状态
     }
-    m_menuItems[m_selectedItemIndex]->select();
+    if (m_selectedItemIndex >= 0) {
+            m_menuItems[m_selectedItemIndex]->select();  
+    }
+    
+
     return selectedIndex;
 }
 

@@ -9,6 +9,7 @@ class Resource {
         Resource();
         virtual ~Resource() {};
         virtual void unload() = 0;
+        virtual void load() {};
 };
 
 

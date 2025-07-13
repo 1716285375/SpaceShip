@@ -52,6 +52,8 @@ find_package(SDL2_image REQUIRED)
 find_package(SDL2_mixer REQUIRED)
 find_package(SDL2_ttf REQUIRED)
 
+# 
+target_sources(${TARGET} PRIVATE ${IMGUI_SOURCES})
 # 链接指定库
 target_link_libraries(
     ${TARGET}
@@ -82,6 +84,7 @@ target_link_libraries(
 # 设置可执行文件输出目录
 set_target_properties(${TARGET} PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin"
+    WIN32_EXECUTABLE ON
 )
 
 # 复制SDL2的DLL文件到可执行文件目录（Windows必需）

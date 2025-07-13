@@ -1,5 +1,6 @@
 
 set(ENGINE_SOURCES
+    Engine.h
     Engine.cpp)
 
 add_library(Engine STATIC ${ENGINE_SOURCES})
@@ -8,6 +9,7 @@ target_include_directories(Engine PUBLIC
     ${CMAKE_SOURCE_DIR}/src/log
     ${CMAKE_SOURCE_DIR}/src/scenes
     ${CMAKE_SOURCE_DIR}/src/resources
+    ${IMGUI_INCLUDE_DIRS}
 )
 
 target_link_libraries(Engine PUBLIC

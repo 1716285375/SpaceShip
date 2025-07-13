@@ -49,6 +49,23 @@ set(CMAKE_PREFIX_PATH
     ${THIRDPARTY_DIR}/SDL2;
     ${THIRDPARTY_DIR}/spdlog;
 )
+
+set(IMGUI_INCLUDE_DIRS
+    ${THIRDPARTY_DIR}/imgui
+    ${THIRDPARTY_DIR}/imgui/backends
+    CACHE INTERNAL "imgui include dirs"
+)
+
+set(IMGUI_SOURCES
+    ${THIRDPARTY_DIR}/imgui/imgui.cpp
+    ${THIRDPARTY_DIR}/imgui/imgui_draw.cpp
+    ${THIRDPARTY_DIR}/imgui/imgui_tables.cpp
+    ${THIRDPARTY_DIR}/imgui/imgui_widgets.cpp
+    ${THIRDPARTY_DIR}/imgui/imgui_demo.cpp
+    ${THIRDPARTY_DIR}/imgui/backends/imgui_impl_sdl2.cpp
+    ${THIRDPARTY_DIR}/imgui/backends/imgui_impl_sdlrenderer2.cpp
+)
+message(STATUS "IMGUI_INCLUDE_DIRS: ${IMGUI_INCLUDE_DIRS}")
 set_property(DIRECTORY PROPERTY CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH})
 
 add_subdirectory(${THIRDPARTY_DIR}/glm)

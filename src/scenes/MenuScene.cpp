@@ -34,39 +34,50 @@ void MenuScene::handleInput(SDL_Event* event)
         switch (event->key.keysym.sym) {
             case SDLK_UP:
                 m_menu->selectItemUp();
-                Mix_PlayChannel(0, Scene::m_soundEffectMap["menu_select"], 0);
+                Mix_PlayChannel(0, Scene::m_soundEffectMap["menu_change"], 0);
                 break;
             case SDLK_DOWN:
                 m_menu->selectItemDown();
-                std::cout << "Down key pressed" << std::endl;
-                Mix_PlayChannel(0, Scene::m_soundEffectMap["menu_select"], 0);
+                spdlog::info("Down key pressed");
+                Mix_PlayChannel(0, Scene::m_soundEffectMap["menu_change"], 0);
                 break;
             case SDLK_LEFT:
-                std::cout << "Left key pressed" << std::endl;
+                spdlog::info("Left key pressed");
                 break;
             case SDLK_RIGHT:
-                std::cout << "Right key pressed" << std::endl;
+                spdlog::info("Right key pressed");
                 break;
             case SDLK_RETURN:
-                std::cout << "Enter key pressed" << std::endl;
+                spdlog::info("Enter key pressed");
+                Mix_PlayChannel(1, Scene::m_soundEffectMap["menu_select"], 0);
                 Scene::getSceneManager().changeScene(m_optionSceneTexts[m_menu->getCurrentItemIndex()]);
-                Mix_PlayChannel(0, Scene::m_soundEffectMap["menu_select"], 0);
                 break;
         }
-    }
-    else if (event->type == SDL_MOUSEBUTTONDOWN) {
+    } else if (event->type == SDL_MOUSEMOTION) {
+        int x = event->motion.x;
+        int y = event->motion.y;
+        int selectedItem = m_menu->selectItem(x, y);
+        static Uint32 lastPlayTime = 0; // 静态变量，存储上次播放时间
+        static int selectedItemLast = -1; // 静态变量，存储上次选择的选项
+        Uint32 currentTime = SDL_GetTicks();
+        Uint32 timeSinceLastPlay = currentTime - lastPlayTime;
+        Uint32 minInterval = 400; // 最小间隔 200 毫秒
+
+        if (selectedItem != -1 && timeSinceLastPlay > minInterval && selectedItem != selectedItemLast) {
+            Mix_PlayChannel(0, Scene::m_soundEffectMap["menu_change"], 0);
+            lastPlayTime = currentTime; // 更新上次播放时间
+        }
+        selectedItemLast = selectedItem; // 更新上次选择的选项
+    } else if (event->type == SDL_MOUSEBUTTONDOWN) {
         int x = event->button.x;
         int y = event->button.y;
-        std::cout << "Mouse button pressed at (" << x << ", " << y << ")" << std::endl;
         int selectedItem = m_menu->selectItem(x, y);
         if (selectedItem != -1) {
-            std::cout << "Selected menu item: " << selectedItem << std::endl;
+            Mix_PlayChannel(1, Scene::m_soundEffectMap["menu_select"], 0);
             Scene::getSceneManager().changeScene(m_optionSceneTexts[m_menu->getCurrentItemIndex()]);
-            Mix_PlayChannel(0, Scene::m_soundEffectMap["menu_select"], 0);
-            // 处理选中项的逻辑
-        } 
-
+        }
     }
+
 }
 
 void MenuScene::onEnter()
@@ -90,50 +101,53 @@ void MenuScene::onEnter()
     std::string menuAsset = "../../data/scenes/menu/menu_scene.txt";
     std::string musicAsset = "../../data/scenes/menu/menu_music.txt";
     std::string soundAsset = "../../data/scenes/menu/menu_sound.txt";
-    std::cout << "Loading menu scene from " << menuAsset << std::endl;
+    spdlog::info("Loading menu scene from {}", menuAsset);
     std::vector<std::string> tags = readTagsFromFile(menuAsset);
     std::vector<std::string> musicTags = readTagsFromFile(musicAsset);
     std::vector<std::string> soundTags = readTagsFromFile(soundAsset);
     for (const auto& tag : musicTags) {
-        std::cout << "Loading musicTag: " << tag << std::endl;
+        spdlog::info("Loading musicTag: {}", tag);
         MusicResource* music = Scene::getResourceManager().getMusic()[tag];
         Scene::m_music.push_back(music->getMusic());
         Scene::m_musicMap.insert(std::make_pair(tag, music->getMusic()));
+        spdlog::debug("Music loaded: " + tag);
     }
 
     Mix_VolumeMusic(MIX_MAX_VOLUME); // 设置音量
 
     for (const auto& tag : soundTags) {
-        std::cout << "Loading soundTag: " << tag << std::endl;
+        spdlog::info("Loading soundTag: {}", tag);
         SoundResource* sound = Scene::getResourceManager().getSounds()[tag];
         Scene::m_soundEffects.push_back(sound->getChunk());
         Scene::m_soundEffectMap.insert(std::make_pair(tag, sound->getChunk()));
+        spdlog::debug("Sound effect loaded: " + tag);
     }
 
-    Mix_Volume(0, MIX_MAX_VOLUME);
+    Mix_Volume(0, MIX_MAX_VOLUME); // 设置音效音量
+    Mix_Volume(1, MIX_MAX_VOLUME);
 
     // 获取一个 TextureResource 的 shared_ptr
     std::string textureTag = "banner_modern";
     TextureResource* texture = Scene::getResourceManager().getTextures()[textureTag];
 
     if (texture) {
-        std::cout << "Texture found: " << textureTag << std::endl;
+        spdlog::info("Texture found: {}", textureTag);
     } else {
-        std::cout << "Texture not found: " << textureTag << std::endl;
+        spdlog::info("Texture not found: {}", textureTag);
     }
 
     std::string fontTag = "Silver-48px";
     FontResource* font = Scene::getResourceManager().getFonts()[fontTag];
     if (font) {
-        std::cout << "Font found: " << fontTag << std::endl;
+        spdlog::info("Font found: {}", fontTag);
     } else {
-        std::cout << "Font not found: " << fontTag << std::endl;
+        spdlog::info("Font not found: {}", fontTag);
     }
     m_mainFont = Scene::getResourceManager().getFonts()["VonwaonBitmap-16px"];
     if (m_mainFont) {
-        std::cout << "Main font loaded: " << m_mainFont->getFontName() << std::endl;
+        spdlog::info("Main font loaded: {}", m_mainFont->getFontName());
     } else {
-        std::cout << "Failed to load main font" << std::endl;
+        spdlog::info("Failed to load main font");
     }
 
     int offsetY = 0;
@@ -141,7 +155,6 @@ void MenuScene::onEnter()
         m_menu->addMenuItem(texture, optionText, font, Scene::getWindowWidth(), m_optionY * 3 + offsetY, 100, 100, m_optionColor, m_selectedColor);
         offsetY += (font->getHeight() + 20); // 假设每个选项之间的间隔为50像素
     }
-    m_menu->getMenuItems()[m_menu->getCurrentItemIndex()]->select(); // 默认选中第一个菜单项
 
     Mix_PlayMusic(Scene::m_musicMap["bg_menu_scene"], -1); // 循环播放菜单音乐
 }

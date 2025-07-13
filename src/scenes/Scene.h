@@ -14,8 +14,7 @@ class Engine;
 class SceneManager;
 
 //场景基类
-class Scene
-{
+class Scene {
 public:
     Scene();
     virtual ~Scene() { clean(); };
@@ -26,17 +25,19 @@ public:
     virtual void onExit() {}; //退出场景
     void clean(); //清理资源
 
-    int getWindowWidth() const { return m_windowWidth; };
-    int getWindowHeight() const { return m_windowHeight; };
+    int getWindowWidth() const;
+    int getWindowHeight() const;
 protected:
     SDL_Renderer* getRenderer() const { return m_renderer; };
     ResourceManager& getResourceManager() const { return m_resourceManager; };
     SceneManager& getSceneManager() const { return m_sceneManager; };
     std::vector<Mix_Chunk*> m_soundEffects;
     std::vector<Mix_Music*> m_music;
+    std::vector<TTF_Font*> m_sceneFonts; // 字体
+    TTF_Font* m_sceneFont_ = nullptr; // 当前场景字体
     std::unordered_map<std::string, Mix_Chunk*> m_soundEffectMap; // 音效映射
     std::unordered_map<std::string, Mix_Music*> m_musicMap; // 音乐映射
-    TTF_Font* m_sceneFont_; // 字体
+    std::unordered_map<std::string, TTF_Font*> m_sceneFontMap; // 字体
 private:
     Engine& m_engine;
     SDL_Renderer* m_renderer;
