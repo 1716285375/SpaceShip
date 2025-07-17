@@ -5,6 +5,10 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <spdlog/spdlog.h>
+#include "imgui.h"
+#include "imgui_impl_sdl2.h"
+#include "imgui_impl_sdlrenderer2.h"
+
 
 LevelScene::LevelScene()
 {
@@ -38,7 +42,6 @@ void LevelScene::render(SDL_Renderer* renderer)
         spdlog::error("Renderer is null in LevelScene::render");
         return;
     }
-    renderTextCenter(renderer, Scene::m_sceneFont_, "Level Scene", Scene::getWindowWidth(), Scene::getWindowHeight() / 2, {255, 255, 255, 255});
 }
 
 void LevelScene::onEnter()

@@ -34,6 +34,7 @@ list(APPEND SCENES_SOURCES
     MenuScene.cpp
     Menu.cpp
     ${CMAKE_SOURCE_DIR}/src
+    ${IMGUI_SOURCES}
 )
 
 # 创建场景库
@@ -47,6 +48,7 @@ target_include_directories(Scenes PUBLIC
     ${CMAKE_SOURCE_DIR}/src/Engine
     ${CMAKE_SOURCE_DIR}/src/resources
     ${CMAKE_SOURCE_DIR}/src/misc
+    ${IMGUI_INCLUDE_DIRS}
     ${IMGUI_INCLUDE_DIRS}
 
     )

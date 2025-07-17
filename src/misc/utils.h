@@ -16,4 +16,6 @@ void renderTextRight(const std::string& text, int x, int y, int fontSize, SDL_Co
 void renderTexture(SDL_Renderer* renderer, SDL_Texture* texture, int x, int y, int width, int height, double angle, SDL_Point* center, SDL_RendererFlip flip);
 
 std::vector<std::string> readTagsFromFile(const std::string& fileName);
+
+void drawGrid(SDL_Renderer* renderer, int x, int y, int width, int height, int cellSize, SDL_Color color);
 #endif // UTIL_H

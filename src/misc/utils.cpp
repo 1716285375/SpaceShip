@@ -66,3 +66,17 @@ std::vector<std::string> readTagsFromFile(const std::string &fileName)
     file.close();
     return tags;
 }
+
+void drawGrid(SDL_Renderer *renderer, int x, int y, int width, int height, int cellSize, SDL_Color color)
+{
+    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+
+    // 画横线
+    for (int i = y; i <= y + height; i += cellSize) {
+        SDL_RenderDrawLine(renderer, x, i, x + width, i);
+    }
+    // 画竖线
+    for (int i = x; i <= x + width; i += cellSize) {
+        SDL_RenderDrawLine(renderer, i, y, i, y + height);
+    }
+}

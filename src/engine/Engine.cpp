@@ -1,5 +1,6 @@
 #include "Engine.h"
 #include "MenuScene.h"
+#include "utils.h"
 
 #include <SDL.h>
 #include <SDL_image.h>
@@ -190,9 +191,6 @@ void Engine::run()
             }
             if (m_debug) {
                 render_debug();
-                if (test_var > 50.0f) {
-                    spdlog::info("test_var > 50.0f");
-                }
             }
             // 调试面板
             update(m_deltaTime);
@@ -219,12 +217,21 @@ void Engine::update(float deltaTime)
 void Engine::render()
 {
     // Rendering
-    ImGui::Render();
+
     SDL_RenderSetScale(m_renderer, io->DisplayFramebufferScale.x, io->DisplayFramebufferScale.y);
     SDL_SetRenderDrawColor(m_renderer, (Uint8)(clear_color.x * 255), (Uint8)(clear_color.y * 255), (Uint8)(clear_color.z * 255), (Uint8)(clear_color.w * 255));
     SDL_RenderClear(m_renderer);
-    ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData(), m_renderer); 
+
+    if (m_showGrid) {
+        drawGrid(m_renderer, 0, 0, getWindowWidth(), getWindowHeight(), m_cellSize, m_color);
+    }
+
+    // 渲染当前场景
     m_sceneManager.getCurrentScene()->render(m_renderer);
+    
+    // ImGui Rendering
+    ImGui::Render();
+    ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData(), m_renderer); 
     SDL_RenderPresent(m_renderer);
 }
 
@@ -260,10 +267,20 @@ void Engine::quit()
 }
 
 void Engine::render_debug() {
-    ImGui::Begin("Debug");
-    ImGui::SliderFloat("Test Variable", &test_var, 0.0f, 100.0f);
+
+    ImGui::Begin("调试面板");
+    ImGui::Checkbox("显示网格", &m_showGrid);
+    ImGui::SameLine();
+    ImGui::SliderInt("网格大小", &m_cellSize, 8, 256);
+    ImGui::InputInt("##cellSize_input", &m_cellSize, 8, 256);
+    if (ImGui::ColorEdit4("颜色", (float*)&m_ImColor)) {
+        // 将 ImGui 颜色转换为 SDL_Color
+        m_color.r = (Uint8)(m_ImColor.x * 255.0f);
+        m_color.g = (Uint8)(m_ImColor.y * 255.0f);
+        m_color.b = (Uint8)(m_ImColor.z * 255.0f);
+        m_color.a = (Uint8)(m_ImColor.w * 255.0f);
+    }
+
     ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
     ImGui::End();
-    ImGui::Render();
-    ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData(), m_renderer);
 }

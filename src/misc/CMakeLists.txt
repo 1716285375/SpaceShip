@@ -1,6 +1,7 @@
 
 set(MISC_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/utils.cpp
+    ${IMGUI_SOURCES}
     )
 
 
@@ -9,6 +10,7 @@ add_library(Utils STATIC ${MISC_SOURCES}
 
 target_include_directories(Utils PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
+    ${IMGUI_INCLUDE_DIRS}
 )
 
 set_target_properties(Utils PROPERTIES

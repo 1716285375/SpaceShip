@@ -58,10 +58,14 @@ class Engine final {
         bool show_demo_window = false;
         bool show_another_window = false;
         ImVec4 clear_color = ImVec4(0.0f, 0.0f, 0.0f, 1.00f);
-        float test_var = 0.0f;
         Uint32 m_frameTime; // 每帧时间
         bool m_debug = false;
         // bool m_initialized = false;
+        // debug
+        int m_cellSize = 64;
+        ImVec4 m_ImColor = ImVec4(1.0f, 1.0f, 1.0f, 1.0f); // 对应的 ImGui 颜色
+        SDL_Color m_color = { 255, 255, 255, 255 }; // SDL 颜色
+        bool m_showGrid = false;
 
 };
 
