@@ -28,4 +28,5 @@ set_target_properties(
     DEBUG_POSTFIX "d"
 )
 
+add_subdirectory(core/component)
 add_library(game::engine ALIAS Engine)

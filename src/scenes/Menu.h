@@ -5,6 +5,8 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <vector>
+#include <unordered_map>
+
 
 class FontResource;
 class TextureResource;
@@ -13,10 +15,16 @@ class Engine;
 class MenuItem final {
     public:
         MenuItem(SDL_Renderer* renderer, TextureResource* texture, const std::string& text, FontResource* font,
-            int x, int y, int width, int height, SDL_Color normalColor, SDL_Color selectedColor);
+            int x, int y, int offsetX, int offsetY, SDL_Color normalColor, SDL_Color selectedColor);
         ~MenuItem();
 
         void render();
+        void update();
+        MenuItem* getItem(const std::string& text) { return m_text == text? this : nullptr; }
+        void setText(const std::string& text) { m_text = text; }
+        void setPosition(int x, int y) { m_x = x; m_y = y; }
+        void setOffset(int offsetX, int offsetY) { m_offsetX = offsetX; m_offsetY = offsetY; }
+        void setColors(SDL_Color normalColor, SDL_Color selectedColor) { m_normalColor = normalColor; m_selectedColor = selectedColor; }
         bool isSelected() const { return m_isSelected; }
         bool select(int x, int y);
         void select() { m_isSelected = true; }
@@ -29,8 +37,8 @@ class MenuItem final {
         FontResource* m_font;
         int m_x;
         int m_y;
-        int m_width;
-        int m_height;
+        int m_offsetX;
+        int m_offsetY;
         SDL_Color m_selectedColor;
         SDL_Color m_normalColor;
         bool m_isSelected;
@@ -43,6 +51,7 @@ class Menu final {
         Menu(SDL_Renderer* renderer, const std::vector<std::string>& menuItems);
         ~Menu();
         void addMenuItem(TextureResource* texture, const std::string &text, FontResource* font, int x, int y, int width, int height, SDL_Color normalColor, SDL_Color selectedColor);
+        void updateMenuItem(const std::string& text, int x, int y, int offsetX, int offsetY);
         std::vector<MenuItem*> getMenuItems() const { return m_menuItems; }
         std::vector<std::string> getMenuItemTexts() const { return m_menuItemTexts; }
         int selectItem(int x, int y);
@@ -56,6 +65,7 @@ class Menu final {
         SDL_Renderer* m_renderer;
         std::vector<MenuItem*> m_menuItems;
         std::vector<std::string> m_menuItemTexts;
+        std::unordered_map<std::string, MenuItem*> m_menuItemMap;
         MenuItem* m_selectedItem = nullptr;
         int m_selectedItemIndex = -1;
         int m_prevSelectedItemIndex = -1;

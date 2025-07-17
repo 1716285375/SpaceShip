@@ -76,6 +76,10 @@ void MenuScene::handleInput(SDL_Event* event)
             Mix_PlayChannel(1, Scene::m_soundEffectMap["menu_select"], 0);
             Scene::getSceneManager().changeScene(m_optionSceneTexts[m_menu->getCurrentItemIndex()]);
         }
+    } else if (event->type == SDL_WINDOWEVENT && event->window.event == SDL_WINDOWEVENT_RESIZED) {
+        for(size_t i = 0; i < m_optionTexts.size(); i++) {
+            m_menu->updateMenuItem(m_optionTexts[i], Scene::getWindowWidth(), m_optionY * 3, 0, m_offsetY[i]);
+        }
     }
 
 }
@@ -152,7 +156,8 @@ void MenuScene::onEnter()
 
     int offsetY = 0;
     for (auto& optionText: m_optionTexts) {
-        m_menu->addMenuItem(texture, optionText, font, Scene::getWindowWidth(), m_optionY * 3 + offsetY, 100, 100, m_optionColor, m_selectedColor);
+        m_offsetY.push_back(offsetY);
+        m_menu->addMenuItem(texture, optionText, font, Scene::getWindowWidth(), m_optionY * 3, 0, offsetY, m_optionColor, m_selectedColor);
         offsetY += (font->getHeight() + 20); // 假设每个选项之间的间隔为50像素
     }
 

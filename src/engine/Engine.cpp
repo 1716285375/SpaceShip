@@ -156,11 +156,14 @@ void Engine::run()
                 m_isRunning = false;
                 break;
             } else if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_RESIZED) {
-                // int w = event.window.data1;
-                // int h = event.window.data2;
-                // SDL_RenderSetLogicalSize(m_renderer, m_windowWidth, m_windowHeight); // 逻辑分辨率保持不变
+                int w = event.window.data1;
+                int h = event.window.data2;
+                m_windowWidth = w;
+                m_windowHeight = h;
+                SDL_RenderSetLogicalSize(m_renderer, m_windowWidth, m_windowHeight); // 逻辑分辨率保持不变
                 // // 通知 ImGui 新的显示尺寸
                 // io->DisplaySize = ImVec2(float(w), float(h));
+                
             } else if (event.type == SDL_KEYDOWN) {
                 if (event.key.keysym.sym == SDLK_F1) {
                     show_demo_window = !show_demo_window;

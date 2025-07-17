@@ -4,9 +4,9 @@
 #include "FontResource.h"
 
 MenuItem::MenuItem(SDL_Renderer *renderer, TextureResource* texture, const std::string &text, FontResource* font,
-    int x, int y, int width, int height, SDL_Color normalColor, SDL_Color selectedColor) :
+    int x, int y, int offsetX, int offsetY, SDL_Color normalColor, SDL_Color selectedColor) :
     m_renderer(renderer), m_texture(texture), m_text(text), m_font(font),
-    m_x(x), m_y(y), m_width(width), m_height(height), m_normalColor(normalColor), m_selectedColor(selectedColor)
+    m_x(x), m_y(y), m_offsetX(offsetX), m_offsetY(offsetY), m_normalColor(normalColor), m_selectedColor(selectedColor)
 {
     m_isSelected = false; // 默认未选中
 }
@@ -32,8 +32,8 @@ void MenuItem::render()
         m_texture->getHeight()
     };
     SDL_Rect dstRectTexture = {
-        (m_x - m_texture->getWidth()) / 2,
-        m_y - 2,
+        (m_x + m_offsetX - m_texture->getWidth()) / 2,
+        m_y + m_offsetY - 2,
         m_texture->getWidth(),
         m_texture->getHeight()
     };
@@ -41,9 +41,15 @@ void MenuItem::render()
     SDL_RenderCopy(m_renderer, m_texture->getTexture(), NULL, &dstRectTexture);
     // 渲染文字
     SDL_Color textColor = m_isSelected? m_selectedColor : m_normalColor;
-    renderTextCenter(m_renderer, m_font->getFont(), m_text, m_x, m_y, textColor);
+    renderTextCenter(m_renderer, m_font->getFont(), m_text, m_x + m_offsetX, m_y + m_offsetY, textColor);
 
     m_fontRect = dstRectTexture;
+}
+
+void MenuItem::update()
+{
+    m_x = m_x; // 保持原位置不变
+    m_y = m_y;
 }
 
 bool MenuItem::select(int x, int y)
@@ -67,10 +73,18 @@ Menu::~Menu()
     // m_menuItems.clear();  // 清空向量
 }
 
-void Menu::addMenuItem(TextureResource* texture, const std::string &text, FontResource* font, int x, int y, int width, int height, SDL_Color normalColor, SDL_Color selectedColor)
+void Menu::addMenuItem(TextureResource* texture, const std::string &text, FontResource* font, int x, int y, int offsetX, int offsetY, SDL_Color normalColor, SDL_Color selectedColor)
 {
-    MenuItem* item = new MenuItem(m_renderer, texture, text, font, x, y, width, height, normalColor, selectedColor);
+    MenuItem* item = new MenuItem(m_renderer, texture, text, font, x, y, offsetX, offsetY, normalColor, selectedColor);
     m_menuItems.push_back(item);
+    m_menuItemMap.emplace(text, item);
+}
+
+void Menu::updateMenuItem(const std::string &text, int x, int y, int offsetX, int offsetY)
+{
+    auto item = m_menuItemMap[text];
+    item->setPosition(x, y);
+    item->setOffset(offsetX, offsetY);
 }
 
 int Menu::selectItem(int x, int y)

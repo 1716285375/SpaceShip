@@ -48,6 +48,8 @@ class MenuScene : public Scene {
         // 菜单选项的位置
         const int m_optionX = Scene::getWindowWidth();
         const int m_optionY = 100;
+        std::vector<int> m_offsetX;
+        std::vector<int> m_offsetY;
         // 菜单选项的颜色
         const SDL_Color m_optionColor = {255, 255, 255, 255};
         Menu* m_menu;
