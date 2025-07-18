@@ -12,6 +12,7 @@ target_include_directories(Engine PUBLIC
     ${CMAKE_SOURCE_DIR}/src/resources
     ${CMAKE_SOURCE_DIR}/src/misc
     ${IMGUI_INCLUDE_DIRS}
+    ${GLM_INCLUDE_DIRS}
 )
 
 target_link_libraries(Engine PUBLIC

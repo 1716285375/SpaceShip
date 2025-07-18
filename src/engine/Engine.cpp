@@ -170,7 +170,7 @@ void Engine::run()
                     show_demo_window = !show_demo_window;
                 } else if (event.key.keysym.sym == SDLK_F2) {
                     show_another_window = !show_another_window;
-                } else if (event.key.keysym.sym == SDLK_F3) {
+                } else if (event.key.keysym.sym == SDLK_F5) {
                     m_debug = !m_debug;
                 }
             }
@@ -271,8 +271,13 @@ void Engine::render_debug() {
     ImGui::Begin("调试面板");
     ImGui::Checkbox("显示网格", &m_showGrid);
     ImGui::SameLine();
+    // 设置宽度
+    ImGui::PushItemWidth(150); // 设置宽度为 150 像素
     ImGui::SliderInt("网格大小", &m_cellSize, 8, 256);
+    ImGui::SameLine();
     ImGui::InputInt("##cellSize_input", &m_cellSize, 8, 256);
+    // 恢复默认宽度
+    ImGui::PopItemWidth();
     if (ImGui::ColorEdit4("颜色", (float*)&m_ImColor)) {
         // 将 ImGui 颜色转换为 SDL_Color
         m_color.r = (Uint8)(m_ImColor.x * 255.0f);

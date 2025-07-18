@@ -49,6 +49,9 @@ void MenuScene::handleInput(SDL_Event* event)
                 break;
             case SDLK_RETURN:
                 spdlog::info("Enter key pressed");
+                if (m_menu->getCurrentItemIndex() < 0) {
+                    break;
+                }
                 Mix_PlayChannel(1, Scene::m_soundEffectMap["menu_select"], 0);
                 Scene::getSceneManager().changeScene(m_optionSceneTexts[m_menu->getCurrentItemIndex()]);
                 break;

@@ -68,6 +68,7 @@ target_link_libraries(
     optimized game::utils # Release 版本
     debug game::logger # Debug 版本
     optimized game::logger # Release 版本
+    game::components
     # debug game::input # Debug 版本
     # optimized game::input # Release 版本
     # debug game::entity # Debug 版本
@@ -76,9 +77,9 @@ target_link_libraries(
     SDL2_image::SDL2_image
     SDL2_mixer::SDL2_mixer
     SDL2_ttf::SDL2_ttf
-    glm::glm
     nlohmann_json::nlohmann_json
     OpenXLSX::OpenXLSX
+    glm
 )
 
 # 设置可执行文件输出目录
@@ -98,6 +99,7 @@ if(WIN32)
         $<TARGET_FILE_DIR:${TARGET}>
     )
 endif()
+
 
 # 添加子目录（使用命名空间）
 add_subdirectory(engine)
